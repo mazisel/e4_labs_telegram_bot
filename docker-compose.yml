@@ -3,8 +3,8 @@ services:
     build: .
     container_name: katilim_bot
     restart: unless-stopped
-    env_file:
-      - .env
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
     volumes:
       # Persist temp files if needed (optional)
       - ./temp:/app/temp
