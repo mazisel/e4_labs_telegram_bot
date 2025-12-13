@@ -32,10 +32,7 @@ def generate_template():
             print(f"Hiding Text Layer: {layer.name}")
 
         # Hide the sample photo layer(s)
-        # Check by name AND bounding box or specific known artifact names
-        if layer.name == "img-signin.8188da91":
-             layer.visible = False
-             print(f"Hiding Artifact: {layer.name}")
+        # NOTE: img-signin.8188da91 is the LOGO - DO NOT HIDE IT
              
         if layer.name == "Vector Smart Object":
             # Check if this is the big photo layer
