@@ -1,0 +1,11 @@
+services:
+  telegram-bot:
+    build: .
+    container_name: katilim_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Persist temp files if needed (optional)
+      - ./temp:/app/temp
+    # No ports needed - bot uses polling, not webhooks
