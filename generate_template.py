@@ -77,6 +77,7 @@ def generate_template():
 
 def generate_ziyaret_template():
     import os
+    from PIL import Image, ImageDraw
     psd_path = "assets/ziyaret.psd"
     if not os.path.exists(psd_path):
         print(f"{psd_path} not found, skipping...")
@@ -84,22 +85,22 @@ def generate_ziyaret_template():
     
     print("Loading Ziyaret PSD...")
     psd = PSDImage.open(psd_path)
-    gorsel_layer = None
+    
+    # Save solid rounded photo mask
+    mask = Image.new("L", (1007, 676), 0)
+    draw = ImageDraw.Draw(mask)
+    draw.rounded_rectangle((0, 0, 1007, 676), radius=44, fill=255)
+    mask.save("assets/ziyaret_photo_mask.png")
+    print("Photo mask saved to assets/ziyaret_photo_mask.png")
+
     for layer in psd:
-        if layer.name == 'görsel':
-            gorsel_layer = layer
         if layer.name in ['görsel', 'metin']:
             layer.visible = False
             
     bg = psd.composite()
     bg.save("assets/ziyaret_template.png")
     print("Template saved to assets/ziyaret_template.png")
-    
-    if gorsel_layer:
-        gorsel_img = gorsel_layer.composite()
-        mask = gorsel_img.split()[3]
-        mask.save("assets/ziyaret_photo_mask.png")
-        print("Photo mask saved to assets/ziyaret_photo_mask.png")
+
 
 if __name__ == "__main__":
     generate_template()

@@ -179,10 +179,23 @@ class ImageComposer:
             top = (new_height - PHOTO_H) // 2
             photo = photo.crop((left, top, left + PHOTO_W, top + PHOTO_H))
 
-            # Apply rounded corner mask if available
+            # Apply rounded corner mask (safe with fallback)
+            mask = None
             if os.path.exists(self.ziyaret_mask_path):
-                mask = Image.open(self.ziyaret_mask_path).convert("L")
-                photo.putalpha(mask)
+                try:
+                    loaded_mask = Image.open(self.ziyaret_mask_path).convert("L")
+                    # Ensure mask is valid and not completely blank/black
+                    if loaded_mask.getextrema()[1] > 0 and loaded_mask.size == (PHOTO_W, PHOTO_H):
+                        mask = loaded_mask
+                except Exception as e:
+                    print(f"Mask read error: {e}")
+
+            if mask is None:
+                mask = Image.new("L", (PHOTO_W, PHOTO_H), 0)
+                draw_m = ImageDraw.Draw(mask)
+                draw_m.rounded_rectangle((0, 0, PHOTO_W, PHOTO_H), radius=44, fill=255)
+
+            photo.putalpha(mask)
 
             # Paste photo onto canvas
             canvas.paste(photo, (PHOTO_BOX[0], PHOTO_BOX[1]), photo)
@@ -217,8 +230,8 @@ class ImageComposer:
             return lines
 
         # Auto-adjust font size based on text height
-        start_font_size = 24
-        min_font_size = 15
+        start_font_size = 32
+        min_font_size = 18
         font_size = start_font_size
 
         while font_size >= min_font_size:
@@ -226,7 +239,7 @@ class ImageComposer:
             lines = wrap_text(text, font)
             line_height = int(font_size * 1.35)
             total_height = len(lines) * line_height
-            if total_height <= 115:
+            if total_height <= 120:
                 break
             font_size -= 1
 
