@@ -9,6 +9,9 @@ class ImageComposer:
         self.template_path = os.path.join(assets_dir, "generated_template.png")
         self.font_bold_path = os.path.join(assets_dir, "Poppins-Bold.ttf")
         self.font_light_path = os.path.join(assets_dir, "Poppins-Light.ttf")
+        self.font_medium_path = os.path.join(assets_dir, "Poppins-Medium.ttf")
+        self.ziyaret_template_path = os.path.join(assets_dir, "ziyaret_template.png")
+        self.ziyaret_mask_path = os.path.join(assets_dir, "ziyaret_photo_mask.png")
         
         self.debug = False
         
@@ -139,6 +142,114 @@ class ImageComposer:
         canvas.convert("RGB").save(output_path)
         return output_path
 
+    compose_katilim = compose
+
+    def compose_ziyaret(self, user_photo_path, text, output_path):
+        """
+        Composes the 'Ziyaret' template using user photo and text.
+        """
+        # Ziyaret Constants
+        # Photo Area: (37, 420, 1044, 1096) -> W=1007, H=676
+        PHOTO_BOX = (37, 420, 1044, 1096)
+        PHOTO_W = 1007
+        PHOTO_H = 676
+        
+        # 1. Canvas & Template
+        if os.path.exists(self.ziyaret_template_path):
+            canvas = Image.open(self.ziyaret_template_path).convert("RGBA")
+        else:
+            print(f"Template not found: {self.ziyaret_template_path}")
+            return None
+
+        # 2. Photo Processing
+        try:
+            photo = Image.open(user_photo_path).convert("RGBA")
+            target_ratio = PHOTO_W / PHOTO_H
+            photo_ratio = photo.width / photo.height
+
+            if photo_ratio > target_ratio:
+                new_height = PHOTO_H
+                new_width = int(new_height * photo_ratio)
+            else:
+                new_width = PHOTO_W
+                new_height = int(new_width / photo_ratio)
+
+            photo = photo.resize((new_width, new_height), Image.Resampling.LANCZOS)
+            left = (new_width - PHOTO_W) // 2
+            top = (new_height - PHOTO_H) // 2
+            photo = photo.crop((left, top, left + PHOTO_W, top + PHOTO_H))
+
+            # Apply rounded corner mask if available
+            if os.path.exists(self.ziyaret_mask_path):
+                mask = Image.open(self.ziyaret_mask_path).convert("L")
+                photo.putalpha(mask)
+
+            # Paste photo onto canvas
+            canvas.paste(photo, (PHOTO_BOX[0], PHOTO_BOX[1]), photo)
+
+        except Exception as e:
+            print(f"Error loading photo: {e}")
+            return None
+
+        # 3. Text Wrapping and Rendering
+        draw = ImageDraw.Draw(canvas)
+        text_color = (0, 0, 0, 255)
+        max_w = 810
+
+        def wrap_text(t, f):
+            words = t.split()
+            lines = []
+            cur_line = []
+            for word in words:
+                test_line = ' '.join(cur_line + [word])
+                w = draw.textlength(test_line, font=f)
+                if w <= max_w:
+                    cur_line.append(word)
+                else:
+                    if cur_line:
+                        lines.append(' '.join(cur_line))
+                        cur_line = [word]
+                    else:
+                        lines.append(word)
+                        cur_line = []
+            if cur_line:
+                lines.append(' '.join(cur_line))
+            return lines
+
+        # Auto-adjust font size based on text height
+        start_font_size = 24
+        min_font_size = 15
+        font_size = start_font_size
+
+        while font_size >= min_font_size:
+            font = self._load_font(self.font_medium_path, font_size)
+            lines = wrap_text(text, font)
+            line_height = int(font_size * 1.35)
+            total_height = len(lines) * line_height
+            if total_height <= 115:
+                break
+            font_size -= 1
+
+        font = self._load_font(self.font_medium_path, font_size)
+        lines = wrap_text(text, font)
+        line_height = int(font_size * 1.35)
+        total_height = len(lines) * line_height
+
+        # Vertically centered around Y=335
+        start_y = 335 - (total_height // 2)
+
+        for i, line in enumerate(lines):
+            y = start_y + i * line_height
+            draw.text((540, y), line, font=font, fill=text_color, anchor="mt")
+
+        # Debug overlay (optional)
+        if self.debug:
+            draw.rectangle(PHOTO_BOX, outline="red", width=3)
+            draw.rectangle([540 - max_w//2, start_y, 540 + max_w//2, start_y + total_height], outline="blue", width=2)
+
+        canvas.convert("RGB").save(output_path, quality=95)
+        return output_path
+
 if __name__ == "__main__":
     # Test block
     composer = ImageComposer()
@@ -149,3 +260,7 @@ if __name__ == "__main__":
     
     composer.compose("test_photo.jpg", "İzmir", "Konak Belediyesi", "output_test.jpg")
     print("Test image created: output_test.jpg")
+    
+    composer.compose_ziyaret("test_photo.jpg", "Konak Belediyesini ziyaret ettik.", "temp/test_ziyaret_main.jpg")
+    print("Test ziyaret created: temp/test_ziyaret_main.jpg")
+

@@ -75,5 +75,32 @@ def generate_template():
     tmpl.save("assets/generated_template.png")
     print("Template saved to assets/generated_template.png (Hole Cut)")
 
+def generate_ziyaret_template():
+    import os
+    psd_path = "assets/ziyaret.psd"
+    if not os.path.exists(psd_path):
+        print(f"{psd_path} not found, skipping...")
+        return
+    
+    print("Loading Ziyaret PSD...")
+    psd = PSDImage.open(psd_path)
+    gorsel_layer = None
+    for layer in psd:
+        if layer.name == 'görsel':
+            gorsel_layer = layer
+        if layer.name in ['görsel', 'metin']:
+            layer.visible = False
+            
+    bg = psd.composite()
+    bg.save("assets/ziyaret_template.png")
+    print("Template saved to assets/ziyaret_template.png")
+    
+    if gorsel_layer:
+        gorsel_img = gorsel_layer.composite()
+        mask = gorsel_img.split()[3]
+        mask.save("assets/ziyaret_photo_mask.png")
+        print("Photo mask saved to assets/ziyaret_photo_mask.png")
+
 if __name__ == "__main__":
     generate_template()
+    generate_ziyaret_template()

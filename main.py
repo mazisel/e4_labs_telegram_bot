@@ -17,16 +17,28 @@ logging.basicConfig(
 
 # States
 CITY, MUNICIPALITY, PHOTO = range(3)
+ZIYARET_TEXT, ZIYARET_PHOTO = range(3, 5)
 
 # Initialize Composer
 composer = ImageComposer()
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def katilim_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
+    context.user_data['debug'] = False
     await update.message.reply_text(
-        "Merhaba! Görsel oluşturma botuna hoşgeldiniz.\n\n"
+        "Katılım görseli oluşturma işlemi başlatıldı.\n\n"
         "Lütfen şehir ismini giriniz (Örn: İzmir):"
     )
     return CITY
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "Merhaba! Görsel oluşturma botuna hoş geldiniz.\n\n"
+        "Kullanabileceğiniz şablonlar:\n"
+        "🔹 /katilim - Yeni katılım görseli oluştur\n"
+        "🔹 /ziyaret - Ziyaret görseli oluştur\n\n"
+        "İşlemi iptal etmek için: /cancel"
+    )
 
 async def city_entered(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['city'] = update.message.text
@@ -45,8 +57,9 @@ async def municipality_entered(update: Update, context: ContextTypes.DEFAULT_TYP
     return PHOTO
 
 async def debug_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     context.user_data['debug'] = True
-    await update.message.reply_text("Debug modu açıldı. Şimdi bir fotoğraf gönderin, kılavuz çizgileriyle gelecek.")
+    await update.message.reply_text("Katılım Debug modu açıldı. Şimdi bir fotoğraf gönderin, kılavuz çizgileriyle gelecek.")
     return PHOTO
 
 async def photo_received(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -88,7 +101,74 @@ async def photo_received(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if os.path.exists(user_photo_path):
         os.remove(user_photo_path)
         
-    await update.message.reply_text("Yeni bir görsel oluşturmak için /start yazabilirsiniz.")
+    await update.message.reply_text(
+        "Görsel oluşturuldu! Yeni bir işlem için:\n"
+        "🔹 /katilim - Yeni katılım görseli oluştur\n"
+        "🔹 /ziyaret - Ziyaret görseli oluştur"
+    )
+    return ConversationHandler.END
+
+# --- ZİYARET ŞABLONU ---
+async def ziyaret_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
+    context.user_data['debug'] = False
+    await update.message.reply_text(
+        "Ziyaret görseli oluşturma işlemi başlatıldı.\n\n"
+        "Lütfen görsel üzerinde yer alacak açıklama metnini yazınız:"
+    )
+    return ZIYARET_TEXT
+
+async def ziyaret_text_entered(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data['ziyaret_text'] = update.message.text
+    await update.message.reply_text(
+        "Metin kaydedildi.\n\n"
+        "Şimdi lütfen ziyaret fotoğrafını gönderiniz:"
+    )
+    return ZIYARET_PHOTO
+
+async def debug_ziyaret_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
+    context.user_data['debug'] = True
+    context.user_data['ziyaret_text'] = "Genel Başkanımız ve beraberindeki heyetimiz, belediye başkanlığını makamında ziyaret etti."
+    await update.message.reply_text("Ziyaret Debug modu açıldı. Şimdi bir fotoğraf gönderin, kılavuz çizgileriyle gelecek.")
+    return ZIYARET_PHOTO
+
+async def ziyaret_photo_received(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_photo = update.message.photo[-1]
+    
+    file_id = user_photo.file_id
+    new_file = await context.bot.get_file(file_id)
+    
+    os.makedirs("temp", exist_ok=True)
+    user_photo_path = f"temp/{file_id}.jpg"
+    await new_file.download_to_drive(user_photo_path)
+    
+    await update.message.reply_text("Fotoğraf alındı. Ziyaret görseli hazırlanıyor, lütfen bekleyin...")
+    
+    text = context.user_data.get('ziyaret_text', '')
+    
+    if context.user_data.get('debug'):
+        composer.enable_debug()
+    else:
+        composer.debug = False
+        
+    output_path = f"temp/output_ziyaret_{file_id}.jpg"
+    result_path = composer.compose_ziyaret(user_photo_path, text, output_path)
+    
+    if result_path and os.path.exists(result_path):
+        await update.message.reply_photo(photo=open(result_path, 'rb'))
+        os.remove(result_path)
+    else:
+        await update.message.reply_text("Bir hata oluştu, görsel oluşturulamadı.")
+        
+    if os.path.exists(user_photo_path):
+        os.remove(user_photo_path)
+        
+    await update.message.reply_text(
+        "Görsel oluşturuldu! Yeni bir işlem için:\n"
+        "🔹 /ziyaret - Yeni ziyaret görseli oluştur\n"
+        "🔹 /katilim - Yeni katılım görseli oluştur"
+    )
     return ConversationHandler.END
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -103,17 +183,32 @@ if __name__ == '__main__':
 
     application = ApplicationBuilder().token(TOKEN).build()
     
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start), CommandHandler('debug', debug_command)],
+    # Katilim Handler
+    katilim_conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('katilim', katilim_command), CommandHandler('debug', debug_command)],
         states={
             CITY: [MessageHandler(filters.TEXT & (~filters.COMMAND), city_entered)],
             MUNICIPALITY: [MessageHandler(filters.TEXT & (~filters.COMMAND), municipality_entered)],
             PHOTO: [MessageHandler(filters.PHOTO, photo_received)],
         },
-        fallbacks=[CommandHandler('cancel', cancel)]
+        fallbacks=[CommandHandler('cancel', cancel)],
+        allow_reentry=True
     )
 
-    application.add_handler(conv_handler)
+    # Ziyaret Handler
+    ziyaret_conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('ziyaret', ziyaret_command), CommandHandler('debug_ziyaret', debug_ziyaret_command)],
+        states={
+            ZIYARET_TEXT: [MessageHandler(filters.TEXT & (~filters.COMMAND), ziyaret_text_entered)],
+            ZIYARET_PHOTO: [MessageHandler(filters.PHOTO, ziyaret_photo_received)],
+        },
+        fallbacks=[CommandHandler('cancel', cancel)],
+        allow_reentry=True
+    )
+
+    application.add_handler(katilim_conv_handler)
+    application.add_handler(ziyaret_conv_handler)
+    application.add_handler(CommandHandler('start', start))
     
     print("Bot is running...")
     application.run_polling()
