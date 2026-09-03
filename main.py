@@ -32,6 +32,7 @@ async def katilim_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return CITY
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
     await update.message.reply_text(
         "Merhaba! Görsel oluşturma botuna hoş geldiniz.\n\n"
         "Kullanabileceğiniz şablonlar:\n"
@@ -39,6 +40,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🔹 /ziyaret - Ziyaret görseli oluştur\n\n"
         "İşlemi iptal etmek için: /cancel"
     )
+    return ConversationHandler.END
 
 async def city_entered(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['city'] = update.message.text
@@ -183,32 +185,30 @@ if __name__ == '__main__':
 
     application = ApplicationBuilder().token(TOKEN).build()
     
-    # Katilim Handler
-    katilim_conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('katilim', katilim_command), CommandHandler('debug', debug_command)],
+    # Unified Conversation Handler
+    conv_handler = ConversationHandler(
+        entry_points=[
+            CommandHandler('katilim', katilim_command),
+            CommandHandler('ziyaret', ziyaret_command),
+            CommandHandler('debug', debug_command),
+            CommandHandler('debug_ziyaret', debug_ziyaret_command),
+            CommandHandler('start', start),
+        ],
         states={
             CITY: [MessageHandler(filters.TEXT & (~filters.COMMAND), city_entered)],
             MUNICIPALITY: [MessageHandler(filters.TEXT & (~filters.COMMAND), municipality_entered)],
             PHOTO: [MessageHandler(filters.PHOTO, photo_received)],
-        },
-        fallbacks=[CommandHandler('cancel', cancel)],
-        allow_reentry=True
-    )
-
-    # Ziyaret Handler
-    ziyaret_conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('ziyaret', ziyaret_command), CommandHandler('debug_ziyaret', debug_ziyaret_command)],
-        states={
             ZIYARET_TEXT: [MessageHandler(filters.TEXT & (~filters.COMMAND), ziyaret_text_entered)],
             ZIYARET_PHOTO: [MessageHandler(filters.PHOTO, ziyaret_photo_received)],
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[
+            CommandHandler('cancel', cancel),
+            CommandHandler('start', start),
+        ],
         allow_reentry=True
     )
 
-    application.add_handler(katilim_conv_handler)
-    application.add_handler(ziyaret_conv_handler)
-    application.add_handler(CommandHandler('start', start))
+    application.add_handler(conv_handler)
     
     print("Bot is running...")
     application.run_polling()
