@@ -56,7 +56,7 @@ def generate_template():
     # POST-PROCESSING: FORCE CLEAR THE PHOTO AREA
     # This ensures no white background layer blocks the user's photo
     print("Post-processing: Cutting hole for photo...")
-    from PIL import Image, ImageDraw
+    from PIL import Image, ImageDraw, ImageChops
     
     start_x, start_y, end_x, end_y = PHOTO_BBOX
     # We might want to keep the inner shadow/borders if they exist?
@@ -71,7 +71,20 @@ def generate_template():
     
     # Draw a clear rectangle (Eraser)
     draw.rectangle(PHOTO_BBOX, fill=(0,0,0,0), outline=None)
-    
+
+    # Shift the bottom-left slogan ("Türkiye gerçek sendikacılık...") right,
+    # it touches the left edge in the PSD. The banner is solid orange, so only
+    # the non-orange (text) pixels are moved.
+    BANNER_COLOR = (222, 109, 33, 255)
+    SLOGAN_BOX = (0, 1164, 366, 1212)
+    SLOGAN_SHIFT_X = 24
+    slogan = tmpl.crop(SLOGAN_BOX)
+    banner = Image.new("RGBA", slogan.size, BANNER_COLOR)
+    r, g, b, a = ImageChops.difference(slogan, banner).split()
+    text_mask = ImageChops.lighter(ImageChops.lighter(r, g), ImageChops.lighter(b, a)).point(lambda v: 255 if v else 0)
+    draw.rectangle((SLOGAN_BOX[0], SLOGAN_BOX[1], SLOGAN_BOX[2] - 1, SLOGAN_BOX[3] - 1), fill=BANNER_COLOR)
+    tmpl.paste(slogan, (SLOGAN_BOX[0] + SLOGAN_SHIFT_X, SLOGAN_BOX[1]), text_mask)
+
     tmpl.save("assets/generated_template.png")
     print("Template saved to assets/generated_template.png (Hole Cut)")
 
