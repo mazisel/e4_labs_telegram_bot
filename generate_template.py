@@ -1,6 +1,34 @@
 from psd_tools import PSDImage
 from psd_tools.constants import BlendMode
 
+def emphasize_footer_text(tmpl):
+    """
+    Makes the white footer texts/icons (social handle, website, phone) on the
+    orange strip more prominent: slightly bolder plus a soft dark drop shadow.
+    Modifies tmpl (RGBA) in place.
+    """
+    from PIL import Image, ImageChops, ImageFilter
+
+    # Social handle, website, phone - all on the solid orange footer
+    FOOTER_BOXES = [(18, 1274, 403, 1317), (732, 1275, 1063, 1317), (447, 1313, 630, 1343)]
+    BANNER_GREEN = 109  # green channel of the orange (222, 109, 33); white is 255
+    SHADOW_COLOR = (60, 25, 5, 255)
+    SHADOW_ALPHA = 140
+
+    # White-ness mask of the footer text (keeps anti-aliased edges)
+    text_mask = Image.new("L", tmpl.size, 0)
+    for box in FOOTER_BOXES:
+        green = tmpl.crop(box).split()[1]
+        text_mask.paste(green.point(lambda v: max(0, min(255, (v - BANNER_GREEN) * 255 // (255 - BANNER_GREEN)))), box[:2])
+
+    # Slightly bolder: dilate at 4x resolution so strokes grow by ~1/4 px per side
+    big = text_mask.resize((tmpl.width * 4, tmpl.height * 4), Image.LANCZOS).filter(ImageFilter.MaxFilter(3))
+    bold_mask = ImageChops.lighter(text_mask, big.resize(tmpl.size, Image.LANCZOS))
+
+    shadow = ImageChops.offset(bold_mask, 1, 2).filter(ImageFilter.GaussianBlur(1.5))
+    tmpl.paste(SHADOW_COLOR, (0, 0), shadow.point(lambda v: v * SHADOW_ALPHA // 255))
+    tmpl.paste((255, 255, 255, 255), (0, 0), bold_mask)
+
 def generate_template():
     print("Loading PSD...")
     psd = PSDImage.open("assets/Hosgeldiniz.psd")
@@ -84,6 +112,8 @@ def generate_template():
     text_mask = ImageChops.lighter(ImageChops.lighter(r, g), ImageChops.lighter(b, a)).point(lambda v: 255 if v else 0)
     draw.rectangle((SLOGAN_BOX[0], SLOGAN_BOX[1], SLOGAN_BOX[2] - 1, SLOGAN_BOX[3] - 1), fill=BANNER_COLOR)
     tmpl.paste(slogan, (SLOGAN_BOX[0] + SLOGAN_SHIFT_X, SLOGAN_BOX[1]), text_mask)
+
+    emphasize_footer_text(tmpl)
 
     tmpl.save("assets/generated_template.png")
     print("Template saved to assets/generated_template.png (Hole Cut)")
