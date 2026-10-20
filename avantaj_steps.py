@@ -123,7 +123,7 @@ def _url_color(text, _):
 DEFAULTS = {
     "sendika_logo": os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "avantaj", "sendika_logo.png"),
     "sendika_url": "bagimsizyerelhaksen.org.tr",
-    "url_color": "#DE6D21",
+    "url_color": "#005FD7",
 }
 
 
