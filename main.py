@@ -10,7 +10,7 @@ from PIL import Image
 from dotenv import load_dotenv
 from image_composer import ImageComposer
 from avantaj_composer import compose_avantaj, sample_data
-from avantaj_steps import STEPS as AVANTAJ_STEPS, COLORS as AVANTAJ_COLORS
+from avantaj_steps import STEPS as AVANTAJ_STEPS, DEFAULTS as AVANTAJ_DEFAULTS
 
 # Load env variables
 load_dotenv()
@@ -190,23 +190,12 @@ async def ziyaret_photo_received(update: Update, context: ContextTypes.DEFAULT_T
 # (resimler bytes olarak) user_data'da tutulur; görsel üretilince/iptalde temizlenir.
 async def ask_avantaj_step(update: Update, context: ContextTypes.DEFAULT_TYPE):
     step = AVANTAJ_STEPS[context.user_data['avantaj_step']]
-    if step['kind'] == 'color':
-        labels = [label for label, _ in AVANTAJ_COLORS]
-        rows = [labels[i:i + 2] for i in range(0, len(labels), 2)]
-        markup = ReplyKeyboardMarkup(rows, one_time_keyboard=True, resize_keyboard=True)
-    else:
-        markup = ReplyKeyboardRemove()
-    await update.message.reply_text(step['prompt'], reply_markup=markup)
+    await update.message.reply_text(step['prompt'], reply_markup=ReplyKeyboardRemove())
 
 async def avantaj_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
     context.user_data['avantaj_step'] = 0
     context.user_data['avantaj_data'] = {}
-    await update.message.reply_text(
-        "Avantaj kampanyası görseli oluşturma işlemi başlatıldı.\n\n"
-        "Bir önceki soruya dönmek için: /geri\n"
-        "İşlemi iptal etmek için: /cancel"
-    )
     await ask_avantaj_step(update, context)
     return AVANTAJ
 
@@ -239,9 +228,67 @@ async def receive_avantaj_image(message):
         return None
     return data
 
+ALBUM_KEYS = ['ig_avatar', 'ig_post', 'business_logo']  # albümdeki görsellerin sırası
+ALBUM_WAIT = 1.5  # albümün son mesajından sonra beklenen süre (sn)
+_album_tasks = set()
+
+def _is_image(message):
+    doc = message.document
+    return bool(message.photo or (doc and (doc.mime_type or '').lower() in ('image/png', 'image/jpeg', 'image/webp')))
+
+async def avantaj_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Verisi eksik ilk adımı sorar; hepsi tamamsa görseli üretir."""
+    data = context.user_data['avantaj_data']
+    for i, step in enumerate(AVANTAJ_STEPS):
+        if step['key'] not in data:
+            context.user_data['avantaj_step'] = i
+            await ask_avantaj_step(update, context)
+            return AVANTAJ
+    return await send_avantaj(update, context, {**AVANTAJ_DEFAULTS, **data})
+
+async def avantaj_album_part(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """İlk adımda gelen görsel(ler): albümün parçalarını toplar, son parçadan sonra işler.
+    Update'ler sırayla işlendiği için bekleme handler içinde değil, ayrı görevde yapılır."""
+    message = update.message
+    value = await receive_avantaj_image(message)
+    if value is None:
+        return AVANTAJ
+
+    album = context.user_data.setdefault('avantaj_album', {'items': []})
+    album['items'].append((message.message_id, value))
+    task = asyncio.create_task(avantaj_album_done(update, context, len(album['items'])))
+    _album_tasks.add(task)
+    task.add_done_callback(_album_tasks.discard)
+    return AVANTAJ
+
+async def avantaj_album_done(update: Update, context: ContextTypes.DEFAULT_TYPE, count):
+    await asyncio.sleep(ALBUM_WAIT)
+    album = context.user_data.get('avantaj_album')
+    if not album or len(album['items']) != count:  # yeni parça geldi ya da işlem iptal edildi
+        return
+    context.user_data.pop('avantaj_album')
+    data = context.user_data['avantaj_data']
+    try:
+        items = [img for _, img in sorted(album['items'])]
+        for key, img in zip(ALBUM_KEYS, items):
+            data[key] = img
+        if len(items) > len(ALBUM_KEYS):
+            await update.message.reply_text(f"İlk {len(ALBUM_KEYS)} görsel kullanıldı, fazlası yok sayıldı.")
+        await avantaj_next(update, context)
+    except Exception:
+        logging.exception("Avantaj albümü işlenemedi")
+        context.user_data.clear()
+        await update.message.reply_text("Bir hata oluştu. /avantaj ile tekrar deneyebilirsiniz.")
+
 async def avantaj_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.message
+    if 'avantaj_step' not in context.user_data:  # görsel üretildi ya da iptal edildi
+        await message.reply_text("Yeni bir görsel için /avantaj yazın.")
+        return ConversationHandler.END
     step = AVANTAJ_STEPS[context.user_data['avantaj_step']]
+
+    if context.user_data['avantaj_step'] == 0 and _is_image(message):
+        return await avantaj_album_part(update, context)
 
     if step['kind'] == 'image':
         value = await receive_avantaj_image(message)
@@ -256,12 +303,11 @@ async def avantaj_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await message.reply_text(value)
             return AVANTAJ
 
-    context.user_data['avantaj_data'][step['key']] = value
-    context.user_data['avantaj_step'] += 1
-    if context.user_data['avantaj_step'] < len(AVANTAJ_STEPS):
-        await ask_avantaj_step(update, context)
-        return AVANTAJ
-    return await send_avantaj(update, context, context.user_data['avantaj_data'])
+    if step['kind'] == 'text':
+        context.user_data['avantaj_data'].update(value)
+    else:
+        context.user_data['avantaj_data'][step['key']] = value
+    return await avantaj_next(update, context)
 
 async def debug_avantaj_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()

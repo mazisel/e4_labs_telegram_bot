@@ -1,7 +1,9 @@
 """
 /avantaj akışında botun sırayla sorduğu adımlar ve girdi doğrulamaları.
+Önce görseller (1. girdi), sonra metin (2. girdi) istenir.
 Metin adımlarında parse(text, entities) ya ("value", değer) ya ("error", mesaj) döner.
 """
+import os
 import re
 
 COLORS = [
@@ -117,30 +119,86 @@ def _url_color(text, _):
     return "value", "#" + m.group(1).upper()
 
 
+# Tek sendika (Bağımsız Yerel Hak-Sen) için kullanıldığından bu alanlar sorulmaz.
+DEFAULTS = {
+    "sendika_logo": os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "avantaj", "sendika_logo.png"),
+    "sendika_url": "bagimsizyerelhaksen.org.tr",
+    "url_color": "#DE6D21",
+}
+
+
+class _Entity:
+    type = "bold"
+
+    def __init__(self, offset, length):
+        self.offset, self.length = offset, length
+
+
+def _all_texts(text, entities):
+    """Tek mesajda: 1. satır indirim, son 3 satır telefon/işletme/Instagram, aradakiler açıklama."""
+    stripped = text.strip()
+    lines = stripped.split("\n")
+    if len(lines) < 5:
+        return "error", (
+            f"En az 5 satır bekleniyor (şu an {len(lines)}): indirim, açıklama, telefon, işletme, "
+            "Instagram kullanıcı adı. Her biri ayrı satırda olmalı."
+        )
+
+    # Kalın biçimlendirme offset'leri tüm metne göre olduğundan açıklamaya göre kaydırılır.
+    desc_start = len(lines[0]) + 1
+    desc_end = len(stripped) - len("\n".join(lines[-3:])) - 1
+    desc_text = stripped[desc_start:desc_end]
+    shift = len(text) - len(text.lstrip()) + desc_start
+    bold = [_Entity(e.offset - shift, e.length) for e in entities or () if e.type == "bold" and e.offset >= shift]
+
+    out = {}
+    for key, parse, value, ents in (
+        ("discount", _discount, lines[0], ()),
+        ("description", _description, desc_text, bold),
+        ("phone", _phone, lines[-3], ()),
+        ("business", _business, lines[-2], ()),
+        ("ig_username", _ig_username, lines[-1], ()),
+    ):
+        result, parsed = parse(value, ents)
+        if result == "error":
+            return "error", parsed
+        out[key] = parsed
+    return "value", out
+
+
 STEPS = [
-    {"key": "discount", "kind": "text", "parse": _discount,
-     "prompt": "1/11 — İndirim yüzdesi kaç? (örn: 50)"},
-    {"key": "description", "kind": "text", "parse": _description,
-     "prompt": "2/11 — Açıklama metnini yazın.\n\n"
-               "Kalın olmasını istediğiniz kısımları *yıldız* arasına alın (veya Telegram'ın kalın biçimlendirmesini kullanın).\n"
-               "Örn: *Sendikamıza üyemiz olsun olmasın* itfaiye personeline özel indirim."},
-    {"key": "phone", "kind": "text", "parse": _phone,
-     "prompt": "3/11 — Telefon numarası? (örn: 0 312 911 54 51)"},
-    {"key": "business", "kind": "text", "parse": _business,
-     "prompt": "4/11 — İşletme adı ve konumu? (örn: Presa Di Finica Hotel -Antalya/Finike)\n\n"
-               '" -" işaretinden itibaren ikinci satıra geçer; isterseniz satırı kendiniz de bölebilirsiniz.'},
     {"key": "ig_avatar", "kind": "image",
-     "prompt": "5/11 — Instagram profil fotoğrafını gönderin."},
-    {"key": "ig_username", "kind": "text", "parse": _ig_username,
-     "prompt": "6/11 — Instagram kullanıcı adı? (örn: leylacakirbeauty)"},
+     "prompt": "🏷 AVANTAJ GÖRSELİ\n\n"
+               "ADIM 1 — Önce 3 görsel göndermeniz gerekiyor, şu SIRAYLA:\n"
+               "  1️⃣ Instagram profil fotoğrafı\n"
+               "  2️⃣ Instagram gönderi fotoğrafı\n"
+               "  3️⃣ İşletme logosu\n\n"
+               "Nasıl göndereceksiniz? İki yol var:\n"
+               "🅰️ Hepsini tek seferde: 3 görseli birlikte seçip albüm olarak gönderin. "
+               "Görseller seçtiğiniz sıraya göre yerleştirilir (1. seçtiğiniz profil, 2. gönderi, 3. logo).\n"
+               "🅱️ Tek tek: önce sadece profil fotoğrafını gönderin; sonra bot sırayla gönderi fotoğrafını ve logoyu ister.\n\n"
+               "💡 Kaliteyi korumak (ve logoda şeffaf arka plan için) görselleri \"Dosya\" olarak gönderin.\n"
+               "Görsellerin hepsi gelince metin bilgilerini isteyeceğim.\n\n"
+               "İptal: /cancel   |   Önceki adım: /geri"},
     {"key": "ig_post", "kind": "image",
-     "prompt": "7/11 — Instagram gönderi fotoğrafını gönderin." + FILE_TIP},
+     "prompt": "✅ Profil fotoğrafı alındı.\n\n"
+               "ADIM 1 (2/3) — Şimdi Instagram GÖNDERİ fotoğrafını gönderin." + FILE_TIP},
     {"key": "business_logo", "kind": "image",
-     "prompt": "8/11 — İşletme logosunu gönderin." + FILE_TIP},
-    {"key": "sendika_logo", "kind": "image",
-     "prompt": "9/11 — Sendika logosunu gönderin." + FILE_TIP},
-    {"key": "sendika_url", "kind": "text", "parse": _sendika_url,
-     "prompt": "10/11 — Sendikanın site adresi? (örn: bagimsizyerelhaksen.org.tr)"},
-    {"key": "url_color", "kind": "color", "parse": _url_color,
-     "prompt": "11/11 — Site adresi hangi renkte olsun? Aşağıdan seçin veya #RRGGBB biçiminde yazın."},
+     "prompt": "✅ Gönderi fotoğrafı alındı.\n\n"
+               "ADIM 1 (3/3) — Son olarak İŞLETME LOGOSUNU gönderin." + FILE_TIP},
+    {"key": "discount", "kind": "text", "parse": _all_texts,
+     "prompt": "ADIM 2 — Şimdi metni TEK mesajda gönderin. Her bilgi AYRI SATIRDA ve bu sırayla olmalı:\n"
+               "  1. satır: İndirim yüzdesi (sadece sayı)\n"
+               "  2. satır: Açıklama (en fazla 400 karakter). Kalın olacak kısmı *yıldız* arasına alın\n"
+               "  3. satır: Telefon numarası\n"
+               "  4. satır: İşletme adı ve konumu (\" -\" işaretinden sonrası alt satıra geçer)\n"
+               "  5. satır: Instagram kullanıcı adı\n\n"
+               "ÖRNEK:\n"
+               "50\n"
+               "*Sendikamıza üyemiz olsun olmasın* itfaiye personeline özel indirim.\n"
+               "0 312 911 54 51\n"
+               "Presa Di Finica Hotel -Antalya/Finike\n"
+               "@leylacakirbeauty\n\n"
+               "Gönderince görsel birkaç saniyede hazırlanır.\n"
+               "İptal: /cancel   |   Önceki adım: /geri"},
 ]
