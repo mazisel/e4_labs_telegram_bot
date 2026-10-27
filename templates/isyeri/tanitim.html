@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>İş Yeri Temsilcisi Kullanım Kılavuzu</title>
+<link rel="stylesheet" href="stil.css">
+
+<!-- AYARLAR (sendikaAdi, logoDosyasi, markaRengi, webSitesi, panelAdresi, tarih) bot tarafından
+     composer.py içinden sayfa yüklenmeden önce window.AYARLAR olarak verilir. -->
+</head>
+
+<body data-mode="body">
+
+<!-- KAPAK -->
+<section class="doc-cover">
+  <div class="cover-art"></div>
+  <svg class="cover-s" viewBox="0 0 924 1308" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M923.0,642.0 L905.7,625.4 L895.8,617.3 L883.6,609.8 L869.7,603.6 L854.0,599.0 L835.2,595.5 L813.8,593.3 L787.5,592.1 L758.9,593.7 L734.8,596.5 L715.1,600.1 L692.1,606.1 L669.9,613.8 L646.9,623.7 L627.1,634.1 L614.8,642.6 L609.0,649.0 L625.4,647.4 L681.1,636.7 L708.1,633.8 L725.9,633.7 L740.8,634.9 L755.0,637.6 L767.4,641.7 L777.2,647.2 L785.4,654.3 L792.0,663.0 L796.7,673.1 L799.1,683.9 L799.4,695.8 L797.6,707.3 L793.8,718.9 L788.4,729.3 L780.9,740.0 L771.2,751.1 L756.7,765.5 L744.3,776.4 L730.6,787.1 L715.1,798.1 L697.3,809.5 L657.3,832.5 L616.5,853.0 L566.7,875.3 L488.6,908.1 L475.0,915.0 L450.2,984.7 L440.5,1017.8 L410.0,1100.0 L424.9,1093.4 L589.5,1011.6 L616.0,999.6 L669.9,973.4 L688.5,963.7 L761.3,923.1 L800.5,899.7 L834.9,876.5 L851.2,864.0 L864.9,852.4 L878.9,839.2 L893.0,823.7 L903.4,810.4 L917.2,790.5 L923.0,783.5 L923.5,756.5 L923.5,661.0 Z M383.8,689.3 L387.2,692.2 L397.0,698.3 L399.8,701.1 L406.1,709.8 L408.9,711.8 L412.2,713.2 L438.7,716.9 L443.8,718.9 L456.5,726.1 L471.0,729.6 L494.2,732.2 L525.9,732.4 L547.7,730.9 L572.4,727.5 L581.0,724.8 L591.6,717.8 L596.9,715.6 L604.2,714.3 L628.1,711.7 L637.9,709.4 L650.1,704.8 L663.8,698.1 L678.4,689.5 L687.3,682.9 L690.9,679.2 L694.5,674.0 L651.2,682.3 L623.4,686.8 L616.9,688.7 L604.4,693.8 L597.2,695.4 L586.0,696.0 L566.1,695.7 L557.7,694.6 L550.9,692.4 L546.2,689.6 L536.4,682.1 L524.4,675.1 L518.6,671.0 L511.9,663.8 L507.1,655.2 L504.5,646.2 L504.3,638.3 L505.6,632.8 L510.5,620.2 L511.9,606.2 L513.4,601.3 L529.2,574.8 L536.2,561.0 L540.8,555.4 L546.3,551.5 L562.3,544.0 L586.7,527.0 L611.4,511.4 L646.5,491.7 L697.9,466.3 L736.4,449.3 L815.1,416.7 L828.5,410.5 L833.7,394.1 L851.5,345.5 L878.0,269.7 L886.2,244.4 L889.0,231.0 L871.3,237.5 L779.0,279.9 L769.2,285.4 L757.6,296.2 L750.2,300.4 L744.2,302.4 L737.8,303.4 L713.0,304.1 L707.8,305.2 L704.0,306.7 L699.8,310.1 L692.9,319.7 L687.0,324.1 L615.0,361.9 L546.2,400.3 L503.8,425.4 L483.0,438.9 L467.1,450.1 L452.8,461.4 L436.7,475.2 L424.0,487.6 L410.1,503.1 L403.2,512.1 L393.5,527.0 L389.4,530.4 L376.4,537.8 L373.2,541.3 L371.3,545.7 L370.8,550.3 L370.8,565.6 L366.6,592.5 L367.8,613.7 L364.3,631.0 L364.1,641.1 L366.2,652.4 L370.2,664.4 L379.1,682.3 Z"/>
+  </svg>
+  <div class="cover-grid"></div>
+
+  <div class="cover-inner">
+    <div class="cover-logo-slot">
+      <img id="kapak-logo" alt="Logo" style="display:none">
+      <div id="kapak-logo-yedek" class="logo-placeholder">Sendika Logosu</div>
+    </div>
+
+    <div class="cover-org" data-sendika-adi>SENDİKA ADI</div>
+
+    <div class="cover-tag">İş Yeri Temsilcisi Kılavuzu</div>
+    <div class="cover-product">Sendikal · Dijital Sendika Yönetim Sistemi</div>
+    <div class="cover-rule"></div>
+
+    <h1 class="cover-title">
+      İş Yeri Temsilcileri<br>İçin
+      <em>Kullanım Kılavuzu</em>
+    </h1>
+
+    <p class="cover-sub">
+      Sorumlu olduğunuz iş yerlerindeki üyeleri görmekten başvuruları takip etmeye kadar, iş yeri temsilcisinin yönetim panelinde yaptığı işlerin adım adım anlatımı.
+    </p>
+
+    <div class="cover-spacer"></div>
+
+    <div class="cover-pills">
+      <span class="cover-pill">İş Yeri Üye Listesi</span>
+      <span class="cover-pill">Üye Sorgulama</span>
+      <span class="cover-pill">Başvuru Takibi</span>
+      <span class="cover-pill">Detaylı Arama</span>
+      <span class="cover-pill">Flow Görevleri</span>
+    </div>
+
+    <div class="cover-foot">
+      <div>
+        <strong>İş Yeri Temsilcileri İçin</strong>
+        Bu doküman, rolün panelde gördüğü modülleri ve kullanımını anlatır.
+      </div>
+      <div style="text-align:right; white-space:nowrap">
+        <strong data-tarih>Ağustos 2026</strong>
+        <span data-web>www.sendikaniz.org.tr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GÖVDE -->
+<main class="doc-body">
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Kılavuz Hakkında</div>
+    <h1>İçindekiler</h1>
+    <p>Bu kılavuz yalnızca İş Yeri Temsilcisi rolünün işini anlatır. Panelde göremeyeceğiniz modüller burada yer almaz.</p>
+  </div>
+
+  <ul class="toc-list">
+    <li>
+      <div class="toc-row"><span class="toc-no">1</span><span class="toc-name">Rolünüz ve Yetki Alanınız</span></div>
+      <p class="toc-desc">İş Yeri Temsilcisi neyi görür, neyi yapar? Kapsamın nasıl belirlendiği, varsayılan yetki, ek yetkiyle açılan işler, giriş ve güvenlik.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">2</span><span class="toc-name">Yönetim Paneli</span></div>
+      <p class="toc-desc">Üye listesi ve hızlı sorgulama, üye detayı, online başvuruların takibi, detaylı arama, Flow görevleri.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">3</span><span class="toc-name">Hızlı Başlangıç</span></div>
+      <p class="toc-desc">İlk gün ve düzenli yapılacaklar, en sık yapılan işlemler.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">4</span><span class="toc-name">Sıkça Sorulan Sorular</span></div>
+      <p class="toc-desc">Temsilcilerden en çok gelen soruların kısa cevapları.</p>
+    </li>
+  </ul>
+
+  <div class="note">
+    <span class="note-title">Bu kılavuz nasıl okunur</span>
+    Her modül kartında önce <b>ne işe yaradığı</b>, sonra gri kutu içinde <b>nasıl kullanıldığı</b> adım adım anlatılır. Kartın üstündeki gri satır (<b>Yol:</b> …) o ekrana sol menüden nasıl ulaşacağınızı gösterir.
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 1</div>
+    <h1>Rolünüz ve Yetki Alanınız</h1>
+    <p>İş Yeri Temsilcisi, şubenin altında kendisine atanmış iş yerlerindeki üyeleri takip eden kullanıcıdır. Sistemdeki hiyerarşide en dar kapsamlı roldür: genel merkez &gt; bölge &gt; şube &gt; ilçe &gt; iş yeri. Panelin üst kısmında rolünüz, sorumlu olduğunuz iş yerleriyle birlikte yazar, örneğin "İş Yeri Temsilcisi – Devlet Hastanesi" ya da birden çok iş yerinde "… +2".</p>
+  </div>
+
+  <div class="arch">
+    <div class="arch-row">
+      <div class="arch-card">
+        <div class="who">Kapsam</div>
+        <h4>Atanmış iş yerleriniz</h4>
+        <p>Şubenize bağlı ve size atanmış iş yerlerindeki üyeler. Birden fazla iş yerine atanabilirsiniz.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Varsayılan</div>
+        <h4>Görüntüleme</h4>
+        <p>Rol varsayılan olarak üyeleri görür ve takip eder; kayıt değiştirmez.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Günlük iş</div>
+        <h4>Takip ve iletişim</h4>
+        <p>Üyelerinizi tanımak, eksik bilgileri ve bekleyen başvuruları şubeye iletmek.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Kapsamınız nasıl belirlenir</h2>
+
+  <ul class="feat one-col">
+    <li>Şubesi ve iş yerleri (DETSİS numaralarıyla), genel merkez tarafından <b>Kullanıcılar</b> ekranında hesabınıza atanır.</li>
+    <li>İş yeri eşleşmesi resmi <b>DETSİS numarası</b> (8 haneli kurum kodu) üzerinden yapılır. Kaydında DETSİS numarası olmayan üye, iş yeri adı aynı olsa bile listenizde çıkmaz.</li>
+    <li>Şube ataması veya iş yeri ataması eksik bir hesapta güvenlik gereği <b>hiçbir üye görünmez</b>.</li>
+  </ul>
+
+  <h2>Menünüzde göreceğiniz başlıklar</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Menü</th><th>Sizin için ne anlama gelir</th></tr></thead>
+    <tbody>
+      <tr><td>Genel Bakış</td><td>Giriş ekranı. Şube ve üstü için hesaplanan özet kartları temsilci hesabında gösterilmez.</td></tr>
+      <tr><td>Üyeler</td><td>İş Yerlerinizdeki üyelerin listesi, üye detayı, online başvurular ve detaylı arama.</td></tr>
+      <tr><td>Flow</td><td>Size atanan görevler ve hedefler.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <span class="note-title">Insight menüsü hakkında</span>
+    Menüde <b>Insight → Üye İstatistikleri</b> başlığı görünebilir. İstatistikler şube ve üstü kapsamlar için hesaplandığından bu ekran temsilci hesabında veri getirmez. İş Yerlerinizin sayısal durumunu şube temsilcinizden isteyin.
+  </div>
+
+  <h2>Yetkileriniz</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Yetki</th><th>Ne sağlar</th></tr></thead>
+    <tbody>
+      <tr><td>İş yeri üyelerini görüntüleme <span class="muted" style="font-weight:400">(varsayılan)</span></td><td>Üye listesini, üye detayını ve bekleyen başvuruları görme; detaylı arama.</td></tr>
+      <tr><td>İş Yeri Üyelerini Yönet <span class="muted" style="font-weight:400">(ek yetki)</span></td><td>Genel merkez rolünüze eklerse: iş yerlerinizdeki üyelerin bilgilerini düzenleme ve başvuruları karara bağlama.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Bu rolde kapalı olanlar</h2>
+
+  <ul class="feat">
+    <li>TC kimlik numarasını açık görme (maskeli görünür, örn. 123*****89)</li>
+    <li>Üye listesini Excel / CSV / PDF olarak dışa aktarma</li>
+    <li>SMS ve dijital üyelik daveti gönderme</li>
+    <li>Toplu işlemler (mobil hesap açma, bilgi güncelleme daveti)</li>
+    <li>Finans ve aidat ekranları</li>
+    <li>Şubenin diğer iş yerlerindeki üyeleri görme</li>
+  </ul>
+
+  <h2>Giriş ve güvenlik</h2>
+
+  <div class="howto">
+    <div class="howto-label">Panele ilk giriş</div>
+    <ol>
+      <li>Tarayıcıdan sendikanızın panel adresine girin (örn. <span data-panel>www.sendikaniz.org.tr/admin</span>).</li>
+      <li>Size tanımlanan e-posta ve geçici şifreyle giriş yapın.</li>
+      <li>Sendikanız iki adımlı doğrulamayı açtıysa telefonunuza gelen kodu girin.</li>
+      <li>İlk girişte şifrenizi değiştirin. Şifrenizi unutursanız giriş ekranındaki <b>Şifremi Unuttum</b> bağlantısını kullanın.</li>
+    </ol>
+  </div>
+
+  <ul class="feat">
+    <li><strong>Hesap paylaşılmaz.</strong> Her temsilcinin kendi hesabı olur.</li>
+    <li><strong>Üye bilgisi kişisel veridir.</strong> Ekran görüntüsü almayın, listeleri paylaşmayın.</li>
+    <li><strong>Her işlem kayıtlı.</strong> Görüntüleme ve değişiklikler kayıt altındadır.</li>
+    <li><strong>Açık oturum bırakmayın.</strong> İşiniz bitince oturumu kapatın.</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 2</div>
+    <h1>Yönetim Paneli</h1>
+    <p>Sol tarafta menü, ortada çalıştığınız ekran vardır. Bütün listeler otomatik olarak yalnızca iş yerlerinizdeki üyelerle sınırlıdır.</p>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">1</div>
+      <div class="module-title">
+        <h3>Üye Listesi ve Hızlı Sorgulama</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Üyeler · <b>Sekmeler:</b> Üye Listesi, Online Başvurular / Davetler, Detaylı Arama, Toplu İşlemler</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>İş Yerlerinizdeki bütün üye kayıtları. Listeden bir üyeye tıklayınca detayı açılır.</p>
+      <ul class="feat">
+    <li>Ad, soyad ve telefonla hızlı arama</li>
+    <li>Durum filtresi: aktif, beklemede, pasif</li>
+    <li>Tarih filtresi: bu ay / geçen ay üye olan veya kaydedilen</li>
+    <li>Sütunları göster/gizle; görünümü adıyla kaydetme</li>
+    <li>Mobil sütunu: üyenin uygulamaya en son ne zaman girdiği</li>
+    <li><b>Hızlı Sorgula</b>: ad soyad veya telefonla anında kayıt bulma</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Bir üyeyi hızlıca bulmak</div>
+    <ol>
+      <li><b>Üyeler</b> ekranında sağ üstteki <b>Hızlı Sorgula</b>'ya basın.</li>
+      <li>En az 3 karakter girin: ad soyad veya telefon. (TC kimlik ile arama, kimlik bilgisini açık görme yetkisi ister.)</li>
+      <li>Sonuca tıklayın; üye detayı açılır.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">2</div>
+      <div class="module-title">
+        <h3>Üye Detayı</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → listeden üyeye tıklayın · <b>Sekmeler:</b> Kişisel, İletişim, Kurum, Üyelik, Dosya, Fotoğraf, Notlar, İşlem, Geçmiş</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Bir üyeyle ilgili bilgiler tek pencerede. Görüntüleme yetkisiyle bilgileri okursunuz; düzenleme düğmesi görünmez. Üyelik durumu, üyelik tarihi ve iletişim bilgileri sahada en çok ihtiyaç duyacağınız alanlardır.</p>
+      <div class="note">
+    <span class="note-title">Temsilciler için</span>
+    Telefonu yanlış veya eksik üyeleri not alın ve şube temsilcinize iletin. Şube, bu üyelere tek tuşla bilgi güncelleme bağlantısı gönderebilir; üye bilgisini kendi telefonundan düzeltir.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">3</div>
+      <div class="module-title">
+        <h3>Online Başvuruların Takibi</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Online Başvurular / Davetler · <b>Alt sekmeler:</b> Başvurular, Temsilcilik</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Web sitesinden gelen ve iş yerlerinizdeki kişilere ait bekleyen üyelik başvuruları <b>Başvurular</b> alt sekmesinde listelenir. Başvuranın telefonunu doğrulayıp doğrulamadığı ve EK-1 formunu indirip indirmediği de görünür.</p>
+      <p>Onaylama ve reddetme yönetim yetkisi ister; varsayılan rolde bu düğmeler görünmez. <b>Temsilcilik</b> alt sekmesinde ilinize gelen temsilcilik başvurularını görürsünüz; karar sütununda "Yetki yok" yazar.</p>
+      <div class="howto">
+    <div class="howto-label">Bekleyen başvuruyu takip etmek</div>
+    <ol>
+      <li><b>Online Başvurular / Davetler → Başvurular</b> alt sekmesini açın.</li>
+      <li>Başvuranı tanıyorsanız <b>Detaylar</b> simgesiyle bilgilerini kontrol edin.</li>
+      <li>Eksik veya hatalı bilgi varsa kişiyle görüşün; başvurunun karara bağlanması için şube temsilcinize haber verin.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">4</div>
+      <div class="module-title">
+        <h3>Detaylı Arama</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Detaylı Arama sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Çok alanlı filtre. Sonuçlar yine yalnızca iş yerlerinizdeki üyelerdir.</p>
+      <ul class="feat">
+    <li>Ad soyad, telefon, e-posta</li>
+    <li>İş yeri, kurum, kadro unvanı</li>
+    <li>Üyelik durumu, aidat durumu, istifa nedeni</li>
+    <li>Cinsiyet, yaş aralığı, öğrenim, medeni durum</li>
+    <li>Koşullu arama: birden çok kuralı birleştirerek liste çıkarma</li>
+  </ul>
+      <p class="muted" style="font-size:9pt">Toplu İşlemler sekmesi menüde görünse de bu sekmedeki görevler üye yönetimi ve SMS yetkisi ister; temsilci rolünde kullanılmaz.</p>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">5</div>
+      <div class="module-title">
+        <h3>Flow — Görevler ve Hedefler</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Flow · <b>Sekmeler:</b> Görevler, Hedefler</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Şube veya genel merkez, sahada yapılacak işleri (örn. "Hastanedeki 12 üyeyle görüş") size görev olarak atayabilir. <b>Görev oluştur</b> ile kendinize de görev açabilirsiniz.</p>
+      <div class="howto">
+    <div class="howto-label">Görev nasıl işlenir</div>
+    <ol>
+      <li><b>Flow → Görevler</b>'de görevi açın; açıklamayı ve bağlı üyeyi inceleyin.</li>
+      <li>Görev henüz kimseye atanmamışsa <b>Görevi üstlen</b>'e basın.</li>
+      <li>İşi yapın ve <b>Tamamla</b>'ya basın.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 3</div>
+    <h1>Hızlı Başlangıç</h1>
+    <p>Sistemi ilk kez kullanacaksanız aşağıdaki sırayı izleyin.</p>
+  </div>
+
+  <h2>İlk gün</h2>
+
+  <ul class="checklist">
+    <li>Panele giriş yapın ve geçici şifrenizi değiştirin.</li>
+    <li>Panelin üst kısmında rolünüzün yanında doğru iş yerlerinin yazdığını kontrol edin.</li>
+    <li>Üye listenizi açın; tanıdığınız üyeler listede mi bakın.</li>
+    <li>Listede olması gerekip olmayan üyeleri not alın ve şubenize bildirin.</li>
+  </ul>
+
+  <h2>Düzenli olarak</h2>
+
+  <ul class="checklist">
+    <li><b>Online Başvurular</b>'da bekleyen kişileri takip edin.</li>
+    <li>Telefonu eksik veya yanlış üyeleri şubenize iletin.</li>
+    <li><b>Flow</b>'da size atanan görevleri tamamlayın.</li>
+  </ul>
+
+  <h2>En sık yapılan işlemler</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:36%">Ne yapmak istiyorsunuz?</th><th>Nereye gideceksiniz?</th></tr></thead>
+    <tbody>
+      <tr><td>Bir üyeyi bulmak</td><td>Üyeler → Hızlı Sorgula</td></tr>
+      <tr><td>Üyenin telefonuna bakmak</td><td>Üye detayı → İletişim sekmesi</td></tr>
+      <tr><td>Bekleyen başvuruları görmek</td><td>Üyeler → Online Başvurular / Davetler → Başvurular</td></tr>
+      <tr><td>Belirli bir gruba ait liste çıkarmak</td><td>Üyeler → Detaylı Arama</td></tr>
+      <tr><td>Görevlerimi görmek</td><td>Flow → Görevler</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 4</div>
+    <h1>Sıkça Sorulan Sorular</h1>
+    <p>Temsilcilerden en çok gelen soruların kısa cevapları.</p>
+  </div>
+
+  <div class="faq">
+    <q>Listem boş geliyor.</q>
+    <p>Hesabınıza şube veya iş yeri atanmamış olabilir. Güvenlik gereği ataması eksik hesapta hiçbir üye gösterilmez. Genel merkezden atamanızın yapılmasını isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Tanıdığım bir üye listemde yok.</q>
+    <p>Bir üye listenizde yoksa çoğunlukla kaydında iş yerinin <b>DETSİS numarası</b> yoktur. Şube temsilcinizden üyenin iş yerini DETSİS listesinden seçerek güncellemesini isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>TC kimlik numaraları neden yıldızlı görünüyor?</q>
+    <p>Kimlik numarasını açık görmek ayrı bir yetkidir ve temsilci rolünde kapalıdır. Üyeyi ad soyad veya telefonla bulabilirsiniz.</p>
+  </div>
+
+  <div class="faq">
+    <q>Yeni üye kaydedemiyorum, başvuru onaylayamıyorum.</q>
+    <p>Varsayılan temsilci rolü görüntüleme içindir. Yeni kayıtları ve onayları şube temsilciniz yapar. Bu işler sizden beklenecekse genel merkezden rolünüze "İş Yeri Üyelerini Yönet" yetkisinin eklenmesini isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üyelerime SMS gönderebilir miyim?</q>
+    <p>SMS yetkisi bu rolde yoktur. Duyurulacak konuyu şube temsilcinize iletin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üye İstatistikleri ekranı açılmıyor.</q>
+    <p>İstatistikler şube ve üstü kapsamlar için hesaplanır; temsilci hesabında veri gelmez. Sayısal bilgiyi şubenizden isteyin.</p>
+  </div>
+
+  <div class="backcover">
+    <h2>Yardıma mı ihtiyacınız var?</h2>
+    <p class="lead" style="margin-bottom:0">
+      Bu kılavuzda cevabını bulamadığınız her konu için bağlı olduğunuz şube yönetimine veya sendikanızın genel merkezine başvurun.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <h4>Yönetim Paneli</h4>
+        <p data-panel>www.sendikaniz.org.tr/admin</p>
+      </div>
+      <div>
+        <h4>Web Sitesi</h4>
+        <p data-web>www.sendikaniz.org.tr</p>
+      </div>
+      <div>
+        <h4>Mobil Uygulama</h4>
+        <p>App Store &amp; Google Play</p>
+      </div>
+    </div>
+
+    <p class="small muted" style="margin-top:6mm; margin-bottom:0">
+      Bu doküman, dijital sendika yönetim sisteminde İş Yeri Temsilcisi rolünün kullanımı
+      için hazırlanmıştır. <span data-tarih>Ağustos 2026</span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     AYARLARI UYGULA
+     ====================================================================== -->
+<script>
+(function () {
+  var a = window.AYARLAR || {};
+
+  // Marka rengi
+  if (a.markaRengi) {
+    var r = document.documentElement.style;
+    r.setProperty('--accent', a.markaRengi);
+    r.setProperty('--accent-dark', koyult(a.markaRengi, 0.55));
+    r.setProperty('--accent-line', acikla(a.markaRengi, 0.62));
+    r.setProperty('--accent-soft', acikla(a.markaRengi, 0.93));
+  }
+
+  // Sendika adı
+  document.querySelectorAll('[data-sendika-adi]').forEach(function (el) {
+    el.textContent = a.sendikaAdi || 'SENDİKA ADI';
+  });
+
+  // Web adresleri
+  var site = (a.webSitesi || '').replace(/\/+$/, '');
+  document.querySelectorAll('[data-web]').forEach(function (el) {
+    if (site) el.textContent = site;
+  });
+  document.querySelectorAll('[data-panel]').forEach(function (el) {
+    if (a.panelAdresi) el.textContent = a.panelAdresi;
+  });
+
+  // Tarih
+  document.querySelectorAll('[data-tarih]').forEach(function (el) {
+    if (a.tarih) el.textContent = a.tarih;
+  });
+
+  // Logo — dosya varsa göster, yoksa yer tutucu kalsın
+  if (a.logoDosyasi) {
+    var img = document.getElementById('kapak-logo');
+    var yedek = document.getElementById('kapak-logo-yedek');
+    // Koyu/renkli logolar koyu kapakta kaybolmasın diye açık zemin rozeti
+    if (a.logoRozet) img.parentNode.classList.add('rozet');
+    img.onload = function () {
+      img.style.display = 'block';
+      yedek.style.display = 'none';
+    };
+    img.onerror = function () {
+      img.style.display = 'none';
+      yedek.style.display = 'block';
+    };
+    img.src = a.logoDosyasi;
+  }
+
+  function ayristir(hex) {
+    var h = String(hex).replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    return [
+      parseInt(h.substring(0, 2), 16),
+      parseInt(h.substring(2, 4), 16),
+      parseInt(h.substring(4, 6), 16)
+    ];
+  }
+  function birlestir(c) {
+    return '#' + c.map(function (v) {
+      return Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function koyult(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v * (1 - oran); }));
+  }
+  function acikla(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v + (255 - v) * oran; }));
+  }
+})();
+</script>
+
+</body>
+</html>

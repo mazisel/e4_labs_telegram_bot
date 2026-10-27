@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Hukuk Sorumlusu Kullanım Kılavuzu</title>
+<link rel="stylesheet" href="stil.css">
+
+<!-- AYARLAR (sendikaAdi, logoDosyasi, markaRengi, webSitesi, panelAdresi, tarih) bot tarafından
+     composer.py içinden sayfa yüklenmeden önce window.AYARLAR olarak verilir. -->
+</head>
+
+<body data-mode="body">
+
+<!-- KAPAK -->
+<section class="doc-cover">
+  <div class="cover-art"></div>
+  <svg class="cover-s" viewBox="0 0 924 1308" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M923.0,642.0 L905.7,625.4 L895.8,617.3 L883.6,609.8 L869.7,603.6 L854.0,599.0 L835.2,595.5 L813.8,593.3 L787.5,592.1 L758.9,593.7 L734.8,596.5 L715.1,600.1 L692.1,606.1 L669.9,613.8 L646.9,623.7 L627.1,634.1 L614.8,642.6 L609.0,649.0 L625.4,647.4 L681.1,636.7 L708.1,633.8 L725.9,633.7 L740.8,634.9 L755.0,637.6 L767.4,641.7 L777.2,647.2 L785.4,654.3 L792.0,663.0 L796.7,673.1 L799.1,683.9 L799.4,695.8 L797.6,707.3 L793.8,718.9 L788.4,729.3 L780.9,740.0 L771.2,751.1 L756.7,765.5 L744.3,776.4 L730.6,787.1 L715.1,798.1 L697.3,809.5 L657.3,832.5 L616.5,853.0 L566.7,875.3 L488.6,908.1 L475.0,915.0 L450.2,984.7 L440.5,1017.8 L410.0,1100.0 L424.9,1093.4 L589.5,1011.6 L616.0,999.6 L669.9,973.4 L688.5,963.7 L761.3,923.1 L800.5,899.7 L834.9,876.5 L851.2,864.0 L864.9,852.4 L878.9,839.2 L893.0,823.7 L903.4,810.4 L917.2,790.5 L923.0,783.5 L923.5,756.5 L923.5,661.0 Z M383.8,689.3 L387.2,692.2 L397.0,698.3 L399.8,701.1 L406.1,709.8 L408.9,711.8 L412.2,713.2 L438.7,716.9 L443.8,718.9 L456.5,726.1 L471.0,729.6 L494.2,732.2 L525.9,732.4 L547.7,730.9 L572.4,727.5 L581.0,724.8 L591.6,717.8 L596.9,715.6 L604.2,714.3 L628.1,711.7 L637.9,709.4 L650.1,704.8 L663.8,698.1 L678.4,689.5 L687.3,682.9 L690.9,679.2 L694.5,674.0 L651.2,682.3 L623.4,686.8 L616.9,688.7 L604.4,693.8 L597.2,695.4 L586.0,696.0 L566.1,695.7 L557.7,694.6 L550.9,692.4 L546.2,689.6 L536.4,682.1 L524.4,675.1 L518.6,671.0 L511.9,663.8 L507.1,655.2 L504.5,646.2 L504.3,638.3 L505.6,632.8 L510.5,620.2 L511.9,606.2 L513.4,601.3 L529.2,574.8 L536.2,561.0 L540.8,555.4 L546.3,551.5 L562.3,544.0 L586.7,527.0 L611.4,511.4 L646.5,491.7 L697.9,466.3 L736.4,449.3 L815.1,416.7 L828.5,410.5 L833.7,394.1 L851.5,345.5 L878.0,269.7 L886.2,244.4 L889.0,231.0 L871.3,237.5 L779.0,279.9 L769.2,285.4 L757.6,296.2 L750.2,300.4 L744.2,302.4 L737.8,303.4 L713.0,304.1 L707.8,305.2 L704.0,306.7 L699.8,310.1 L692.9,319.7 L687.0,324.1 L615.0,361.9 L546.2,400.3 L503.8,425.4 L483.0,438.9 L467.1,450.1 L452.8,461.4 L436.7,475.2 L424.0,487.6 L410.1,503.1 L403.2,512.1 L393.5,527.0 L389.4,530.4 L376.4,537.8 L373.2,541.3 L371.3,545.7 L370.8,550.3 L370.8,565.6 L366.6,592.5 L367.8,613.7 L364.3,631.0 L364.1,641.1 L366.2,652.4 L370.2,664.4 L379.1,682.3 Z"/>
+  </svg>
+  <div class="cover-grid"></div>
+
+  <div class="cover-inner">
+    <div class="cover-logo-slot">
+      <img id="kapak-logo" alt="Logo" style="display:none">
+      <div id="kapak-logo-yedek" class="logo-placeholder">Sendika Logosu</div>
+    </div>
+
+    <div class="cover-org" data-sendika-adi>SENDİKA ADI</div>
+
+    <div class="cover-tag">Hukuk Sorumlusu Kılavuzu</div>
+    <div class="cover-product">Sendikal · Dijital Sendika Yönetim Sistemi</div>
+    <div class="cover-rule"></div>
+
+    <h1 class="cover-title">
+      Hukuk Sorumluları<br>İçin
+      <em>Kullanım Kılavuzu</em>
+    </h1>
+
+    <p class="cover-sub">
+      Üyelerden gelen hukuki destek taleplerini karşılamaktan emsal karar arşivini yönetmeye kadar, hukuk biriminin yönetim panelinde yaptığı bütün işlerin adım adım anlatımı.
+    </p>
+
+    <div class="cover-spacer"></div>
+
+    <div class="cover-pills">
+      <span class="cover-pill">Hukuk Destek Talepleri</span>
+      <span class="cover-pill">Avukat Ataması</span>
+      <span class="cover-pill">Durum Bildirimleri</span>
+      <span class="cover-pill">Emsal Karar Arşivi</span>
+      <span class="cover-pill">Flow Görevleri</span>
+    </div>
+
+    <div class="cover-foot">
+      <div>
+        <strong>Hukuk Sorumluları ve Sendika Avukatları İçin</strong>
+        Bu doküman, rolün panelde gördüğü modülleri ve kullanımını anlatır.
+      </div>
+      <div style="text-align:right; white-space:nowrap">
+        <strong data-tarih>Ağustos 2026</strong>
+        <span data-web>www.sendikaniz.org.tr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GÖVDE -->
+<main class="doc-body">
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Kılavuz Hakkında</div>
+    <h1>İçindekiler</h1>
+    <p>Bu kılavuz yalnızca Hukuk Sorumlusu rolünün işini anlatır. Panelde göremeyeceğiniz modüller burada yer almaz.</p>
+  </div>
+
+  <ul class="toc-list">
+    <li>
+      <div class="toc-row"><span class="toc-no">1</span><span class="toc-name">Rolünüz ve Yetki Alanınız</span></div>
+      <p class="toc-desc">Hukuk Sorumlusu neyi görür, neyi yapar? Varsayılan yetkiler, ek yetki gerektiren işler, giriş ve güvenlik.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">2</span><span class="toc-name">Hukuk Destek Talepleri</span></div>
+      <p class="toc-desc">Mobil uygulamadan gelen taleplerin listesi, talep detayı, durum güncelleme, avukat ataması ve üyeye giden bildirimler.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">3</span><span class="toc-name">Emsal Karar Arşivi</span></div>
+      <p class="toc-desc">Yargıtay, Danıştay ve diğer mahkeme kararlarını arşivleme, arama ve öne çıkarma.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">4</span><span class="toc-name">Flow — Görevler ve Hedefler</span></div>
+      <p class="toc-desc">Size atanan görevleri tamamlama, kendinize görev açma.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">5</span><span class="toc-name">Hızlı Başlangıç ve Sıkça Sorulan Sorular</span></div>
+      <p class="toc-desc">İlk gün ve düzenli yapılacaklar, en sık sorulan soruların cevapları.</p>
+    </li>
+  </ul>
+
+  <div class="note">
+    <span class="note-title">Bu kılavuz nasıl okunur</span>
+    Her modül kartında önce <b>ne işe yaradığı</b>, sonra gri kutu içinde <b>nasıl kullanıldığı</b> adım adım anlatılır. Kartın üstündeki gri satır (<b>Yol:</b> …) o ekrana sol menüden nasıl ulaşacağınızı gösterir.
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 1</div>
+    <h1>Rolünüz ve Yetki Alanınız</h1>
+    <p>Hukuk Sorumlusu, üyelerin hukuki destek taleplerini karşılayan ve sendikanın emsal karar arşivini tutan kullanıcıdır. Rol, sendika genelindeki bütün hukuk taleplerini görür; üye listesine, finansa ve diğer modüllere erişmez.</p>
+  </div>
+
+  <div class="arch">
+    <div class="arch-row">
+      <div class="arch-card">
+        <div class="who">Kapsam</div>
+        <h4>Bütün hukuk talepleri</h4>
+        <p>Hangi şubeden gelirse gelsin, üyelerin açtığı her hukuk talebi listenize düşer.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Günlük iş</div>
+        <h4>Talep yönetimi</h4>
+        <p>Talebi okumak, durumunu güncellemek, avukat atamak; üye her değişiklikten haberdar olur.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Bilgi birikimi</div>
+        <h4>Emsal arşivi</h4>
+        <p>Kazanılan ve kaybedilen davaların kararları aranabilir bir arşivde toplanır.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Menünüzde göreceğiniz başlıklar</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Menü</th><th>Sizin için ne anlama gelir</th></tr></thead>
+    <tbody>
+      <tr><td>Genel Bakış</td><td>Giriş ekranı. Üye ve finans verisi göstermez; rolünüz bu verilere erişmez.</td></tr>
+      <tr><td>Flow</td><td>Size atanan görevler ve hedefler.</td></tr>
+      <tr><td>Hukuk Destek</td><td>Asıl çalışma ekranınız: <b>Destek Talepleri</b> ve <b>Emsal Karar Arşivi</b> sekmeleri.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Varsayılan yetkileriniz</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Yetki</th><th>Ne sağlar</th></tr></thead>
+    <tbody>
+      <tr><td>Hukuk talepleri görüntüleme</td><td>Talep listesini ve talep detayını görme.</td></tr>
+      <tr><td>Hukuk talepleri yönetimi</td><td>Talep durumunu değiştirme, avukat/yönetici atama, emsal karar ekleme, düzenleme ve silme.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ek yetki gerektiren işler</h2>
+
+  <p>Aşağıdakiler bu rolde varsayılan olarak <b>kapalıdır</b>. İhtiyaç olursa genel merkezden rolünüze ilgili yetkinin eklenmesini isteyin.</p>
+
+  <ul class="feat">
+    <li>Talep ekranından resmi belge hazırlamak (<b>Belge Düzenle ve Gönder</b> düğmesi, Belge Oluştur yetkisi ister)</li>
+    <li>Üye listesine, üye detayına ve istatistiklere erişmek</li>
+    <li>Üyelere SMS göndermek</li>
+    <li>Duyuru, haber veya site içeriği yayınlamak</li>
+  </ul>
+
+  <div class="note">
+    <span class="note-title">Sadece görüntüleme yetkisi olanlar</span>
+    Rolünde yalnızca "Hukuk Talepleri Görüntüleme" bulunan kullanıcılar talepleri okuyabilir; talep detayında "Bu talebi görüntüleyebilirsiniz ancak düzenleme yetkiniz bulunmuyor" uyarısını görür ve durum değiştiremez.
+  </div>
+
+  <h2>Giriş ve güvenlik</h2>
+
+  <div class="howto">
+    <div class="howto-label">Panele ilk giriş</div>
+    <ol>
+      <li>Tarayıcıdan sendikanızın panel adresine girin (örn. <span data-panel>www.sendikaniz.org.tr/admin</span>).</li>
+      <li>Size tanımlanan e-posta ve geçici şifreyle giriş yapın.</li>
+      <li>Sendikanız iki adımlı doğrulamayı açtıysa telefonunuza gelen kodu girin.</li>
+      <li>İlk girişte şifrenizi değiştirin. Şifrenizi unutursanız giriş ekranındaki <b>Şifremi Unuttum</b> bağlantısını kullanın.</li>
+    </ol>
+  </div>
+
+  <ul class="feat">
+    <li><strong>Hukuki bilgi gizlidir.</strong> Talep içerikleri üyenin kişisel verisidir; ekran görüntüsü paylaşmayın.</li>
+    <li><strong>Her işlem kayıtlı.</strong> Durum değişikliği ve atama kimin tarafından yapıldığıyla saklanır.</li>
+    <li><strong>Telefonunuz doğru olsun.</strong> Size atanan talep bildirimleri profilinizdeki telefona gider (Profil → Profil Bilgileri).</li>
+    <li><strong>Açık oturum bırakmayın.</strong> Ortak bilgisayarlarda işiniz bitince oturumu kapatın.</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 2</div>
+    <h1>Hukuk Destek Talepleri</h1>
+    <p>Üye, mobil uygulamadaki <b>Hukuk Desteği</b> ekranından talep açar; talep konu, açıklama, kategori ve varsa ekleriyle birlikte panelde listenize düşer.</p>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">1</div>
+      <div class="module-title">
+        <h3>Talep Listesi</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Hukuk Destek → Destek Talepleri sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Bütün talepler tarihe göre listelenir. Her satırda talep tarihi, talep eden üye, kategori ve konu, durum ve atanan kişi görünür.</p>
+      <ul class="feat">
+    <li>Konu veya üye adıyla arama</li>
+    <li>Durum filtresi</li>
+    <li>Kategoriler: Disiplin Soruşturması, Tazminat Talebi, Hukuki Danışma, Diğer</li>
+    <li>Satıra tıklayarak talep detayına geçiş</li>
+  </ul>
+      <table class="wrap-first">
+    <thead><tr><th style="width:30%">Durum</th><th>Anlamı</th></tr></thead>
+    <tbody>
+      <tr><td>Bekliyor</td><td>Talep yeni geldi, henüz ele alınmadı.</td></tr>
+      <tr><td>İncelemede</td><td>Hukuk birimi talebi okuyor, bilgi topluyor.</td></tr>
+      <tr><td>Avukat Atandı</td><td>Talep bir avukata veya yöneticiye verildi.</td></tr>
+      <tr><td>Tamamlandı</td><td>Hukuki destek verildi, süreç kapandı.</td></tr>
+      <tr><td>İptal Edildi</td><td>Talep geri çekildi veya hukuki destek kapsamında değil.</td></tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">2</div>
+      <div class="module-title">
+        <h3>Talep Detayı, Durum ve Atama</h3>
+        <div class="module-where"><b>Yol:</b> Hukuk Destek → Destek Talepleri → talebe tıklayın</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Detay ekranında talebin açıklaması ve üyenin yüklediği ekler (görsel veya dosya) yer alır. <b>Üye Bilgileri</b> kartında ad soyad, TC kimlik, şehir/ilçe, telefon ve kurum/iş yeri görünür; böylece üyeye ulaşmak için ayrıca üye listesine gitmeniz gerekmez.</p>
+      <p><b>Yönetim</b> kartında iki alan vardır: talebin <b>Durumu</b> ve <b>Atanan Kişi (Avukat/Yönetici)</b>. Atanabilecek kişiler panelin aktif kullanıcılarıdır.</p>
+      <div class="howto">
+    <div class="howto-label">Talep nasıl işlenir</div>
+    <ol>
+      <li>Listede <b>Bekliyor</b> durumundaki talebi açın; açıklamayı ve ekleri okuyun.</li>
+      <li>İlgilenmeye başladığınızda durumu <b>İncelemede</b> yapın. Üye, talebinin görüldüğünü bildirimle öğrenir.</li>
+      <li>Dosyayı bir avukata verecekseniz <b>Atanan Kişi</b> alanından seçin ve durumu <b>Avukat Atandı</b> yapın. Atanan kişiye bildirim gider.</li>
+      <li>Gerekirse üyeyi <b>Üye Bilgileri</b> kartındaki telefondan arayın.</li>
+      <li>İş bitince durumu <b>Tamamlandı</b> olarak işaretleyin.</li>
+    </ol>
+  </div>
+      <div class="note">
+    <span class="note-title">Bildirimler</span>
+    Durum her değiştiğinde talep sahibi üyeye, atama yapıldığında atanan kişiye otomatik bildirim gider. Hangi kanalın (mobil bildirim, SMS, e-posta) kullanılacağı sendika ayarlarında genel merkez tarafından belirlenir.
+  </div>
+      <div class="note">
+    <span class="note-title">Hukukçular için</span>
+    Talebe kaç günde dönüldüğü üyenin sendikaya güvenini doğrudan etkiler. Cevap hazır olmasa bile talebi <b>İncelemede</b>'ye çekmek, üyeye "sesin duyuldu" demektir.
+  </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 3</div>
+    <h1>Emsal Karar Arşivi</h1>
+    <p>Sendikanın hukuki hafızası. Lehe veya aleyhe sonuçlanmış davaların kararları burada aranabilir biçimde saklanır; yeni bir talep geldiğinde benzer kararlar saniyeler içinde bulunur.</p>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">3</div>
+      <div class="module-title">
+        <h3>Arşivde Arama</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Hukuk Destek → Emsal Karar Arşivi sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+<ul class="feat">
+    <li>Başlık, mahkeme, esas/karar no ve anahtar kelimeyle arama</li>
+    <li>Mahkeme filtresi: Yargıtay, Danıştay, Anayasa Mahkemesi, AİHM, Bölge Adliye, Bölge İdare, İş Mahkemesi, İdare Mahkemesi, Asliye Hukuk, Diğer</li>
+    <li>Kategori filtresi: Sendikal Haklar, İş Hukuku, Disiplin, Tazminat, İdari Dava, Sosyal Güvenlik, Toplu Sözleşme, Diğer</li>
+    <li><b>Öne Çıkanlar</b> filtresi ve <b>Filtreleri Temizle</b></li>
+  </ul>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">4</div>
+      <div class="module-title">
+        <h3>Emsal Karar Ekleme</h3>
+        <div class="module-where"><b>Yol:</b> Emsal Karar Arşivi → Yeni Emsal Karar</div>
+      </div>
+    </div>
+    <div class="module-body">
+<table class="wrap-first">
+    <thead><tr><th style="width:30%">Alan</th><th>Ne yazılır</th></tr></thead>
+    <tbody>
+      <tr><td>Başlık</td><td>Kararın kısa başlığı</td></tr>
+      <tr><td>Mahkeme Türü / Kategori</td><td>Listeden seçilir; aramada filtre olarak kullanılır</td></tr>
+      <tr><td>Mahkeme / Daire</td><td>Tam ad, örn. "Yargıtay 9. Hukuk Dairesi"</td></tr>
+      <tr><td>Esas No / Karar No / Karar Tarihi</td><td>Örn. 2023/1234 ve 2024/5678</td></tr>
+      <tr><td>Anahtar Kelimeler</td><td>Virgülle ayrılır, örn. sendika, fesih, kıdem tazminatı</td></tr>
+      <tr><td>Sonuç</td><td>Örn. Onama / Bozma / Lehe</td></tr>
+      <tr><td>Özet / Karar Metni</td><td>Kısa hukuki sonuç ve isteğe bağlı tam metin</td></tr>
+      <tr><td>Ekler</td><td>Kararın PDF'i veya görseli</td></tr>
+      <tr><td>Öne çıkar</td><td>İşaretlenirse karar listenin başında gösterilir</td></tr>
+    </tbody>
+  </table>
+      <div class="howto">
+    <div class="howto-label">Karar nasıl arşivlenir</div>
+    <ol>
+      <li><b>Yeni Emsal Karar</b>'a basın.</li>
+      <li>Başlık, mahkeme türü ve kategoriyi seçin; esas ve karar numaralarını girin.</li>
+      <li>Aramada bulunması için anahtar kelimeleri eksiksiz yazın.</li>
+      <li>Özeti yazın, kararın PDF'ini ekleyin ve kaydedin.</li>
+    </ol>
+  </div>
+      <div class="note warn">
+    <span class="note-title">Dikkat</span>
+    Bir emsal kararı silmek <b>kalıcıdır, geri alınamaz</b>. Hatalı bilgiyi silmek yerine <b>Düzenle</b> ile düzeltin.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">5</div>
+      <div class="module-title">
+        <h3>Flow — Görevler ve Hedefler</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Flow · <b>Sekmeler:</b> Görevler, Hedefler</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Genel merkezin kurduğu iş akışları veya yöneticilerin elle atadığı işler burada görev olarak size düşer. <b>Görev oluştur</b> ile kendinize de görev açabilirsiniz (örn. "Duruşma dilekçesi hazırla", son tarihli).</p>
+      <div class="howto">
+    <div class="howto-label">Görev nasıl işlenir</div>
+    <ol>
+      <li><b>Flow → Görevler</b>'de görevi açın; açıklamayı inceleyin.</li>
+      <li>Görev henüz kimseye atanmamışsa <b>Görevi üstlen</b>'e basın.</li>
+      <li>İşi yapın ve <b>Tamamla</b>'ya basın.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 4</div>
+    <h1>Hızlı Başlangıç</h1>
+    <p>Sistemi ilk kez kullanacaksanız aşağıdaki sırayı izleyin.</p>
+  </div>
+
+  <h2>İlk gün</h2>
+
+  <ul class="checklist">
+    <li>Panele giriş yapın ve geçici şifrenizi değiştirin.</li>
+    <li><b>Profil → Profil Bilgileri</b>'nde telefon numaranızın doğru olduğunu kontrol edin.</li>
+    <li><b>Hukuk Destek</b> ekranını açın; bekleyen talepleri görün.</li>
+    <li><b>Emsal Karar Arşivi</b>'ne göz atın; kayıtlı kararları ve kategorileri öğrenin.</li>
+  </ul>
+
+  <h2>Düzenli olarak</h2>
+
+  <ul class="checklist">
+    <li>Her gün <b>Bekliyor</b> durumundaki talepleri <b>İncelemede</b>'ye çekin.</li>
+    <li>Avukata verilen dosyaları <b>Atanan Kişi</b> alanına işleyin.</li>
+    <li>Sonuçlanan talepleri <b>Tamamlandı</b> olarak kapatın.</li>
+    <li>Sonuçlanan önemli davaların kararlarını arşive ekleyin.</li>
+  </ul>
+
+  <h2>En sık yapılan işlemler</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:36%">Ne yapmak istiyorsunuz?</th><th>Nereye gideceksiniz?</th></tr></thead>
+    <tbody>
+      <tr><td>Yeni talepleri görmek</td><td>Hukuk Destek → Destek Talepleri → durum filtresi: Bekliyor</td></tr>
+      <tr><td>Talebi avukata vermek</td><td>Talep detayı → Yönetim → Atanan Kişi</td></tr>
+      <tr><td>Üyeye ulaşmak</td><td>Talep detayı → Üye Bilgileri → Telefon</td></tr>
+      <tr><td>Benzer karar bulmak</td><td>Hukuk Destek → Emsal Karar Arşivi → arama</td></tr>
+      <tr><td>Karar arşivlemek</td><td>Emsal Karar Arşivi → Yeni Emsal Karar</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="break-before:page; page-break-before:always; margin-top:0">Sıkça Sorulan Sorular</h2>
+
+  <div class="faq">
+    <q>Üye listesini neden göremiyorum?</q>
+    <p>Hukuk Sorumlusu rolü üye verisine erişmez. Bir talep için gereken üye bilgisi talep detayındaki <b>Üye Bilgileri</b> kartında zaten yer alır.</p>
+  </div>
+
+  <div class="faq">
+    <q>Talebe resmi yazı ekleyemiyorum.</q>
+    <p>Talep ekranından belge hazırlamak Belge Yönetimi'nde "Belge Oluştur" yetkisi ister. Bu iş düzenli yapılacaksa genel merkezden rolünüze yetki eklenmesini isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üye durum değişikliğinden haberdar oluyor mu?</q>
+    <p>Evet. Durum her değiştiğinde talep sahibine bildirim gider. Kullanılan kanallar sendika ayarlarına göre değişir.</p>
+  </div>
+
+  <div class="faq">
+    <q>Bana atanan talebin bildirimi gelmedi.</q>
+    <p>Profilinizdeki telefon numarasını ve mobil uygulamada bildirim iznini kontrol edin. Kanal ayarları genel merkezdedir.</p>
+  </div>
+
+  <div class="faq">
+    <q>Yanlışlıkla emsal kararı sildim.</q>
+    <p>Silme kalıcıdır. Kararı yeniden ekleyin; silme işlemi denetim kayıtlarında yer alır.</p>
+  </div>
+
+  <div class="backcover">
+    <h2>Yardıma mı ihtiyacınız var?</h2>
+    <p class="lead" style="margin-bottom:0">
+      Bu kılavuzda cevabını bulamadığınız her konu için sendikanızın genel merkezine veya bilgi işlem birimine başvurun.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <h4>Yönetim Paneli</h4>
+        <p data-panel>www.sendikaniz.org.tr/admin</p>
+      </div>
+      <div>
+        <h4>Web Sitesi</h4>
+        <p data-web>www.sendikaniz.org.tr</p>
+      </div>
+      <div>
+        <h4>Mobil Uygulama</h4>
+        <p>App Store &amp; Google Play</p>
+      </div>
+    </div>
+
+    <p class="small muted" style="margin-top:6mm; margin-bottom:0">
+      Bu doküman, dijital sendika yönetim sisteminde Hukuk Sorumlusu rolünün kullanımı
+      için hazırlanmıştır. <span data-tarih>Ağustos 2026</span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     AYARLARI UYGULA
+     ====================================================================== -->
+<script>
+(function () {
+  var a = window.AYARLAR || {};
+
+  // Marka rengi
+  if (a.markaRengi) {
+    var r = document.documentElement.style;
+    r.setProperty('--accent', a.markaRengi);
+    r.setProperty('--accent-dark', koyult(a.markaRengi, 0.55));
+    r.setProperty('--accent-line', acikla(a.markaRengi, 0.62));
+    r.setProperty('--accent-soft', acikla(a.markaRengi, 0.93));
+  }
+
+  // Sendika adı
+  document.querySelectorAll('[data-sendika-adi]').forEach(function (el) {
+    el.textContent = a.sendikaAdi || 'SENDİKA ADI';
+  });
+
+  // Web adresleri
+  var site = (a.webSitesi || '').replace(/\/+$/, '');
+  document.querySelectorAll('[data-web]').forEach(function (el) {
+    if (site) el.textContent = site;
+  });
+  document.querySelectorAll('[data-panel]').forEach(function (el) {
+    if (a.panelAdresi) el.textContent = a.panelAdresi;
+  });
+
+  // Tarih
+  document.querySelectorAll('[data-tarih]').forEach(function (el) {
+    if (a.tarih) el.textContent = a.tarih;
+  });
+
+  // Logo — dosya varsa göster, yoksa yer tutucu kalsın
+  if (a.logoDosyasi) {
+    var img = document.getElementById('kapak-logo');
+    var yedek = document.getElementById('kapak-logo-yedek');
+    // Koyu/renkli logolar koyu kapakta kaybolmasın diye açık zemin rozeti
+    if (a.logoRozet) img.parentNode.classList.add('rozet');
+    img.onload = function () {
+      img.style.display = 'block';
+      yedek.style.display = 'none';
+    };
+    img.onerror = function () {
+      img.style.display = 'none';
+      yedek.style.display = 'block';
+    };
+    img.src = a.logoDosyasi;
+  }
+
+  function ayristir(hex) {
+    var h = String(hex).replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    return [
+      parseInt(h.substring(0, 2), 16),
+      parseInt(h.substring(2, 4), 16),
+      parseInt(h.substring(4, 6), 16)
+    ];
+  }
+  function birlestir(c) {
+    return '#' + c.map(function (v) {
+      return Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function koyult(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v * (1 - oran); }));
+  }
+  function acikla(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v + (255 - v) * oran; }));
+  }
+})();
+</script>
+
+</body>
+</html>

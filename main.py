@@ -3,14 +3,18 @@ import io
 import time
 import asyncio
 import logging
-from telegram import Update, ReplyKeyboardRemove, ReplyKeyboardMarkup
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters, ConversationHandler
+from telegram import Update, ReplyKeyboardRemove, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.constants import ParseMode
+from telegram.error import NetworkError, TelegramError, TimedOut
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ConversationHandler
 from PIL import Image
 
 from dotenv import load_dotenv
 from image_composer import ImageComposer
 from avantaj_composer import compose_avantaj, sample_data
 from avantaj_steps import STEPS as AVANTAJ_STEPS, DEFAULTS as AVANTAJ_DEFAULTS
+import dokuman_composer
+import dokuman_steps
 
 # Load env variables
 load_dotenv()
@@ -25,8 +29,12 @@ logging.basicConfig(
 CITY, MUNICIPALITY, PHOTO = range(3)
 ZIYARET_TEXT, ZIYARET_PHOTO = range(3, 5)
 AVANTAJ = 5
+DOKUMAN_ASK, DOKUMAN_CONFIRM = range(6, 8)
 
 MAX_IMAGE_BYTES = 20 * 1024 * 1024  # Telegram getFile sınırı
+
+# Doküman komutlarını kullanabilecek Telegram ID'leri; boşsa herkese açık
+DOKUMAN_ALLOWED = {int(i) for i in os.getenv("ALLOWED_USER_IDS", "").replace(" ", "").split(",") if i}
 
 # Initialize Composer
 composer = ImageComposer()
@@ -48,6 +56,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🔹 /katilim - Yeni katılım görseli oluştur\n"
         "🔹 /ziyaret - Ziyaret görseli oluştur\n"
         "🔹 /avantaj - Avantaj kampanyası görseli oluştur\n\n"
+        "Sendikal kılavuz PDF'leri:\n"
+        "📄 /yonetim - Yönetim kılavuzu\n"
+        "📄 /hukuk - Hukuk sorumlusu kılavuzu\n"
+        "📄 /ilce - İlçe temsilcisi kılavuzu\n"
+        "📄 /isyeri - İş yeri temsilcisi kılavuzu\n"
+        "📄 /sube - Şube yöneticisi kılavuzu\n"
+        "📄 /tumu - Tüm kılavuzları tek seferde hazırla\n\n"
+        "Bir önceki soruya dönmek için: /geri\n"
         "İşlemi iptal etmek için: /cancel"
     )
     return ConversationHandler.END
@@ -106,6 +122,12 @@ async def photo_received(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_photo(photo=open(result_path, 'rb'))
         # Cleanup
         os.remove(result_path)
+
+        # Instagram story (1080x1920) version
+        story_path = f"temp/story_{file_id}.jpg"
+        if composer.compose_katilim_story(user_photo_path, city, municipality, story_path):
+            await update.message.reply_document(document=open(story_path, 'rb'), filename="katilim_story.jpg", caption="Instagram story boyutu (1080x1920)")
+            os.remove(story_path)
     else:
         await update.message.reply_text("Bir hata oluştu, görsel oluşturulamadı.")
     
@@ -343,6 +365,153 @@ async def send_avantaj(update: Update, context: ContextTypes.DEFAULT_TYPE, data,
     )
     return ConversationHandler.END
 
+# --- DOKÜMAN (SENDİKAL KILAVUZ PDF) ---
+# Sorular dokuman_steps.py'de, PDF dokuman_composer.py'de (templates/<belge>/ şablonları, Chromium ile basılır).
+# Belge türü, adım numarası ve cevaplar user_data'da dokuman_ önekiyle tutulur.
+async def retry(fn, *args, **kwargs):
+    """Telegram'a bağlantı anlık kopunca gönderimi birkaç kez yeniden dener."""
+    for deneme in range(5):
+        try:
+            return await fn(*args, **kwargs)
+        except (NetworkError, TimedOut):
+            if deneme == 4:
+                raise
+            logging.warning("Telegram bağlantı hatası, yeniden deneniyor (%d/4)", deneme + 1)
+            await asyncio.sleep(1.5 * (deneme + 1))
+
+def dokuman_allowed(update: Update) -> bool:
+    user = update.effective_user
+    return bool(user) and (not DOKUMAN_ALLOWED or user.id in DOKUMAN_ALLOWED)
+
+async def dokuman_deny(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data.clear()
+    await update.effective_message.reply_text(
+        f"Kılavuz komutlarını kullanma yetkiniz yok. Telegram ID'niz: {update.effective_user.id}"
+    )
+    return ConversationHandler.END
+
+async def ask_dokuman_step(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    _, prompt = dokuman_steps.STEPS[context.user_data['dokuman_step']]
+    await retry(update.effective_message.reply_text, prompt, parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
+
+async def dokuman_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Komut hangi belgeyse onu başlatır (/yonetim, /hukuk ...); /kilavuz = yönetim, /tumu = hepsi."""
+    if not dokuman_allowed(update):
+        return await dokuman_deny(update, context)
+    komut = (update.message.text or "").split()[0].lstrip("/").split("@")[0].lower()
+    context.user_data.clear()
+    context.user_data['dokuman_belge'] = komut if komut in dokuman_composer.DOKUMANLAR or komut == "tumu" else "yonetim"
+    context.user_data['dokuman_step'] = 0
+    context.user_data['dokuman_data'] = {}
+    await ask_dokuman_step(update, context)
+    return DOKUMAN_ASK
+
+async def dokuman_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    step = context.user_data.get('dokuman_step')
+    if step is None:
+        return ConversationHandler.END
+    # özet ekranındayken step == len(STEPS); son adıma dön
+    context.user_data['dokuman_step'] = max(0, min(step, len(dokuman_steps.STEPS)) - 1)
+    await ask_dokuman_step(update, context)
+    return DOKUMAN_ASK
+
+async def dokuman_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not dokuman_allowed(update):
+        return await dokuman_deny(update, context)
+    msg = update.message
+    if 'dokuman_step' not in context.user_data:
+        await msg.reply_text("Yeni bir kılavuz için /start ile komutlara bakın.")
+        return ConversationHandler.END
+    if context.user_data['dokuman_step'] >= len(dokuman_steps.STEPS):
+        return await dokuman_summary(update, context)  # özet gönderimi önceki seferde kopmuşsa yeniden gönder
+    key, _ = dokuman_steps.STEPS[context.user_data['dokuman_step']]
+    try:
+        if key == "logo":
+            if msg.document:
+                tg_file = await retry(msg.document.get_file)
+            elif msg.photo:
+                tg_file = await retry(msg.photo[-1].get_file)  # sıkıştırılmış: şeffaflık kaybolur
+            else:
+                raise dokuman_steps.ValidationError("Logoyu dosya veya fotoğraf olarak gönderin.")
+
+            async def indir() -> bytes:
+                buf = io.BytesIO()  # her denemede temiz tampon
+                await tg_file.download_to_memory(buf)
+                return buf.getvalue()
+
+            value = dokuman_steps.validate_logo(await retry(indir))
+        else:
+            if not msg.text:
+                raise dokuman_steps.ValidationError("Lütfen metin olarak yazın.")
+            value = {
+                "sendika_adi": dokuman_steps.validate_name,
+                "web_url": dokuman_steps.normalize_url,
+                "panel_url": dokuman_steps.normalize_url,
+            }[key](msg.text)
+    except dokuman_steps.ValidationError as e:
+        await msg.reply_text(f"⚠️ {e}")
+        return DOKUMAN_ASK
+    except TelegramError:
+        logging.exception("Telegram'dan dosya alınamadı")
+        await msg.reply_text("⚠️ Dosya Telegram'dan alınamadı (bağlantı zaman aşımı). Logoyu tekrar gönderin.")
+        return DOKUMAN_ASK
+
+    context.user_data['dokuman_data'][key] = value
+    context.user_data['dokuman_step'] += 1
+    if context.user_data['dokuman_step'] < len(dokuman_steps.STEPS):
+        await ask_dokuman_step(update, context)
+        return DOKUMAN_ASK
+    return await dokuman_summary(update, context)
+
+async def dokuman_summary(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    d = context.user_data['dokuman_data']
+    kb = InlineKeyboardMarkup([[
+        InlineKeyboardButton("✅ PDF'i hazırla", callback_data="dokuman_ok"),
+        InlineKeyboardButton("❌ İptal", callback_data="dokuman_no"),
+    ]])
+    await retry(
+        update.effective_message.reply_text,
+        f"Özet:\n• Sendika: {d['sendika_adi']}\n• Logo: alındı\n"
+        f"• Web sitesi: {d['web_url']}\n• Yönetim paneli: {d['panel_url']}\n\n"
+        "Düzeltmek için /geri yazabilirsiniz.",
+        reply_markup=kb,
+    )
+    return DOKUMAN_CONFIRM
+
+async def dokuman_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    q = update.callback_query
+    try:
+        await q.answer()
+    except TelegramError:
+        pass  # düğme bildirimi geç kalmış olabilir; işlemi yine de sürdür
+    if not dokuman_allowed(update):
+        return await dokuman_deny(update, context)
+    if q.data != "dokuman_ok" or 'dokuman_data' not in context.user_data:
+        context.user_data.clear()
+        await q.edit_message_text("İptal edildi.")
+        return ConversationHandler.END
+
+    d = context.user_data['dokuman_data']
+    belge = context.user_data['dokuman_belge']
+    belgeler = list(dokuman_composer.DOKUMANLAR) if belge == "tumu" else [belge]
+    await q.edit_message_text("PDF hazırlanıyor, birkaç saniye sürebilir…")
+    for belge in belgeler:
+        info = dokuman_composer.DOKUMANLAR[belge]
+        try:
+            # Chromium ile basım uzun sürdüğü için ayrı thread'de; bu sırada bot diğer kullanıcılara cevap verebilir.
+            pdf = await asyncio.to_thread(
+                dokuman_composer.render_pdf, belge, d['sendika_adi'], d['logo'], d['web_url'], d['panel_url']
+            )
+        except Exception:
+            logging.exception("PDF üretilemedi: %s", belge)
+            await q.message.reply_text(f"❌ {info['ad']} üretilirken hata oluştu. Tekrar deneyin.")
+            continue
+        name = f"{dokuman_composer.slugify(d['sendika_adi'])}-{info['ek']}.pdf"
+        await retry(q.message.reply_document, pdf, filename=name,
+                    caption=f"{d['sendika_adi']} — {info['ad']} hazır.")
+    context.user_data.clear()
+    return ConversationHandler.END
+
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()  # yarım kalan /avantaj resimlerini bellekten at
     await update.message.reply_text("İşlem iptal edildi.", reply_markup=ReplyKeyboardRemove())
@@ -354,7 +523,13 @@ if __name__ == '__main__':
         print("Error: TELEGRAM_BOT_TOKEN not set in .env file.")
         exit(1)
 
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = (
+        ApplicationBuilder().token(TOKEN)
+        # varsayılan 5 sn bağlantı zaman aşımı dosya indirme/PDF gönderiminde yetmiyor
+        .connect_timeout(30).read_timeout(60).write_timeout(60).pool_timeout(30)
+        .get_updates_connect_timeout(30).get_updates_read_timeout(60)
+        .build()
+    )
     
     # Unified Conversation Handler
     conv_handler = ConversationHandler(
@@ -365,6 +540,7 @@ if __name__ == '__main__':
             CommandHandler('debug_ziyaret', debug_ziyaret_command),
             CommandHandler('avantaj', avantaj_command),
             CommandHandler('debug_avantaj', debug_avantaj_command),
+            CommandHandler([*dokuman_composer.DOKUMANLAR, 'kilavuz', 'tumu'], dokuman_command),
             CommandHandler('start', start),
         ],
         states={
@@ -376,6 +552,14 @@ if __name__ == '__main__':
             AVANTAJ: [
                 CommandHandler('geri', avantaj_back),
                 MessageHandler(~filters.COMMAND, avantaj_input),
+            ],
+            DOKUMAN_ASK: [
+                CommandHandler('geri', dokuman_back),
+                MessageHandler((filters.TEXT | filters.Document.ALL | filters.PHOTO) & ~filters.COMMAND, dokuman_answer),
+            ],
+            DOKUMAN_CONFIRM: [
+                CommandHandler('geri', dokuman_back),
+                CallbackQueryHandler(dokuman_confirm, pattern=r'^dokuman_(ok|no)$'),
             ],
         },
         fallbacks=[

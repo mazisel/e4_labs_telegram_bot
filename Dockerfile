@@ -1,5 +1,5 @@
 # Base image with Python
-FROM python:3.11-slim
+FROM python:3.11-slim-bookworm
 
 # Set working directory
 WORKDIR /app
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libpng-dev \
     libfreetype6-dev \
+    fonts-liberation \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for caching
@@ -17,6 +18,10 @@ COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Chromium for the document (PDF) commands, with its system libraries
+RUN playwright install --with-deps chromium \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy application code
 COPY . .

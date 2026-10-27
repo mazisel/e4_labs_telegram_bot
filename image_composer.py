@@ -1,5 +1,5 @@
-from PIL import Image, ImageDraw, ImageFont
-import os
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import numpy as np
 import os
 
 class ImageComposer:
@@ -143,6 +143,50 @@ class ImageComposer:
         return output_path
 
     compose_katilim = compose
+
+    def compose_katilim_story(self, user_photo_path, city_text, municipality_text, output_path):
+        """
+        Same as compose(), but laid out on a 1080x1920 Instagram story canvas:
+        card block in the upper area (clear of the top UI), footer flush to the bottom,
+        background texture extended in between.
+        """
+        STORY_W, STORY_H = 1080, 1920
+        CARD_BOTTOM = 1135   # below the white card, above the logo/footer
+        CARD_TOP_Y = 285     # keeps the card clear of the story top bar
+
+        base_path = output_path + ".feed.png"
+        if not self.compose(user_photo_path, city_text, municipality_text, base_path):
+            return None
+        base = Image.open(base_path).convert("RGB")
+        os.remove(base_path)
+
+        card = base.crop((0, 0, base.width, CARD_BOTTOM))
+        footer = base.crop((0, CARD_BOTTOM, base.width, base.height))
+
+        # Background: smooth low-frequency tone stretched to the canvas, plus the
+        # film grain of the plain strip left of the card tiled on top (no visible repeat)
+        strip = base.crop((0, 0, 180, CARD_BOTTOM))
+        low_small = strip.filter(ImageFilter.GaussianBlur(30))
+        low = np.asarray(low_small.resize((STORY_W, STORY_H), Image.Resampling.BICUBIC), dtype=np.float32)
+        grain = np.asarray(strip, dtype=np.float32) - np.asarray(low_small, dtype=np.float32)
+        reps = (STORY_H // grain.shape[0] + 1, STORY_W // grain.shape[1] + 1, 1)
+        grain = np.tile(grain, reps)[:STORY_H, :STORY_W]
+        story = Image.fromarray(np.clip(low + grain, 0, 255).astype(np.uint8))
+
+        def paste_feathered(img, y, feather_top=0, feather_bottom=0):
+            mask = np.full(img.height, 255, dtype=np.float32)
+            if feather_top:
+                mask[:feather_top] = np.linspace(0, 255, feather_top)
+            if feather_bottom:
+                mask[-feather_bottom:] = np.linspace(255, 0, feather_bottom)
+            mask = np.repeat(mask[:, None], img.width, axis=1).astype(np.uint8)
+            story.paste(img, (0, y), Image.fromarray(mask))
+
+        FEATHER = 30
+        paste_feathered(card, CARD_TOP_Y, feather_top=FEATHER, feather_bottom=FEATHER)
+        paste_feathered(footer, STORY_H - footer.height, feather_top=FEATHER)
+        story.save(output_path, quality=95)
+        return output_path
 
     def compose_ziyaret(self, user_photo_path, text, output_path):
         """

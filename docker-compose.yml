@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     environment:
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      # Kılavuz komutlarına izinli Telegram ID'leri (virgülle); boşsa herkese açık
+      - ALLOWED_USER_IDS=${ALLOWED_USER_IDS:-}
     volumes:
       # Persist temp files if needed (optional)
       - ./temp:/app/temp

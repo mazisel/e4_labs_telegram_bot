@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Şube Yöneticisi Kullanım Kılavuzu</title>
+<link rel="stylesheet" href="stil.css">
+
+<!-- AYARLAR (sendikaAdi, logoDosyasi, markaRengi, webSitesi, panelAdresi, tarih) bot tarafından
+     composer.py içinden sayfa yüklenmeden önce window.AYARLAR olarak verilir. -->
+</head>
+
+<body data-mode="body">
+
+<!-- KAPAK -->
+<section class="doc-cover">
+  <div class="cover-art"></div>
+  <svg class="cover-s" viewBox="0 0 924 1308" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M923.0,642.0 L905.7,625.4 L895.8,617.3 L883.6,609.8 L869.7,603.6 L854.0,599.0 L835.2,595.5 L813.8,593.3 L787.5,592.1 L758.9,593.7 L734.8,596.5 L715.1,600.1 L692.1,606.1 L669.9,613.8 L646.9,623.7 L627.1,634.1 L614.8,642.6 L609.0,649.0 L625.4,647.4 L681.1,636.7 L708.1,633.8 L725.9,633.7 L740.8,634.9 L755.0,637.6 L767.4,641.7 L777.2,647.2 L785.4,654.3 L792.0,663.0 L796.7,673.1 L799.1,683.9 L799.4,695.8 L797.6,707.3 L793.8,718.9 L788.4,729.3 L780.9,740.0 L771.2,751.1 L756.7,765.5 L744.3,776.4 L730.6,787.1 L715.1,798.1 L697.3,809.5 L657.3,832.5 L616.5,853.0 L566.7,875.3 L488.6,908.1 L475.0,915.0 L450.2,984.7 L440.5,1017.8 L410.0,1100.0 L424.9,1093.4 L589.5,1011.6 L616.0,999.6 L669.9,973.4 L688.5,963.7 L761.3,923.1 L800.5,899.7 L834.9,876.5 L851.2,864.0 L864.9,852.4 L878.9,839.2 L893.0,823.7 L903.4,810.4 L917.2,790.5 L923.0,783.5 L923.5,756.5 L923.5,661.0 Z M383.8,689.3 L387.2,692.2 L397.0,698.3 L399.8,701.1 L406.1,709.8 L408.9,711.8 L412.2,713.2 L438.7,716.9 L443.8,718.9 L456.5,726.1 L471.0,729.6 L494.2,732.2 L525.9,732.4 L547.7,730.9 L572.4,727.5 L581.0,724.8 L591.6,717.8 L596.9,715.6 L604.2,714.3 L628.1,711.7 L637.9,709.4 L650.1,704.8 L663.8,698.1 L678.4,689.5 L687.3,682.9 L690.9,679.2 L694.5,674.0 L651.2,682.3 L623.4,686.8 L616.9,688.7 L604.4,693.8 L597.2,695.4 L586.0,696.0 L566.1,695.7 L557.7,694.6 L550.9,692.4 L546.2,689.6 L536.4,682.1 L524.4,675.1 L518.6,671.0 L511.9,663.8 L507.1,655.2 L504.5,646.2 L504.3,638.3 L505.6,632.8 L510.5,620.2 L511.9,606.2 L513.4,601.3 L529.2,574.8 L536.2,561.0 L540.8,555.4 L546.3,551.5 L562.3,544.0 L586.7,527.0 L611.4,511.4 L646.5,491.7 L697.9,466.3 L736.4,449.3 L815.1,416.7 L828.5,410.5 L833.7,394.1 L851.5,345.5 L878.0,269.7 L886.2,244.4 L889.0,231.0 L871.3,237.5 L779.0,279.9 L769.2,285.4 L757.6,296.2 L750.2,300.4 L744.2,302.4 L737.8,303.4 L713.0,304.1 L707.8,305.2 L704.0,306.7 L699.8,310.1 L692.9,319.7 L687.0,324.1 L615.0,361.9 L546.2,400.3 L503.8,425.4 L483.0,438.9 L467.1,450.1 L452.8,461.4 L436.7,475.2 L424.0,487.6 L410.1,503.1 L403.2,512.1 L393.5,527.0 L389.4,530.4 L376.4,537.8 L373.2,541.3 L371.3,545.7 L370.8,550.3 L370.8,565.6 L366.6,592.5 L367.8,613.7 L364.3,631.0 L364.1,641.1 L366.2,652.4 L370.2,664.4 L379.1,682.3 Z"/>
+  </svg>
+  <div class="cover-grid"></div>
+
+  <div class="cover-inner">
+    <div class="cover-logo-slot">
+      <img id="kapak-logo" alt="Logo" style="display:none">
+      <div id="kapak-logo-yedek" class="logo-placeholder">Sendika Logosu</div>
+    </div>
+
+    <div class="cover-org" data-sendika-adi>SENDİKA ADI</div>
+
+    <div class="cover-tag">Şube Yöneticisi Kılavuzu</div>
+    <div class="cover-product">Sendikal · Dijital Sendika Yönetim Sistemi</div>
+    <div class="cover-rule"></div>
+
+    <h1 class="cover-title">
+      Şube Yöneticileri<br>İçin
+      <em>Kullanım Kılavuzu</em>
+    </h1>
+
+    <p class="cover-sub">
+      Şubenizin üyelerini kaydetmekten SMS göndermeye, şube kasasından raporlara kadar, şube yöneticisinin yönetim panelinde yaptığı bütün işlerin adım adım anlatımı.
+    </p>
+
+    <div class="cover-spacer"></div>
+
+    <div class="cover-pills">
+      <span class="cover-pill">Üye Yönetimi</span>
+      <span class="cover-pill">Online Başvuru &amp; Dijital Davet</span>
+      <span class="cover-pill">SMS</span>
+      <span class="cover-pill">Şube Finansı</span>
+      <span class="cover-pill">Raporlar</span>
+      <span class="cover-pill">Flow Görevleri</span>
+    </div>
+
+    <div class="cover-foot">
+      <div>
+        <strong>Şube Yöneticileri İçin</strong>
+        Bu doküman, rolün panelde gördüğü modülleri ve kullanımını anlatır.
+      </div>
+      <div style="text-align:right; white-space:nowrap">
+        <strong data-tarih>Ağustos 2026</strong>
+        <span data-web>www.sendikaniz.org.tr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GÖVDE -->
+<main class="doc-body">
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Kılavuz Hakkında</div>
+    <h1>İçindekiler</h1>
+    <p>Bu kılavuz yalnızca şube yöneticisinin işini anlatır. Panelde göremeyeceğiniz modüller burada yer almaz; böylece okuduğunuz her şeyi kendi ekranınızda bulabilirsiniz.</p>
+  </div>
+
+  <ul class="toc-list">
+    <li>
+      <div class="toc-row"><span class="toc-no">1</span><span class="toc-name">Rolünüz ve Yetki Alanınız</span></div>
+      <p class="toc-desc">Şube yöneticisi neyi görür, neyi yapar? Varsayılan yetkiler, ek yetki gerektiren işler, giriş ve güvenlik kuralları.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">2</span><span class="toc-name">Yönetim Paneli</span></div>
+      <p class="toc-desc">Günlük çalışma ekranlarınız: Genel Bakış, Üyeler, online başvurular ve dijital davet, toplu işlemler, SMS, şube finansı, raporlar ve Flow görevleri.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">3</span><span class="toc-name">Üyelerinizi Mobil Uygulamaya Taşıma</span></div>
+      <p class="toc-desc">Üyeye hesap açma, şifre gönderme ve uygulamayı kurdurma adımları.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">4</span><span class="toc-name">Hızlı Başlangıç</span></div>
+      <p class="toc-desc">İlk gün, ilk hafta ve düzenli yapılacaklar listesi; en sık yapılan işlemlerin kısa yol tablosu.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">5</span><span class="toc-name">Sıkça Sorulan Sorular</span></div>
+      <p class="toc-desc">Şube yöneticilerinden en çok gelen soruların kısa cevapları.</p>
+    </li>
+  </ul>
+
+  <div class="note">
+    <span class="note-title">Bu kılavuz nasıl okunur</span>
+    Her modül kartında önce <b>ne işe yaradığı</b>, sonra gri kutu içinde <b>nasıl kullanıldığı</b> adım adım anlatılır. Kartın üstündeki gri satır (<b>Yol:</b> …) o ekrana sol menüden nasıl ulaşacağınızı gösterir.
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 1</div>
+    <h1>Rolünüz ve Yetki Alanınız</h1>
+    <p>Şube yöneticisi, sistemde kendi şubesinin işlerini yürüten kullanıcıdır. Panelde rolünüz <b>Şube Yöneticisi</b> olarak ya da sendikanızın verdiği rol adıyla, il adınızla birlikte görünür (örn. "Manisa Şube Yöneticisi").</p>
+  </div>
+
+  <div class="arch">
+    <div class="arch-row">
+      <div class="arch-card">
+        <div class="who">Kapsam</div>
+        <h4>Yalnızca şubeniz</h4>
+        <p>Listeler, sayılar, raporlar ve finans kayıtları otomatik olarak şubenize daralır. Başka şubenin üyesi hiçbir ekranda çıkmaz.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Günlük iş</div>
+        <h4>Üye ve iletişim</h4>
+        <p>Üye kaydı, başvuru onayı, dijital davet, bilgi güncelleme ve SMS işin büyük kısmını oluşturur.</p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Destek işleri</div>
+        <h4>Kasa ve rapor</h4>
+        <p>Şube kasasının gelir-gideri, şube raporları ve size atanan Flow görevleri.</p>
+      </div>
+    </div>
+    <div class="arch-base"><b>Kural</b> · Kapsam ekranda değil sunucuda uygulanır · Adres çubuğuna başka bir ekranın adresini yazmak erişim sağlamaz · Her işlem adınıza kaydedilir</div>
+  </div>
+
+  <h2>Menünüzde göreceğiniz başlıklar</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Menü</th><th>Sizin için ne anlama gelir</th></tr></thead>
+    <tbody>
+      <tr><td>Genel Bakış</td><td>Şubenizin anlık özeti: üye sayıları, bekleyen başvurular, eksik bilgili kayıtlar, hızlı menü.</td></tr>
+      <tr><td>Üyeler</td><td>Şubenizin üye listesi, yeni üye kaydı, online başvurular, dijital davet, detaylı arama ve toplu işlemler.</td></tr>
+      <tr><td>Insight</td><td>Raporlar ve Panolar, Üye İstatistikleri, İş Kolu Karşılaştırma. Hepsi şubenizin verisiyle çalışır.</td></tr>
+      <tr><td>Finans</td><td>Şube kasası: hesap planı, kasa/banka, muhasebe fişleri, gider talepleri, bütçe ve raporlar. Yalnızca şubenizin kayıtları.</td></tr>
+      <tr><td>Flow</td><td>Size atanan görevler ve hedefler.</td></tr>
+      <tr><td>SMS</td><td>Şubenizin üyelerine veya elle yazdığınız numaralara SMS gönderimi.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Varsayılan yetkileriniz</h2>
+
+  <p>Şube rolü kurulumda aşağıdaki yetkilerle gelir. Genel merkez bu listeyi <b>Kullanıcılar</b> ve rol ekranlarından genişletebilir veya daraltabilir; menünüz bu kılavuzdan farklıysa nedeni budur.</p>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Yetki</th><th>Ne sağlar</th></tr></thead>
+    <tbody>
+      <tr><td>Şube üyelerini görüntüleme ve yönetme</td><td>Şubenizdeki üyeleri listeleme, ekleme, düzenleme, başvuru onaylama/reddetme, istifa işlemi.</td></tr>
+      <tr><td>Kısıtlı alan düzenleme</td><td>TC kimlik numarasını maskesiz görme ve gerektiğinde düzeltme.</td></tr>
+      <tr><td>Finans görüntüleme ve yönetme</td><td>Şube kasasının bütün ekranları; kayıtlar yalnızca şubenize yazılır.</td></tr>
+      <tr><td>SMS yönetimi</td><td>SMS gönderme, dijital üyelik daveti ve bilgi güncelleme daveti gönderme.</td></tr>
+      <tr><td>Insight görüntüleme ve rapor oluşturma</td><td>Şube panosunu görme, kendi özel raporlarınızı kaydetme.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ek yetki gerektiren işler</h2>
+
+  <p>Aşağıdakiler şube rolünde varsayılan olarak <b>kapalıdır</b>. İhtiyaç olursa genel merkezden rolünüze ilgili yetkinin eklenmesini isteyin.</p>
+
+  <ul class="feat">
+    <li>Üye listesini Excel / CSV / PDF olarak dışa aktarma</li>
+    <li>Aidat dönemleri ve aidat tahsilatı</li>
+    <li>Haber, duyuru, ilan yayınlama</li>
+    <li>Belge Yönetimi (resmi yazı, karar defteri)</li>
+    <li>SMS şablonu ve grubu oluşturma, gönderim geçmişini görme</li>
+    <li>Panel kullanıcısı açma (Kullanıcılar)</li>
+    <li>Denetim kayıtları ve Hukuk Destek ekranları</li>
+    <li>Avantajlar, anketler, Araçlar menüsü, site ayarları</li>
+  </ul>
+
+  <div class="note warn">
+    <span class="note-title">Rolden bağımsız sınırlar</span>
+    Bazı işlemler yetki eklense bile şube kapsamında yapılamaz: <b>üye kaydını silmek</b> yalnızca sistem yöneticisindedir (siz istifa ettirir veya pasife alırsınız); <b>üyeyi başka şubeye taşımak</b> genel üye yönetimi ister; <b>aidat dönemi açmak</b> genel merkezin işidir.
+  </div>
+
+  <h2>Giriş ve güvenlik</h2>
+
+  <div class="howto">
+    <div class="howto-label">Panele ilk giriş</div>
+    <ol>
+      <li>Tarayıcıdan sendikanızın panel adresine girin (örn. <span data-panel>www.sendikaniz.org.tr/admin</span>).</li>
+      <li>Size tanımlanan e-posta ve geçici şifreyle giriş yapın.</li>
+      <li>Sendikanız iki adımlı doğrulamayı açtıysa telefonunuza gelen kodu girin.</li>
+      <li>Sistem ilk girişte şifrenizi değiştirmenizi ister. Kimseyle paylaşmadığınız bir şifre belirleyin.</li>
+      <li>Şifrenizi unutursanız giriş ekranındaki <b>Şifremi Unuttum</b> bağlantısını kullanın.</li>
+    </ol>
+  </div>
+
+  <ul class="feat">
+    <li><strong>Hesap paylaşılmaz.</strong> Her temsilcinin kendi hesabı olur; işlemler kişiye yazılır.</li>
+    <li><strong>Her SMS gönderiminde onay kodu.</strong> Gönderim, telefonunuza gelen 6 haneli kodla onaylanır.</li>
+    <li><strong>Şubesiz hesap çalışmaz.</strong> Hesabınıza şube atanmamışsa listeler boş gelir ve kayıt açılamaz.</li>
+    <li><strong>Açık oturum bırakmayın.</strong> Ortak bilgisayarlarda işiniz bitince oturumu kapatın.</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 2</div>
+    <h1>Yönetim Paneli</h1>
+    <p>Sol tarafta menü, ortada çalıştığınız ekran vardır. Menüde yalnızca yetkiniz olan başlıklar görünür. Aşağıdaki kartlar menü sırasını izler.</p>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">1</div>
+      <div class="module-title">
+        <h3>Genel Bakış</h3>
+        <div class="module-where"><b>Yol:</b> Panele girer girmez açılan ilk ekran</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Şubenizin o anki durumunu tek bakışta gösterir. Bütün rakamlar otomatik olarak yalnızca şubeniz için hesaplanır.</p>
+      <ul class="feat">
+    <li>Toplam üye, aktif üye, bu ay yeni üye kartları</li>
+    <li>Bekleyen başvuru sayısı</li>
+    <li>Eksik kayıtlar: telefon, il, iş yeri, doğum tarihi, TC kimlik eksik üyeler</li>
+    <li>Mobil uygulamaya hiç girmemiş üye sayısı</li>
+    <li>En çok kullandığınız ekranlar için hızlı menü (en fazla 8 kısayol)</li>
+    <li>Kart ve uyarılardan ilgili listeye doğrudan geçiş</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Nasıl kullanılır</div>
+    <ol>
+      <li>Güne başlarken bu ekrana bakın; bekleyen başvuru varsa buradan görürsünüz.</li>
+      <li>Eksik kayıt uyarısına tıklayarak o üyelerin listesine geçin.</li>
+      <li>Hızlı menüyü kendi işinize göre düzenleyin; en sık kullandığınız ekranları oraya alın.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">2</div>
+      <div class="module-title">
+        <h3>Üye Listesi ve Hızlı Sorgulama</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Üyeler · <b>Sekmeler:</b> Üye Listesi, Online Başvurular / Davetler, Detaylı Arama, Toplu İşlemler</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Sistemin kalbi. Şubenizin bütün üye kayıtları burada tutulur; SMS, rapor ve finans dışındaki bütün işler bu listeden beslenir.</p>
+      <ul class="feat">
+    <li>Ad, soyad, TC kimlik ve telefonla hızlı arama</li>
+    <li>Durum filtresi: aktif, beklemede, pasif</li>
+    <li>Tarih filtresi: bu ay / geçen ay üye olan veya kaydedilen</li>
+    <li>Sütunları göster/gizle; kendi görünümünüzü adıyla kaydetme</li>
+    <li>Mobil sütunu: üyenin uygulamaya en son ne zaman girdiği</li>
+    <li>Seçili üyelere tek tuşla SMS</li>
+    <li><b>Hızlı Sorgula</b> düğmesi: TC, ad soyad veya telefonla anında kayıt bulma</li>
+    <li>TC kimlik numarası şube rolünde maskesiz görünür</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Bir üyeyi hızlıca bulmak</div>
+    <ol>
+      <li><b>Üyeler</b> ekranında sağ üstteki <b>Hızlı Sorgula</b>'ya basın.</li>
+      <li>En az 3 karakter girin: TC kimlik no, ad soyad veya telefon.</li>
+      <li>Sonuca tıklayın; üye detayı açılır. Kayıt yoksa aynı panelden yeni üye kaydına geçebilirsiniz.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">3</div>
+      <div class="module-title">
+        <h3>Yeni Üye Kaydı ve Excel ile Toplu Ekleme</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Yeni Üye · Yeni Üye ekranında → Excel ile Toplu Ekle</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Şubenize tek tek veya Excel listesiyle toplu üye eklersiniz. Form sizin ilinize kilitlidir: başka ile üye kaydedemezsiniz, ekranın üstünde şubeniz yazar.</p>
+      <ul class="feat">
+    <li>Zorunlu alanlar yalnızca: TC kimlik no, ad, soyad</li>
+    <li>Üye numarası otomatik atanır</li>
+    <li>Aynı TC ile ikinci kayıt açılamaz; sistem anında uyarır</li>
+    <li>Kalan bilgiler sonradan üye profilinden tamamlanabilir</li>
+    <li><b>Kaydet ve Yeni Ekle</b> ile aynı ayarlarla art arda kayıt</li>
+    <li>EK-1, kimlik, diploma gibi belgeleri kayda ekleme</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Yeni üye kaydı nasıl açılır</div>
+    <ol>
+      <li><b>Üyeler</b> ekranında sağ üstteki <b>Yeni Üye</b> butonuna basın.</li>
+      <li>TC kimlik numarasını girin. Sistem aynı numara kayıtlıysa uyarır; mükerrer kayıt oluşmaz.</li>
+      <li>Ad ve soyadı yazın; iletişim, kurum ve kadro bilgilerini doldurun. <b>Telefonu mutlaka doğru girin:</b> mobil uygulama girişi ve SMS bu numaraya bağlıdır.</li>
+      <li>Varsa karar numarası ve tarihini girin, belgeleri ekleyin.</li>
+      <li>Kaydedin.</li>
+    </ol>
+  </div>
+      <div class="howto">
+    <div class="howto-label">Excel ile toplu üye ekleme</div>
+    <ol>
+      <li><b>Yeni Üye</b> ekranında <b>Excel ile Toplu Ekle</b>'ye basın.</li>
+      <li>Örnek şablonu indirin; ilk satır başlık olacak şekilde listenizi düzenleyin (XLSX, XLS veya CSV).</li>
+      <li>Dosyayı yükleyip <b>Önizleme Al</b> deyin. Sistem hatalı satırları ve sebeplerini listeler.</li>
+      <li>Hataları düzeltip içe aktarın. Kayıtlar şubenize açılır.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">4</div>
+      <div class="module-title">
+        <h3>Üye Detayı ve Üye Üzerindeki İşlemler</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → listeden üyeye tıklayın · <b>Sekmeler:</b> Kişisel, İletişim, Kurum, Üyelik, Dosya, Fotoğraf, Notlar, İşlem, Geçmiş</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Bir üyeyle ilgili her şey tek pencerede. <b>Geçmiş</b> sekmesi kaydın kim tarafından, ne zaman değiştirildiğini gösterir; <b>Notlar</b> şube içi kısa notlar içindir. Düzenleme düğmesiyle bütün alanlar güncellenebilir.</p>
+      <table class="wrap-first">
+    <thead><tr><th style="width:30%">İşlem sekmesindeki kart</th><th>Ne yapar</th></tr></thead>
+    <tbody>
+      <tr><td>Güncelleme Linki Gönder</td><td>Üyeye kişiye özel bir bağlantı SMS'i gider; üye iletişim ve kurum bilgilerini kendi telefonundan günceller.</td></tr>
+      <tr><td>SMS Gönder</td><td>Yalnızca bu üyeye mesaj. {ad}, {soyad}, {tc}, {uye_no} etiketleri kullanılabilir.</td></tr>
+      <tr><td>Mobil Uygulama Şifresi</td><td>Yeni şifre belirleyip üyeye SMS ile gönderir. Uygulamaya giremeyen üye için ilk çözüm.</td></tr>
+      <tr><td>EK-1 Üyelik Formu</td><td>Üyenin bilgileriyle doldurulmuş EK-1 formunu çıktı almak için açar.</td></tr>
+      <tr><td>EK-3 İstifa Formu</td><td>İstifa formunu üyenin bilgileriyle hazırlar.</td></tr>
+      <tr><td>Üyelikten Ayrılma / İstifa</td><td>Aktif üyeyi istifa durumuna alır. İstifa nedeni seçilir, istifa dilekçesi yüklenebilir; istenirse üyeye SMS veya e-postayla bildirim gider.</td></tr>
+    </tbody>
+  </table>
+      <div class="note warn">
+    <span class="note-title">Dikkat</span>
+    İstifa ettirmeden önce <b>doğru üyede olduğunuzdan emin olun</b>; bildirim seçtiyseniz SMS hemen gider. Üye kaydı silinmez, istifa durumunda saklanır. Yanlış kişiyi istifa ettirdiyseniz genel merkeze bildirin.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">5</div>
+      <div class="module-title">
+        <h3>Online Başvurular, Dijital Davet ve Temsilcilik Başvuruları</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Online Başvurular / Davetler · <b>Alt sekmeler:</b> Başvurular, Dijital Davetler, Temsilcilik</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Web sitesindeki üyelik formundan gelen ve şubenize düşen başvurular <b>Başvurular</b> alt sekmesinde listelenir. Listede başvuranın telefonunu doğrulayıp doğrulamadığı ve EK-1 formunu indirip indirmediği de görünür.</p>
+      <p><b>Dijital üyelik daveti</b> ise tersini yapar: siz bir telefon numarasına SMS gönderirsiniz, kişi gelen bağlantıya tıklayıp formu kendi telefonundan doldurur. Telefon numarası davetten geldiği için kilitlidir; yanlış numara girilemez.</p>
+      <div class="howto">
+    <div class="howto-label">Başvuru nasıl onaylanır</div>
+    <ol>
+      <li><b>Online Başvurular / Davetler → Başvurular</b> alt sekmesini açın.</li>
+      <li><b>Detaylar</b> simgesiyle başvurunun detayını inceleyin.</li>
+      <li><b>Onayla</b>'ya basın. Açılan pencerede <b>karar numarası</b>, <b>karar tarihi</b> ve <b>üyelik tarihi</b>ni girin; üçü de zorunludur.</li>
+      <li>Onaylanan kişi aktif üye olarak listenize geçer. Uygun olmayan başvuruyu <b>Reddet</b> ile pasife alın.</li>
+    </ol>
+  </div>
+      <div class="howto">
+    <div class="howto-label">Dijital üyelik daveti nasıl gönderilir</div>
+    <ol>
+      <li><b>Üyeler</b> ekranının sağ üstündeki yeşil <b>Dijital Davet</b> butonuna basın.</li>
+      <li>Aday üyenin cep telefonunu yazıp gönderin; kişiye bağlantılı bir SMS gider.</li>
+      <li>Davetin durumunu <b>Dijital Davetler</b> alt sekmesinden izleyin; bekleyen daveti yeniden gönderebilir veya iptal edebilirsiniz.</li>
+      <li>Form doldurulduğunda başvuru onay bekler; aynı satırdan onaylayın.</li>
+    </ol>
+  </div>
+      <div class="note">
+    <span class="note-title">Temsilciler için</span>
+    Sahada üye yaparken en pratik yol budur: kişinin numarasını alın, daveti gönderin, formu kendi telefonunda doldursun. Elinizde form, kalem ve dosya taşımanıza gerek kalmaz.
+  </div>
+      <p><b>Temsilcilik</b> alt sekmesinde şubenize gelen temsilcilik başvurularını onaylar veya reddedersiniz. Onay yalnızca başvurunun durumunu değiştirir; temsilci ataması genel merkez tarafından yapılır.</p>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">6</div>
+      <div class="module-title">
+        <h3>Detaylı Arama</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Detaylı Arama sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Hızlı aramanın yetmediği durumlar için çok alanlı filtre. Sonuçlar yine yalnızca şubenizin üyeleridir.</p>
+      <ul class="feat">
+    <li>Kimlik: ad soyad, TC, telefon, e-posta</li>
+    <li>Görev ili / ilçesi, iş yeri, kurum, kadro unvanı</li>
+    <li>Üyelik durumu, aidat durumu, istifa nedeni</li>
+    <li>Cinsiyet, yaş aralığı, öğrenim, medeni durum, kan grubu</li>
+    <li>Kurum sicil no, emekli sicil no, doğum yeri</li>
+    <li>Koşullu arama: birden çok kuralı birleştirerek liste çıkarma</li>
+  </ul>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">7</div>
+      <div class="module-title">
+        <h3>Toplu İşlemler</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Toplu İşlemler sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Çok sayıda üyeye aynı işi tek seferde yapar. Her görev aynı akışla ilerler: <b>görevi seçin → kimlere uygulanacağını seçin → listeyi kontrol edin → gönderin / uygulayın</b>. Hazır seçimler: telefonu eksik, ili eksik, e-postası eksik, iş yeri eksik, uygulamaya hiç girmemiş, giriş SMS'i hiç gönderilmemiş, tüm aktif üyeler.</p>
+      <table class="wrap-first">
+    <thead><tr><th style="width:30%">Görev</th><th>Ne yapar</th></tr></thead>
+    <tbody>
+      <tr><td>Bilgi güncelleme daveti</td><td>Eksik bilgili üyelere kişiye özel güncelleme bağlantısı gönderir. Kanal: Otomatik (uygulaması olana bildirim, olmayana SMS), yalnızca bildirim veya herkese SMS.</td></tr>
+      <tr><td>Mobil hesap aç / şifre gönder</td><td>Uygulamaya hiç girmemiş üyelere hesap açar, yeni şifreyi SMS ile iletir.</td></tr>
+      <tr><td>Eksik mobil hesapları tamamla</td><td>Hesabı olmayan aktif üyelere hesap açar; mevcut hesap ve şifrelere dokunmaz.</td></tr>
+      <tr><td>Üye bilgilerini topluca düzenle</td><td>İş yeri veya iletişim bilgisini eski–yeni değerleri görerek toplu günceller.</td></tr>
+      <tr><td>Veri temizliği</td><td>Geçersiz telefon/e-postaları ve birden çok üyede kullanılan telefonları bulur; düzeltmeleri önizletir.</td></tr>
+      <tr><td>İş yeri DETSİS eşleştirme</td><td>Excel'den gelen iş yeri adlarına resmi DETSİS numarasını eşler.</td></tr>
+    </tbody>
+  </table>
+      <div class="howto">
+    <div class="howto-label">Eksik bilgileri üyeye tamamlatmak</div>
+    <ol>
+      <li><b>Toplu İşlemler</b>'de <b>Bilgi güncelleme daveti</b> görevini seçin.</li>
+      <li>Hazır seçimlerden <b>Telefonu eksik</b>, <b>İş yeri eksik</b> gibi grubu seçin.</li>
+      <li>Listeyi kontrol edin; gönderim kanalını seçip <b>Gönder</b>'e basın.</li>
+      <li>Birkaç gün sonra aynı seçimi tekrar çalıştırın; hâlâ eksik olanlar listede kalır.</li>
+    </ol>
+  </div>
+      <div class="note warn">
+    <span class="note-title">Toplu düzenlemede sınır</span>
+    Toplu düzenleme ile üyeleri <b>başka şubeye taşıyamazsınız</b>; şube değişikliği genel merkezin işidir. Seçim, kapsamınız dışında bir üye içeriyorsa sistem işlemi durdurur.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">8</div>
+      <div class="module-title">
+        <h3>SMS</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → SMS · <b>Sekmeler:</b> SMS Gönder, Şablonlar, Gruplar, Geçmiş</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Üyelerinizle en hızlı temas kanalı. Alıcıyı rehberden (üye listesinden) seçebilir veya numaraları elle yazabilirsiniz. Rehberde yalnızca şubenizin üyeleri çıkar.</p>
+      <table class="wrap-first">
+    <thead><tr><th style="width:30%">Sekme</th><th>Şube rolünde</th></tr></thead>
+    <tbody>
+      <tr><td>SMS Gönder</td><td><span style="color:#15803d; font-weight:700">Açık.</span> Rehberden seçim, filtreye göre ekleme, gruptan ekleme, manuel numara.</td></tr>
+      <tr><td>Şablonlar</td><td>Hazır şablonları gönderimde kullanırsınız. Şablon ekleme/düzenleme kurum geneli ortak olduğu için genel merkezdedir.</td></tr>
+      <tr><td>Gruplar</td><td>Hazır grupları gönderimde kullanırsınız. Grup oluşturma genel merkezdedir.</td></tr>
+      <tr><td>Geçmiş</td><td><span style="color:#b91c1c; font-weight:700">Kapalı.</span> Gönderim kayıtları genel merkezde izlenir.</td></tr>
+    </tbody>
+  </table>
+      <ul class="feat">
+    <li>Kişiselleştirme: <b>{AD}</b>, <b>{SOYAD}</b>, <b>{AD_SOYAD}</b>, <b>{TELEFON}</b></li>
+    <li>Filtreyle hedef kitle: şehir, iş yeri, pozisyon, cinsiyet, kan grubu, üye etiketi</li>
+    <li><b>Hemen gönder</b> ya da <b>Zamanla</b> ile ileri tarihli gönderim</li>
+    <li>"Son 30 dakikada SMS gönderilenleri atla" ile mükerrer gönderim koruması</li>
+    <li>Her gönderimde telefonunuza 6 haneli onay kodu (5 dakika geçerli)</li>
+    <li>Sendikanızda SMS onaycısı tanımlıysa gönderim önce onaya düşer</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Şubenize hedefli SMS göndermek</div>
+    <ol>
+      <li><b>SMS → SMS Gönder</b> sekmesini açın; alıcı modu <b>Rehberden Seç</b> olsun.</li>
+      <li><b>Filtreye Göre Ekle</b> ile kitleyi daraltın (örn. belirli bir iş yeri) veya <b>Gruptan Ekle</b>'yi kullanın.</li>
+      <li>Şablon seçin ya da metni yazın. Etiket kullanırsanız herkese kendi adıyla gider.</li>
+      <li><b>Hemen gönder</b> veya <b>Zamanla</b>'yı seçip gönderime basın; telefonunuza gelen onay kodunu girin.</li>
+      <li>İlerleme ekranda sayılır; sonunda kaç SMS'in başarılı gittiği gösterilir.</li>
+    </ol>
+  </div>
+      <div class="note warn">
+    <span class="note-title">Toplu gönderim öncesi</span>
+    Mesajı göndermeden önce mutlaka <b>kendi numaranıza bir deneme</b> gönderin (Manuel Giriş ile). Manuel girişte kişiselleştirme etiketleri çalışmaz; sistem bu durumda gönderimi durdurur. Telefonu eksik üyeler varsa gönderim başlamaz; önce listeden çıkarın.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">9</div>
+      <div class="module-title">
+        <h3>Şube Finansı</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Finans · <b>Görünümler:</b> Basit Görünüm, Gelişmiş Görünüm</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Şubenizin gelir-gider ve muhasebe düzeni. Ekranların üstünde "Şube: …" etiketi görünür; okuduğunuz ve yazdığınız her kayıt yalnızca şubenize aittir. Genel merkezin ve diğer şubelerin kayıtlarını göremezsiniz.</p>
+      <p><b>Basit Görünüm</b> bu ayın gelir ve giderini gösterir; <b>Gelir Ekle (Makbuz)</b> ve <b>Gider Ekle (Fiş)</b> ile hızlı kayıt girilir. Küçük şubeler için çoğu zaman bu yeterlidir. <b>Gelişmiş Görünüm</b> tam muhasebe ekranlarını açar:</p>
+      <table class="wrap-first">
+    <thead><tr><th style="width:30%">Ekran</th><th>Ne için kullanılır</th></tr></thead>
+    <tbody>
+      <tr><td>Hesap Planı</td><td>Tek düzen hesap planı ve alt hesaplar</td></tr>
+      <tr><td>Kasa &amp; Banka</td><td>Şubenin nakit, banka ve POS hesap tanımları</td></tr>
+      <tr><td>Muhasebe Fişleri</td><td>Tediye, tahsilat ve mahsup fişleri (yevmiye)</td></tr>
+      <tr><td>Gider Talepleri</td><td>Personel ve satınalma harcama talepleri; tanımlı onaycıya gider</td></tr>
+      <tr><td>Bütçe Planlama</td><td>Yıllık bütçe hedefleri ve sapma analizi</td></tr>
+      <tr><td>Raporlar</td><td>Gelir tablosu, mizan ve mali analizler</td></tr>
+    </tbody>
+  </table>
+      <div class="howto">
+    <div class="howto-label">Şube kasasını kurarken sıra</div>
+    <ol>
+      <li>Önce <b>Hesap Planı</b>nı düzenleyin.</li>
+      <li>Ardından <b>Kasa &amp; Banka</b> hesaplarını tanımlayın.</li>
+      <li>Devir bakiyelerini bir <b>açılış (mahsup) fişi</b> ile girin.</li>
+      <li>Bundan sonra günlük tahsilat ve harcamaları işleyin.</li>
+    </ol>
+  </div>
+      <div class="note warn">
+    <span class="note-title">Dikkat</span>
+    Hesap planı kurulduktan sonra yapılacak köklü değişiklikler geçmiş kayıtları etkiler; değişiklikten önce genel merkez muhasebesine veya mali müşavirinize danışın.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">10</div>
+      <div class="module-title">
+        <h3>Raporlar ve Panolar (Insight)</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Insight → Raporlar ve Panolar · <b>Sekmeler:</b> Üye ve Şube Analizi, Özel Rapor Oluştur</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p><b>Üye ve Şube Analizi</b> şubenizin hazır panosudur. <b>Özel Rapor Oluştur</b> ile kendi sorunuzu kurar ve kaydedersiniz: "Ne görmek istiyorsunuz?" sorusuna bir ölçü seçer, zaman aralığını ve kırılımı belirlersiniz.</p>
+      <ul class="feat">
+    <li>Üye ölçüleri: toplam, aktif, yeni üyelikler, bekleyen başvurular, istifalar</li>
+    <li>Veri kalitesi: telefonu, e-postası, iş yeri, doğum tarihi eksik üyeler</li>
+    <li>Finans ölçüleri: gelir, gider, net, işlem sayısı, muhasebe fişleri (şube kasası)</li>
+    <li>Kırılım: toplam, aya göre, ile göre, kategoriye / hesaba göre</li>
+    <li>Hazır zaman aralıkları: son 30 gün, son 90 gün, son 12 ay</li>
+    <li>Kaydettiğiniz raporlar sol listede kalır; tekrar açılabilir</li>
+  </ul>
+      <div class="note">
+    <span class="note-title">Varsayılan sınır</span>
+    Raporu dışa aktarma ve başka kullanıcıyla paylaşma ayrı yetkilerdir ve şube rolünde kapalıdır. Rakamları yönetim kuruluna sunmak için <b>Üye İstatistikleri</b> ekranının dışa aktarma düğmesini kullanın.
+  </div>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">11</div>
+      <div class="module-title">
+        <h3>Üye İstatistikleri ve İş Kolu Karşılaştırma</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Insight → Üye İstatistikleri / İş Kolu Karşılaştırma</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p><b>Üye İstatistikleri</b> şubenizin fotoğrafını çeker: üye sayısının nerede arttığı, hangi iş yerinde güçlü olduğunuz rakamlarla görünür. <b>İş Kolu Karşılaştırma</b> sendikanızı aynı iş kolundaki diğer sendikalarla yan yana koyar.</p>
+      <div class="howto">
+    <div class="howto-label">Şube toplantısına rapor hazırlamak</div>
+    <ol>
+      <li><b>Üye İstatistikleri</b> ekranını açın ve zaman filtresini rapor dönemine ayarlayın (son 1 hafta, son 1 ay, son 1 yıl, tüm zamanlar).</li>
+      <li>Göstermek istediğiniz dağılıma bakın (iş yeri, pozisyon, yaş grubu, cinsiyet, eğitim, istifa nedenleri); görünümü kart, bar, pasta veya tablo arasında değiştirin.</li>
+      <li><b>Dışa Aktar</b> menüsünden <b>PDF</b>, <b>Excel</b> veya <b>CSV</b> seçin.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+
+  <div class="module" style="break-before:page; page-break-before:always">
+    <div class="module-head">
+      <div class="module-no">12</div>
+      <div class="module-title">
+        <h3>Flow — Görevler ve Hedefler</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Flow · <b>Sekmeler:</b> Görevler, Hedefler</div>
+      </div>
+    </div>
+    <div class="module-body">
+<p>Genel merkezin kurduğu iş akışları ve yöneticilerin elle atadığı işler burada size görev olarak düşer. Akış tasarlamak genel merkezin işidir; siz size gelen görevleri tamamlarsınız.</p>
+      <ul class="feat">
+    <li>Görev listesinde arama; otomatik, bekleyen ve süresi geçmiş görevler ayrı işaretlenir</li>
+    <li><b>Görev oluştur</b>: başlık, açıklama, isteğe bağlı son tarih; "Kendime ata" seçeneği</li>
+    <li>Göreve üye veya evrak bağlama</li>
+    <li>Hedefler sekmesinde size verilen hedeflerin ilerlemesi</li>
+  </ul>
+      <div class="howto">
+    <div class="howto-label">Görev nasıl işlenir</div>
+    <ol>
+      <li><b>Flow → Görevler</b>'de görevi açın; açıklamayı ve bağlı üyeyi/evrakı inceleyin.</li>
+      <li>Görev henüz kimseye atanmamışsa <b>Görevi üstlen</b>'e basın.</li>
+      <li>İstenen işi yapın (örn. üye bilgisini tamamlama).</li>
+      <li><b>Tamamla</b>'ya basın; akış varsa bir sonraki adıma geçer.</li>
+    </ol>
+  </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 3</div>
+    <h1>Üyelerinizi Mobil Uygulamaya Taşıma</h1>
+    <p>Üye; dijital kimlik kartını, duyuruları, avantajları ve aidat bilgisini mobil uygulamada görür. Şube yöneticisinin en önemli işlerinden biri, üyelerine bu uygulamayı kurdurmak ve kullandırmaktır.</p>
+  </div>
+
+  <p>Üye uygulamaya <b>TC kimlik numarası ve şifresiyle</b> girer. Şifre üyeye SMS ile gönderilir. Bu yüzden üyenin panelde kayıtlı telefonunun doğru olması her şeyden önce gelir.</p>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:30%">Durum</th><th>Ne yapmalı</th></tr></thead>
+    <tbody>
+      <tr><td>Tek bir üyeye şifre</td><td>Üye detayı → <b>İşlem</b> sekmesi → <b>Mobil Uygulama Şifresi</b> → Yeni Şifre &amp; Gönder</td></tr>
+      <tr><td>Hiç girmemiş çok sayıda üye</td><td>Üyeler → <b>Toplu İşlemler</b> → <b>Mobil hesap aç / şifre gönder</b> → "Uygulamaya hiç girmemiş"</td></tr>
+      <tr><td>Hesabı hiç açılmamış üyeler</td><td>Toplu İşlemler → <b>Eksik mobil hesapları tamamla</b> (mevcut şifrelere dokunmaz)</td></tr>
+      <tr><td>Kimin girdiğini görmek</td><td>Üye listesindeki <b>Mobil</b> sütunu ve Genel Bakış'taki "Mobil giriş yok" uyarısı</td></tr>
+    </tbody>
+  </table>
+
+  <div class="howto">
+    <div class="howto-label">Üyeye uygulamayı kurdurma (temsilci adımları)</div>
+    <ol>
+      <li>Üyenin panelde kayıtlı olduğundan ve telefon numarasının doğru olduğundan emin olun.</li>
+      <li>Üyeye uygulamayı App Store / Google Play'den indirtin.</li>
+      <li>Panelden şifresini gönderin; şifre SMS ile telefonuna gelir.</li>
+      <li>Üye TC kimlik numarası ve gelen şifreyle girsin; ilk girişte kendi şifresini belirlesin.</li>
+      <li>Bildirim iznini <b>izin ver</b> olarak seçtirin; yoksa duyurular telefonuna düşmez.</li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <span class="note-title">Temsilciler için</span>
+    Kurdurma işini toplu yapın: iş yerine gitmeden önce Toplu İşlemler'den o iş yerinin "uygulamaya hiç girmemiş" üyelerine şifre gönderin, sahada yalnızca kurulum ve ilk girişe yardım edin.
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 4</div>
+    <h1>Hızlı Başlangıç</h1>
+    <p>Sistemi ilk kez kullanacaksanız aşağıdaki sırayı izleyin. İlk haftanızda bu listeyi tamamlarsanız günlük işlerin tamamını rahatça yürütürsünüz.</p>
+  </div>
+
+  <h2>İlk gün</h2>
+
+  <ul class="checklist">
+    <li>Panele giriş yapın ve size verilen geçici şifreyi değiştirin.</li>
+    <li>Panelin üst kısmında rolünüzün ve ilinizin doğru yazdığını kontrol edin. Yanlışsa genel merkeze bildirin.</li>
+    <li>Sol menüyü baştan sona gezin; hangi başlığın altında ne olduğunu görün.</li>
+    <li><b>Genel Bakış</b>'taki rakamları inceleyin; şubenizin durumunu öğrenin.</li>
+    <li>Üye listenizi açın ve kendi üyelerinizi görün.</li>
+  </ul>
+
+  <h2>İlk hafta</h2>
+
+  <ul class="checklist">
+    <li>Bekleyen online başvuruları karar bilgileriyle onaylayın veya reddedin.</li>
+    <li>Telefonu veya iş yeri eksik üyeleri <b>Toplu İşlemler</b>'deki hazır seçimlerle bulun.</li>
+    <li>Bu üyelere <b>Bilgi güncelleme daveti</b> gönderin.</li>
+    <li>Uygulamaya hiç girmemiş üyelere <b>Mobil hesap aç / şifre gönder</b> çalıştırın.</li>
+    <li>Kendinize bir deneme SMS'i gönderip onay kodunun telefonunuza geldiğini görün.</li>
+    <li>Şube kasanızı kullanacaksanız hesap planını, kasa/banka hesaplarını ve açılış fişini girin.</li>
+  </ul>
+
+  <h2>Düzenli olarak</h2>
+
+  <ul class="checklist">
+    <li>Yeni gelen online başvuruları kontrol edin ve bekletmeden karara bağlayın.</li>
+    <li>Sahada yeni üye yaparken dijital davet gönderin.</li>
+    <li><b>Flow</b>'da size atanan görevleri tamamlayın.</li>
+    <li>Şube gelir ve giderlerini aynı gün işleyin.</li>
+    <li>Ay sonunda <b>Üye İstatistikleri</b> ekranından şubenizin durumunu değerlendirin.</li>
+  </ul>
+
+  <h2>En sık yapılan işlemler</h2>
+
+  <table class="wrap-first">
+    <thead><tr><th style="width:36%">Ne yapmak istiyorsunuz?</th><th>Nereye gideceksiniz?</th></tr></thead>
+    <tbody>
+      <tr><td>Yeni üye kaydetmek</td><td>Üyeler → Yeni Üye &nbsp;<span class="muted">(sahada: Dijital Davet)</span></td></tr>
+      <tr><td>Başvuru onaylamak</td><td>Üyeler → Online Başvurular / Davetler → Başvurular → Onayla</td></tr>
+      <tr><td>Üye bilgisi düzeltmek</td><td>Üyeler → Hızlı Sorgula → üyeyi açın → düzenleyin</td></tr>
+      <tr><td>Üyeye şifre göndermek</td><td>Üye detayı → İşlem → Mobil Uygulama Şifresi</td></tr>
+      <tr><td>Üyelere duyuru SMS'i</td><td>SMS → SMS Gönder</td></tr>
+      <tr><td>Şube kasasına gider girmek</td><td>Finans → Basit Görünüm → Gider Ekle (Fiş)</td></tr>
+      <tr><td>Şube rakamlarını görmek</td><td>Insight → Üye İstatistikleri</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 5</div>
+    <h1>Sıkça Sorulan Sorular</h1>
+    <p>Şube yöneticilerinden en çok gelen soruların kısa cevapları.</p>
+  </div>
+
+  <div class="faq">
+    <q>Başka şubenin üyelerini göremiyorum, sistemde hata mı var?</q>
+    <p>Hayır. Bu kasıtlı bir sınırdır. Şube rolü yalnızca kendi şubesinin üyelerini, finans kayıtlarını ve raporlarını görür. Daha geniş erişim gerekiyorsa genel merkezden rolünüzün güncellenmesini isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Listeler boş geliyor, yeni üye de kaydedemiyorum.</q>
+    <p>Hesabınıza şube atanmamış olabilir. Sistem şubesi belli olmayan bir hesaba güvenlik gereği hiçbir kayıt göstermez. Genel merkezden hesabınıza şube atanmasını isteyin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üye listesini Excel'e aktaramıyorum.</q>
+    <p>Üye listesini dışa aktarmak kişisel veri çıkışı olduğu için ayrı bir yetkidir ve şube rolünde varsayılan olarak kapalıdır. Toplantı için sayısal özet gerekiyorsa Üye İstatistikleri ekranının dışa aktarma düğmesini kullanın.</p>
+  </div>
+
+  <div class="faq">
+    <q>Bir üyeyi yanlışlıkla kaydettim, silebilir miyim?</q>
+    <p>Üye kaydını silme yetkisi yalnızca sistem yöneticisindedir. Kaydı düzeltin; yanlış açılmış bir kayıt için genel merkeze bildirin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üyeyi başka bir şubeye nasıl aktarırım?</q>
+    <p>Şube değişikliğini şube rolü yapamaz. Üyenin adını ve yeni şubesini genel merkeze iletin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Üye uygulamaya giriş yapamıyor, ne yapmalıyım?</q>
+    <p>Önce panelde üyenin telefon numarasının doğru ve üyeliğinin aktif olduğunu kontrol edin. En sık sebep yanlış veya eski telefon numarasıdır. Numarayı düzeltip üye detayındaki <b>Mobil Uygulama Şifresi</b> kartından yeni şifre gönderin.</p>
+  </div>
+
+  <div class="faq">
+    <q>SMS gönderdim ama "onay talebi oluşturuldu" yazıyor.</q>
+    <p>Sendikanızda SMS onaycısı tanımlıdır. Gönderiminiz onaycı onayladığında yola çıkar. Acil durumlarda onaycıyla iletişime geçin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Yanlışlıkla toplu SMS gönderdim, geri alabilir miyim?</q>
+    <p>Gönderilen SMS geri alınamaz. Bu yüzden her gönderimde onay kodu istenir ve kaç kişiye gideceği butonda yazar. Her toplu gönderimden önce kendi numaranıza deneme yapın.</p>
+  </div>
+
+  <div class="faq">
+    <q>Neden SMS şablonu ekleyemiyorum, geçmişi göremiyorum?</q>
+    <p>Şablonlar, gruplar ve gönderim kayıtları kurum genelinde ortaktır ve genel merkezce yönetilir. Siz mevcut şablonları ve grupları gönderimde kullanabilirsiniz.</p>
+  </div>
+
+  <div class="faq">
+    <q>Aynı kişi iki kez kaydedilmiş, ne yapmalıyım?</q>
+    <p>Sistem aynı TC kimlik numarasıyla ikinci kayıt açılmasını engeller. Buna rağmen mükerrer kayıt varsa (örneğin eski bir aktarımdan gelmişse) doğru kaydı koruyup diğerini pasife alın ve genel merkeze bildirin.</p>
+  </div>
+
+  <div class="faq">
+    <q>Aidat menüsünü göremiyorum.</q>
+    <p>Aidat modülü şube rolünde varsayılan olarak kapalıdır. Şubenizde aidat tahsilatı yapılacaksa genel merkezden rolünüze aidat yetkisi eklenmesini isteyin.</p>
+  </div>
+
+  <div class="backcover">
+    <h2>Yardıma mı ihtiyacınız var?</h2>
+    <p class="lead" style="margin-bottom:0">
+      Bu kılavuzda cevabını bulamadığınız her konu için sendikanızın genel merkezine veya bilgi işlem birimine başvurun.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <h4>Yönetim Paneli</h4>
+        <p data-panel>www.sendikaniz.org.tr/admin</p>
+      </div>
+      <div>
+        <h4>Web Sitesi</h4>
+        <p data-web>www.sendikaniz.org.tr</p>
+      </div>
+      <div>
+        <h4>Mobil Uygulama</h4>
+        <p>App Store &amp; Google Play</p>
+      </div>
+    </div>
+
+    <p class="small muted" style="margin-top:6mm; margin-bottom:0">
+      Bu doküman, dijital sendika yönetim sisteminde şube yöneticisi rolünün kullanımı
+      için hazırlanmıştır. <span data-tarih>Ağustos 2026</span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     AYARLARI UYGULA
+     ====================================================================== -->
+<script>
+(function () {
+  var a = window.AYARLAR || {};
+
+  // Marka rengi
+  if (a.markaRengi) {
+    var r = document.documentElement.style;
+    r.setProperty('--accent', a.markaRengi);
+    r.setProperty('--accent-dark', koyult(a.markaRengi, 0.55));
+    r.setProperty('--accent-line', acikla(a.markaRengi, 0.62));
+    r.setProperty('--accent-soft', acikla(a.markaRengi, 0.93));
+  }
+
+  // Sendika adı
+  document.querySelectorAll('[data-sendika-adi]').forEach(function (el) {
+    el.textContent = a.sendikaAdi || 'SENDİKA ADI';
+  });
+
+  // Web adresleri
+  var site = (a.webSitesi || '').replace(/\/+$/, '');
+  document.querySelectorAll('[data-web]').forEach(function (el) {
+    if (site) el.textContent = site;
+  });
+  document.querySelectorAll('[data-panel]').forEach(function (el) {
+    if (a.panelAdresi) el.textContent = a.panelAdresi;
+  });
+
+  // Tarih
+  document.querySelectorAll('[data-tarih]').forEach(function (el) {
+    if (a.tarih) el.textContent = a.tarih;
+  });
+
+  // Logo — dosya varsa göster, yoksa yer tutucu kalsın
+  if (a.logoDosyasi) {
+    var img = document.getElementById('kapak-logo');
+    var yedek = document.getElementById('kapak-logo-yedek');
+    // Koyu/renkli logolar koyu kapakta kaybolmasın diye açık zemin rozeti
+    if (a.logoRozet) img.parentNode.classList.add('rozet');
+    img.onload = function () {
+      img.style.display = 'block';
+      yedek.style.display = 'none';
+    };
+    img.onerror = function () {
+      img.style.display = 'none';
+      yedek.style.display = 'block';
+    };
+    img.src = a.logoDosyasi;
+  }
+
+  function ayristir(hex) {
+    var h = String(hex).replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    return [
+      parseInt(h.substring(0, 2), 16),
+      parseInt(h.substring(2, 4), 16),
+      parseInt(h.substring(4, 6), 16)
+    ];
+  }
+  function birlestir(c) {
+    return '#' + c.map(function (v) {
+      return Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function koyult(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v * (1 - oran); }));
+  }
+  function acikla(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v + (255 - v) * oran; }));
+  }
+})();
+</script>
+
+</body>
+</html>

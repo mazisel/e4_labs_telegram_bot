@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Dijital Sendika Yönetim Sistemi — Tanıtım ve Kullanım Kılavuzu</title>
+<link rel="stylesheet" href="stil.css">
+
+<!-- =======================================================================
+     AYARLAR — Sadece burayı değiştirin, dokümanın tamamı buna göre güncellenir.
+     Logo: bu klasöre "logo.png" adıyla koyun (şeffaf PNG önerilir).
+     ======================================================================= -->
+<script>
+  /* window.AYARLAR bot tarafından (composer.py, add_init_script) sayfa yüklenmeden önce verilir.
+     Elle açıp denemek için aşağıdaki satırın yorumunu kaldırın:
+  window.AYARLAR = { sendikaAdi: "SENDİKA ADI", logoDosyasi: "logo.png", markaRengi: "#1e40af",
+                     webSitesi: "www.sendikaniz.org.tr", panelAdresi: "www.sendikaniz.org.tr/admin", tarih: "Ağustos 2026" }; */
+</script>
+</head>
+
+<body data-mode="body">
+
+<!-- ======================================================================
+     KAPAK
+     ====================================================================== -->
+<section class="doc-cover">
+  <div class="cover-art"></div>
+  <!-- Sendikal "S" işareti: Koruma kapağından vektöre çevrildi; tüm kapaklarda sabit, yarı saydam beyaz -->
+  <svg class="cover-s" viewBox="0 0 924 1308" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M923.0,642.0 L905.7,625.4 L895.8,617.3 L883.6,609.8 L869.7,603.6 L854.0,599.0 L835.2,595.5 L813.8,593.3 L787.5,592.1 L758.9,593.7 L734.8,596.5 L715.1,600.1 L692.1,606.1 L669.9,613.8 L646.9,623.7 L627.1,634.1 L614.8,642.6 L609.0,649.0 L625.4,647.4 L681.1,636.7 L708.1,633.8 L725.9,633.7 L740.8,634.9 L755.0,637.6 L767.4,641.7 L777.2,647.2 L785.4,654.3 L792.0,663.0 L796.7,673.1 L799.1,683.9 L799.4,695.8 L797.6,707.3 L793.8,718.9 L788.4,729.3 L780.9,740.0 L771.2,751.1 L756.7,765.5 L744.3,776.4 L730.6,787.1 L715.1,798.1 L697.3,809.5 L657.3,832.5 L616.5,853.0 L566.7,875.3 L488.6,908.1 L475.0,915.0 L450.2,984.7 L440.5,1017.8 L410.0,1100.0 L424.9,1093.4 L589.5,1011.6 L616.0,999.6 L669.9,973.4 L688.5,963.7 L761.3,923.1 L800.5,899.7 L834.9,876.5 L851.2,864.0 L864.9,852.4 L878.9,839.2 L893.0,823.7 L903.4,810.4 L917.2,790.5 L923.0,783.5 L923.5,756.5 L923.5,661.0 Z M383.8,689.3 L387.2,692.2 L397.0,698.3 L399.8,701.1 L406.1,709.8 L408.9,711.8 L412.2,713.2 L438.7,716.9 L443.8,718.9 L456.5,726.1 L471.0,729.6 L494.2,732.2 L525.9,732.4 L547.7,730.9 L572.4,727.5 L581.0,724.8 L591.6,717.8 L596.9,715.6 L604.2,714.3 L628.1,711.7 L637.9,709.4 L650.1,704.8 L663.8,698.1 L678.4,689.5 L687.3,682.9 L690.9,679.2 L694.5,674.0 L651.2,682.3 L623.4,686.8 L616.9,688.7 L604.4,693.8 L597.2,695.4 L586.0,696.0 L566.1,695.7 L557.7,694.6 L550.9,692.4 L546.2,689.6 L536.4,682.1 L524.4,675.1 L518.6,671.0 L511.9,663.8 L507.1,655.2 L504.5,646.2 L504.3,638.3 L505.6,632.8 L510.5,620.2 L511.9,606.2 L513.4,601.3 L529.2,574.8 L536.2,561.0 L540.8,555.4 L546.3,551.5 L562.3,544.0 L586.7,527.0 L611.4,511.4 L646.5,491.7 L697.9,466.3 L736.4,449.3 L815.1,416.7 L828.5,410.5 L833.7,394.1 L851.5,345.5 L878.0,269.7 L886.2,244.4 L889.0,231.0 L871.3,237.5 L779.0,279.9 L769.2,285.4 L757.6,296.2 L750.2,300.4 L744.2,302.4 L737.8,303.4 L713.0,304.1 L707.8,305.2 L704.0,306.7 L699.8,310.1 L692.9,319.7 L687.0,324.1 L615.0,361.9 L546.2,400.3 L503.8,425.4 L483.0,438.9 L467.1,450.1 L452.8,461.4 L436.7,475.2 L424.0,487.6 L410.1,503.1 L403.2,512.1 L393.5,527.0 L389.4,530.4 L376.4,537.8 L373.2,541.3 L371.3,545.7 L370.8,550.3 L370.8,565.6 L366.6,592.5 L367.8,613.7 L364.3,631.0 L364.1,641.1 L366.2,652.4 L370.2,664.4 L379.1,682.3 Z"/>
+  </svg>
+  <div class="cover-grid"></div>
+
+  <div class="cover-inner">
+    <div class="cover-logo-slot">
+      <img id="kapak-logo" alt="Logo" style="display:none">
+      <div id="kapak-logo-yedek" class="logo-placeholder">Sendika Logosu</div>
+    </div>
+
+    <div class="cover-org" data-sendika-adi>SENDİKA ADI</div>
+    <div class="cover-rule"></div>
+
+    <h1 class="cover-title">
+      Sendikal<br>
+      Dijital Sendika
+      <em>Yönetim Sistemi</em>
+    </h1>
+
+    <p class="cover-sub">
+      Üye kaydından aidata, resmi yazışmadan mobil uygulamaya kadar
+      sendikanın bütün işlerini tek merkezden yürüten sistemin
+      tanıtımı ve kullanım kılavuzu.
+    </p>
+
+    <div class="cover-spacer"></div>
+
+    <div class="cover-pills">
+      <span class="cover-pill">Yönetim Paneli</span>
+      <span class="cover-pill">Mobil Uygulama</span>
+      <span class="cover-pill">Web Sitesi</span>
+      <span class="cover-pill">Resmi Belge &amp; e-İmza</span>
+      <span class="cover-pill">SMS &amp; Bildirim</span>
+    </div>
+
+    <div class="cover-foot">
+      <div>
+        <strong>Temsilciler ve Yöneticiler İçin</strong>
+        Bu doküman sistemin bütün modüllerini ve nasıl kullanıldığını anlatır.
+      </div>
+      <div style="text-align:right; white-space:nowrap">
+        <strong data-tarih>Ağustos 2026</strong>
+        <span data-web>www.sendikaniz.org.tr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================================
+     GÖVDE
+     ====================================================================== -->
+<main class="doc-body">
+
+<!-- ---------------------------------------------------------------
+     İÇİNDEKİLER
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Kılavuz Hakkında</div>
+    <h1>İçindekiler</h1>
+    <p>
+      Bu kılavuz yedi bölümden oluşur. Bir modülü aramak yerine, hangi işi
+      yapmak istediğinizden yola çıkın: üyeyle ilgili her şey 2. bölümde,
+      üyenin telefonunda gördüğü her şey 4. bölümdedir.
+    </p>
+  </div>
+
+  <ul class="toc-list">
+    <li>
+      <div class="toc-row"><span class="toc-no">1</span><span class="toc-name">Sistem Nedir, Nasıl Çalışır?</span></div>
+      <p class="toc-desc">Üç bileşen — yönetim paneli, mobil uygulama, web sitesi — ve bunların birbiriyle ilişkisi. Kimin neyi görebildiği, yetki düzeyleri.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">2</span><span class="toc-name">Yönetim Paneli</span></div>
+      <p class="toc-desc">Sendikanın çalışma masası. Üye yönetimi, aidat, finans, resmi belge ve karar defteri, şubeler, kullanıcılar, SMS, hukuk, istatistikler, denetim kayıtları.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">3</span><span class="toc-name">Web Sitesi</span></div>
+      <p class="toc-desc">Kamuoyuna açık yüz. Haberler, duyurular, ilanlar, köşe yazıları, galeri, avantajlar, şubeler, online üyelik başvurusu, belge doğrulama.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">4</span><span class="toc-name">Mobil Uygulama</span></div>
+      <p class="toc-desc">Üyenin cebindeki sendika. Dijital üye kimliği, haberler, avantajlar, becayiş, hukuk desteği, anketler, aidat ekstresi, yapay zekâ asistanı.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">5</span><span class="toc-name">Stratejik Araçlar</span></div>
+      <p class="toc-desc">Sendikaya güç veren özel modüller: dijital eylem, afet modu, anketler, üye kazanım daveti, Resmi Gazete radarı, link araçları, ortak ajanda ve online toplantı.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">6</span><span class="toc-name">Temsilciler İçin Hızlı Başlangıç</span></div>
+      <p class="toc-desc">İlk gün yapılacaklar listesi ve en sık kullanılan işlemlerin adım adım özeti.</p>
+    </li>
+    <li>
+      <div class="toc-row"><span class="toc-no">7</span><span class="toc-name">Sıkça Sorulan Sorular</span></div>
+      <p class="toc-desc">Üyelerden ve temsilcilerden en çok gelen soruların cevapları.</p>
+    </li>
+  </ul>
+
+  <div class="note">
+    <span class="note-title">Bu kılavuz nasıl okunur</span>
+    Her modül kartında önce <b>ne işe yaradığı</b>, sonra gri kutu içinde
+    <b>nasıl kullanıldığı</b> adım adım anlatılır. Kartın üstündeki gri satır
+    (<b>Yol:</b> ...) o modüle panelde hangi menüden ulaşacağınızı gösterir.
+  </div>
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 1 — SİSTEM NEDİR
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 1</div>
+    <h1>Sistem Nedir, Nasıl Çalışır?</h1>
+    <p>
+      Bu sistem, sendikanın dağınık hâlde yürüyen bütün işlerini — üye kaydı,
+      aidat takibi, resmi yazışma, duyuru, SMS, üyeyle iletişim — tek bir
+      merkezde toplar. Üç ayrı yüzü vardır, ama arkada tek bir veri havuzu
+      çalışır: bir yerde yapılan değişiklik anında her yerde görünür.
+    </p>
+  </div>
+
+  <div class="arch">
+    <div class="arch-row">
+      <div class="arch-card">
+        <div class="who">Yöneticiler ve Temsilciler</div>
+        <h4>Yönetim Paneli</h4>
+        <p>
+          Bilgisayardan tarayıcıyla girilir. Sendikanın çalışma masasıdır:
+          üye kaydı, aidat, muhasebe, resmi belge, duyuru, SMS ve raporlar
+          buradan yürütülür.
+        </p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Üyeler</div>
+        <h4>Mobil Uygulama</h4>
+        <p>
+          iOS ve Android. Üyenin dijital kimlik kartı, haberler, indirimler,
+          anketler, hukuk desteği ve aidat ekstresi cebindedir. Bildirimler
+          anında düşer.
+        </p>
+      </div>
+      <div class="arch-card">
+        <div class="who">Kamuoyu</div>
+        <h4>Web Sitesi</h4>
+        <p>
+          Sendikanın kamuya açık yüzü. Panelden yayınlanan her haber, duyuru
+          ve ilan anında sitede görünür. Online üyelik başvurusu buradan alınır.
+        </p>
+      </div>
+    </div>
+    <div class="arch-base">
+      <b>Ortak Veri Merkezi</b> &nbsp;·&nbsp; Üye kayıtları, belgeler, aidat ve finans verisi tek yerde tutulur
+      &nbsp;·&nbsp; Günlük yedekleme &nbsp;·&nbsp; Yetkisiz erişime kapalı
+    </div>
+  </div>
+
+  <h2>Bu sistem sendikaya ne kazandırır?</h2>
+
+  <ul class="feat">
+    <li><strong>Tek doğru kayıt.</strong> Üye bilgisi tek yerde tutulur; şubede ayrı, merkezde ayrı liste olmaz.</li>
+    <li><strong>Kâğıt işinin bitmesi.</strong> Üyelik formu, istifa, karar defteri, resmi yazı — hepsi dijital ve arşivli.</li>
+    <li><strong>Anında iletişim.</strong> Tek ekrandan binlerce üyeye SMS ve bildirim.</li>
+    <li><strong>Şeffaf finans.</strong> Aidat tahakkuku, tahsilat ve muhasebe kaydı aynı sistemde.</li>
+    <li><strong>Gerçek rakam.</strong> Kaç üye var, hangi ilde, hangi kurumda — tahmin değil, ekrandaki sayı.</li>
+    <li><strong>Görünürlük.</strong> Web sitesi ve mobil uygulama ile sendika üyeye ve kamuoyuna her gün görünür.</li>
+    <li><strong>Denetlenebilirlik.</strong> Kim ne zaman ne yaptı, kayıt altında ve silinemez.</li>
+    <li><strong>Yetki sınırı.</strong> Şube yöneticisi başka şubenin üyesini göremez; herkes kendi alanında çalışır.</li>
+  </ul>
+
+  <h2>Kim neyi görür? Yetki düzeyleri</h2>
+
+  <p>
+    Sisteme giren herkes aynı şeyi görmez. Her kullanıcıya bir rol verilir;
+    menüler ve veriler o role göre otomatik daralır. Bu, hem gizlilik hem de
+    yanlış işlem yapılmasını önlemek içindir.
+  </p>
+
+  <table class="wrap-first">
+    <thead>
+      <tr><th style="width:34%">Rol</th><th>Neyi görür, ne yapabilir?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Süper Admin</td>
+        <td>Bütün modüllere tam erişim. Sistem ayarlarını değiştirebilir, yeni kullanıcı açabilir, modülleri açıp kapatabilir.</td>
+      </tr>
+      <tr>
+        <td>Genel Merkez Yöneticisi</td>
+        <td>Tüm üyelere ve tüm şubelere erişir. Haber, duyuru, SMS, belge ve raporların tamamını yönetir.</td>
+      </tr>
+      <tr>
+        <td>Bölge Sorumlusu</td>
+        <td>Yalnızca kendi bölgesine bağlı illerin ve şubelerin verilerini görür. Başka bölgenin üyesi listede çıkmaz.</td>
+      </tr>
+      <tr>
+        <td>Şube Yöneticisi / Temsilci</td>
+        <td>Yalnızca kendi şubesinin üyelerini görür ve yönetir. Kendi şubesine duyuru geçebilir, üye kaydı yapabilir.</td>
+      </tr>
+      <tr>
+        <td>Hukuk Birimi</td>
+        <td>Üyelerden gelen hukuki destek taleplerini görür ve yanıtlar. Üye listesinin tamamına ya da finansa erişmez.</td>
+      </tr>
+      <tr>
+        <td>Finans / Muhasebe</td>
+        <td>Aidat ve finans modüllerinde çalışır. Muhasebe fişi, tahsilat, bütçe ve raporlar bu rolün alanıdır.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <span class="note-title">Önemli</span>
+    Roller sabit değildir. Bir kullanıcıya rolünün dışında tek tek yetki de
+    verilebilir (örneğin şube yöneticisine yalnızca "haber yayınlama" yetkisi
+    eklemek gibi). Yetki düzenlemesi <b>Kullanıcılar</b> menüsünden yapılır.
+  </div>
+
+  <h2>Giriş ve güvenlik</h2>
+
+  <div class="howto" style="margin-top:3mm">
+    <div class="howto-label">Panele ilk giriş</div>
+    <ol>
+      <li>Tarayıcıdan sendikanın panel adresine girin (örn. <span data-panel>www.sendikaniz.org.tr/admin</span>).</li>
+      <li>Size tanımlanan e-posta ve geçici şifreyle giriş yapın.</li>
+      <li>Sistem ilk girişte şifre değiştirmenizi ister. Kendinize ait, kimseyle paylaşmadığınız bir şifre belirleyin.</li>
+      <li>Şifrenizi unutursanız giriş ekranındaki <b>Şifremi Unuttum</b> bağlantısını kullanın.</li>
+    </ol>
+  </div>
+
+  <ul class="feat">
+    <li><strong>Hesap paylaşılmaz.</strong> Her temsilcinin kendi hesabı olur; işlemler kişiye yazılır.</li>
+    <li><strong>Toplu SMS'te ek onay.</strong> Yüzlerce kişiye gidecek gönderimlerde telefonunuza doğrulama kodu gelir.</li>
+    <li><strong>Her işlem kayıtlı.</strong> Ekleme, silme, güncelleme; kim, ne zaman, hangi bilgisayardan — hepsi loglanır.</li>
+    <li><strong>Açık oturum bırakmayın.</strong> Ortak kullanılan bilgisayarlarda işiniz bitince oturumu kapatın.</li>
+  </ul>
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 2 — YÖNETİM PANELİ
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 2</div>
+    <h1>Yönetim Paneli</h1>
+    <p>
+      Sendikanın çalışma masası. Sol tarafta menü, ortada çalıştığınız ekran
+      vardır. Menüde yalnızca yetkiniz olan başlıklar görünür — bu yüzden
+      sizin menünüz bir başkasınınkinden kısa olabilir.
+    </p>
+  </div>
+
+  <!-- 1 Dashboard -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">1</div>
+      <div class="module-title">
+        <h3>Ana Ekran (Dashboard)</h3>
+        <div class="module-where"><b>Yol:</b> Panele girer girmez açılan ilk ekran</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın o anki durumunu tek bakışta gösteren özet ekran. Toplam üye
+        sayısı, aktif / pasif / bekleyen dağılımı, bu ay ve geçen ay kaç yeni
+        üye kaydedildiği burada görünür. Şube yöneticisi girdiğinde bu rakamlar
+        otomatik olarak yalnızca kendi şubesini gösterir.
+      </p>
+      <ul class="feat">
+        <li>Toplam, aktif, pasif, bekleyen ve istifa etmiş üye sayıları</li>
+        <li>Bu ay / geçen ay yeni üye karşılaştırması</li>
+        <li>Sık kullanılan ekranlara hızlı geçiş bağlantıları</li>
+        <li>Kişiselleştirilebilir hızlı menü</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Nasıl kullanılır</div>
+        <ol>
+          <li>Güne başlarken bu ekrana bakın; bekleyen başvuru varsa buradan görürsünüz.</li>
+          <li>Rakam kartlarına tıklayarak ilgili listeye doğrudan geçebilirsiniz.</li>
+          <li>Hızlı menüyü kendi işinize göre düzenleyin; en çok kullandığınız 4-5 ekranı oraya alın.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 Üyeler -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">2</div>
+      <div class="module-title">
+        <h3>Üye Yönetimi</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Üyeler &nbsp;·&nbsp; <b>Sekmeler:</b> Üye Listesi, Online Başvurular, Toplu Güncelleme, Dağılım</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sistemin kalbi. Sendikanın bütün üye kayıtları burada tutulur; aidat,
+        SMS, belge ve istatistik modülleri hep bu listeden beslenir. Üye
+        kaydının doğru ve güncel olması, sistemin geri kalanının doğru
+        çalışması demektir.
+      </p>
+
+      <h4>Üye Listesi</h4>
+      <ul class="feat">
+        <li>Ad, soyad, TC kimlik, üye no, telefon ile arama</li>
+        <li>Durum filtresi: aktif, bekleyen, pasif, askıda, istifa</li>
+        <li>Sütunları göster/gizle ve kendi görünümünüzü kaydetme</li>
+        <li>Telefonu veya e-postası eksik üyelerin işaretlenmesi</li>
+        <li>Üye detayında dosya ekleme, not düşme, geçmiş görüntüleme</li>
+        <li>Seçili üyelere tek hamlede toplu SMS</li>
+        <li>Tüm listeyi Excel / CSV olarak dışa aktarma</li>
+        <li>EK-1 üyelik formu ve istifa belgesi çıktısı alma</li>
+      </ul>
+
+      <div class="howto">
+        <div class="howto-label">Yeni üye kaydı nasıl açılır</div>
+        <ol>
+          <li><b>Üyeler</b> ekranında sağ üstteki <b>Yeni Üye</b> butonuna basın.</li>
+          <li>TC kimlik numarasını girin. Sistem aynı numara kayıtlıysa uyarır — mükerrer kayıt oluşmaz.</li>
+          <li>Kimlik, iletişim, kurum ve kadro bilgilerini doldurun. Telefon alanını mutlaka doğru girin: mobil uygulama girişi ve SMS bu numaraya bağlıdır.</li>
+          <li>Üyenin bağlı olacağı şubeyi seçin.</li>
+          <li>Kaydedin. Üye önce <b>bekleyen</b> durumda oluşur; yönetim kararı sonrası <b>aktif</b>e çekilir.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <div class="howto-label">Toplu üye aktarımı (Excel)</div>
+        <ol>
+          <li><b>Üyeler → İçe Aktar</b> ekranını açın.</li>
+          <li>Örnek Excel şablonunu indirin ve kendi listenizi bu şablona göre düzenleyin.</li>
+          <li>Dosyayı yükleyin. Sistem yüklemeden önce hatalı ve mükerrer satırları listeler.</li>
+          <li>Hataları düzeltip onaylayın; kayıtlar toplu olarak açılır.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Online başvurular -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">3</div>
+      <div class="module-title">
+        <h3>Online Başvurular ve Dijital Üyelik</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Online Başvurular sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Web sitesindeki üyelik formundan gelen başvurular doğrudan bu sekmeye
+        düşer. Kâğıt form toplamaya, elden imza taşımaya gerek kalmaz.
+        Başvuruyu inceleyip onayladığınızda kişi üye listesine geçer.
+      </p>
+      <p>
+        <strong>Dijital üyelik daveti</strong> ise tersini yapar: siz bir
+        telefon numarasına SMS gönderirsiniz, kişi gelen bağlantıya tıklayıp
+        formu kendi telefonundan doldurur. Telefon numarası davetten geldiği
+        için kilitlidir; yanlış numara girilemez.
+      </p>
+      <div class="howto">
+        <div class="howto-label">Dijital üyelik daveti nasıl gönderilir</div>
+        <ol>
+          <li><b>Üyeler → Online Başvurular</b> sekmesine gidin.</li>
+          <li>Dijital üyelik davetini seçip aday üyenin cep telefonunu yazın.</li>
+          <li>SMS gider; kişi bağlantıya tıklayıp bilgilerini doldurur ve gönderir.</li>
+          <li>Başvuru aynı sekmede listelenir. İnceleyip onaylayın; kişi üye listesine düşer.</li>
+        </ol>
+      </div>
+      <div class="note">
+        <span class="note-title">Temsilciler için</span>
+        Sahada üye yaparken en pratik yol budur: kişinin numarasını alın, daveti
+        gönderin, formu kendi telefonunda doldursun. Elinizde form, kalem ve
+        dosya taşımanıza gerek kalmaz.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Toplu bilgi güncelleme -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">4</div>
+      <div class="module-title">
+        <h3>Toplu Bilgi Güncelleme</h3>
+        <div class="module-where"><b>Yol:</b> Üyeler → Toplu Güncelleme sekmesi</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üye kayıtları zamanla eskir: telefon değişir, kurum değişir, adres
+        değişir. Bu modül, üyelere SMS ile kişiye özel bir bağlantı gönderir;
+        üye kendi bilgilerini kendi telefonundan günceller. Güncellenen bilgi
+        doğrudan sisteme işlenir, ayrıca veri girişi yapmanıza gerek kalmaz.
+      </p>
+      <ul class="feat">
+        <li>Seçili üyelere ya da tüm listeye toplu davet</li>
+        <li>Üye ad, soyad ve TC bilgisini değiştiremez — sadece iletişim ve kurum bilgileri</li>
+        <li>Bağlantılar kişiye özeldir ve süresi dolunca geçersiz olur</li>
+        <li>Kimin güncellediği, kimin güncellemediği listede takip edilir</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Nasıl kullanılır</div>
+        <ol>
+          <li><b>Üyeler → Toplu Güncelleme</b> sekmesini açın.</li>
+          <li>Davet gönderilecek üyeleri filtreleyerek seçin (örneğin yalnızca kendi şubeniz).</li>
+          <li>Gönderimi başlatın; üyelere kısa bir SMS ve kişiye özel bağlantı gider.</li>
+          <li>Birkaç gün sonra aynı ekrandan güncelleme yapmayanları görüp hatırlatma gönderin.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 Aidatlar -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">5</div>
+      <div class="module-title">
+        <h3>Aidatlar</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Aidatlar</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Aidat dönemlerinin açıldığı, tahsilatın işlendiği ve dönem sonunda
+        kapatıldığı modül. Her dönemin ne kadar beklendiği ve ne kadarının
+        toplandığı ekranda görünür.
+      </p>
+      <ul class="feat">
+        <li>Dönem oluşturma (aylık, üç aylık vb.)</li>
+        <li>Dönem durumu: <em>toplanıyor</em> / <em>kapatıldı</em></li>
+        <li>Üye arayarak tek tek veya toplu ödeme girişi</li>
+        <li>Dönem bazında beklenen ve toplanan tutar özeti</li>
+        <li>Üyenin aidat geçmişi mobil uygulamada kendisine de görünür</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Aidat dönemi nasıl yürütülür</div>
+        <ol>
+          <li><b>Aidatlar → Yeni Dönem</b> ile dönemi açın; ad, tarih aralığı ve tutarı girin.</li>
+          <li>Dönem <b>toplanıyor</b> durumundayken tahsilatları işleyin.</li>
+          <li>Ödeme girerken üyeyi ad, soyad veya üye numarasıyla arayın.</li>
+          <li>Dönem sonunda özet rakamları kontrol edip dönemi <b>kapatın</b>. Kapanan dönemde kayıt değişmez, kayıt bütünlüğü korunur.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 Finans -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">6</div>
+      <div class="module-title">
+        <h3>Finans ve Muhasebe</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Finans &nbsp;·&nbsp; <b>Alt ekranlar:</b> Hesap Planı, Banka/Kasa, İşlemler, Harcamalar, Bütçe, Raporlar</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın gelir-gider ve muhasebe düzeninin tutulduğu modül. Basit ve
+        gelişmiş olmak üzere iki görünümü vardır: küçük şubeler basit görünümde
+        gelir-gider takibi yapar, genel merkez gelişmiş görünümde tam muhasebe
+        düzeni kurar.
+      </p>
+      <table class="wrap-first">
+        <thead><tr><th style="width:32%">Ekran</th><th>Ne için kullanılır</th></tr></thead>
+        <tbody>
+          <tr><td>Hesap Planı</td><td>Muhasebe hesaplarının tanımlandığı ana yapı</td></tr>
+          <tr><td>Banka / Kasa</td><td>Sendikanın banka hesapları ve kasalarının tanımı</td></tr>
+          <tr><td>İşlemler (Fişler)</td><td>Tahsilat, tediye ve mahsup fişlerinin kaydı</td></tr>
+          <tr><td>Harcamalar</td><td>Gider kayıtlarının girilmesi ve takibi</td></tr>
+          <tr><td>Bütçe</td><td>Yıllık bütçe planı ve gerçekleşme karşılaştırması</td></tr>
+          <tr><td>Raporlar</td><td>Mizan, gelir tablosu ve dönemsel finansal raporlar</td></tr>
+        </tbody>
+      </table>
+      <div class="howto">
+        <div class="howto-label">Finans modülüne başlarken sıra</div>
+        <ol>
+          <li>Önce <b>Hesap Planı</b>nı düzenleyin.</li>
+          <li>Ardından <b>Banka / Kasa</b> hesaplarını tanımlayın.</li>
+          <li>Devir bakiyelerini bir <b>açılış (mahsup) fişi</b> ile girin.</li>
+          <li>Bundan sonra günlük tahsilat ve harcamaları işlemeye başlayın.</li>
+        </ol>
+      </div>
+      <div class="note warn">
+        <span class="note-title">Dikkat</span>
+        Finans modülüne yalnızca yetkili muhasebe personeli erişmelidir.
+        Hesap planı kurulduktan sonra yapılacak köklü değişiklikler geçmiş
+        kayıtları etkiler; değişiklik öncesi mali müşavirinize danışın.
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 Belge yönetimi -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">7</div>
+      <div class="module-title">
+        <h3>Belge Yönetimi (EBYS) ve Karar Defteri</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Belge Yönetimi &nbsp;·&nbsp; <b>Sekmeler:</b> Karar Defteri, Belge Oluştur, Belge Havuzu, Gelen Evrak, Giden Evrak, EYP Görüntüleyici</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın resmi yazışma ve karar düzenini dijitale taşıyan modül.
+        Fiziki karar defteri, gelen-giden evrak defteri ve klasörler yerine
+        aranabilir, yedeklenen ve doğrulanabilir bir arşiv sunar.
+      </p>
+      <table class="wrap-first">
+        <thead><tr><th style="width:32%">Sekme</th><th>Ne yapar</th></tr></thead>
+        <tbody>
+          <tr><td>Karar Defteri</td><td>Yönetim, denetim ve disiplin kurulu kararları; otomatik numaralandırma ve arşivleme</td></tr>
+          <tr><td>Belge Oluştur</td><td>Resmi yazı ve kararların A4 önizlemeli editörde hazırlanması</td></tr>
+          <tr><td>Belge Havuzu</td><td>Oluşturulan tüm belgelerin merkezi arşivi</td></tr>
+          <tr><td>Gelen Evrak</td><td>Dış kurumlardan gelen yazıların kaydı ve takibi</td></tr>
+          <tr><td>Giden Evrak</td><td>Gönderilen yazıların kaydı ve takibi</td></tr>
+          <tr><td>EYP Görüntüleyici</td><td>Resmi e-Yazışma Paketi dosyalarının açılıp okunması</td></tr>
+        </tbody>
+      </table>
+
+      <div class="howto">
+        <div class="howto-label">Resmi yazı nasıl hazırlanır</div>
+        <ol>
+          <li><b>Belge Yönetimi → Belge Oluştur</b> sekmesini açın.</li>
+          <li>Belge türünü seçin (resmi yazı, karar vb.). Antet, logo ve alt bilgi tanımlı ayarlardan otomatik gelir.</li>
+          <li>Konu, muhatap ve metni yazın. Sağdaki A4 önizlemede belgenin baskıdaki hâlini görürsünüz.</li>
+          <li>Yetkili imzacıyı seçin ve kaydedin; belge numarası otomatik verilir.</li>
+          <li>Gerekiyorsa e-imza ile imzalayın, ardından PDF olarak indirin veya yazdırın.</li>
+        </ol>
+      </div>
+
+      <h4>e-İmza ve belge doğrulama</h4>
+      <ul class="feat">
+        <li>Akıllı kart / e-imza token'ı ile resmi imzalama desteği</li>
+        <li>Devletin e-Yazışma (EYP) standardına uygun paket üretimi</li>
+        <li>Dışarı giden belgelere otomatik doğrulama karekodu basılır</li>
+        <li>Karekodu okutan herkes belgenin gerçek olduğunu web sitesinden teyit eder</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Belge doğrulama nasıl işler</span>
+        Sendikanın ürettiği bir belgeyi eline alan kurum ya da kişi, belge
+        üzerindeki karekodu telefonuyla okutur; site belgenin sendika
+        tarafından üretilmiş gerçek bir belge olduğunu gösterir. Sahte belge
+        düzenlenmesinin önüne geçer.
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 Bölge ve şubeler -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">8</div>
+      <div class="module-title">
+        <h3>Bölge ve Şubeler</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Bölge ve Şubeler</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın teşkilat yapısının kurulduğu modül. Burada tanımladığınız
+        bölge ve şubeler, üye kaydından yetkilendirmeye ve web sitesindeki
+        "Şubelerimiz" sayfasına kadar her yerde kullanılır.
+      </p>
+      <ul class="feat">
+        <li>Bölge tanımlama ve illerin bölgelere bağlanması</li>
+        <li>Şube ve temsilcilik oluşturma</li>
+        <li>Şube adresi, telefonu ve iletişim bilgileri</li>
+        <li>Şubeye yönetici / temsilci atama</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Neden önce burası kurulur</span>
+        Üye kaydederken şube seçilir, yetki verirken şube seçilir, haber
+        yayınlarken "sadece şu şubeye görünsün" denir. Bu yüzden sistemi
+        kurarken ilk yapılacak iş bölge ve şube yapısını doğru tanımlamaktır.
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 Kullanıcılar -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">9</div>
+      <div class="module-title">
+        <h3>Kullanıcılar ve Yetkiler</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Kullanıcılar</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Yönetim paneline kimlerin gireceğinin ve her birinin ne yapabileceğinin
+        belirlendiği modül. Üye kaydı ile karıştırılmamalıdır: burada
+        tanımlananlar sendikanın <em>çalışanları ve yöneticileri</em>dir.
+      </p>
+      <div class="howto">
+        <div class="howto-label">Yeni temsilciye panel erişimi verme</div>
+        <ol>
+          <li><b>Kullanıcılar → Yeni Kullanıcı</b> deyin.</li>
+          <li>Ad, soyad ve e-posta adresini girin.</li>
+          <li>Rolünü seçin (örneğin <b>Şube Yöneticisi</b>) ve bağlı olacağı şubeyi belirleyin.</li>
+          <li>Gerekiyorsa rolün üstüne tek tek ek yetki verin.</li>
+          <li>Kaydedin; kullanıcı ilk girişte kendi şifresini belirler.</li>
+        </ol>
+      </div>
+      <div class="note warn">
+        <span class="note-title">Güvenlik kuralı</span>
+        Görevden ayrılan yöneticinin hesabını <b>hemen pasife alın</b>. Hesap
+        silmek yerine pasife almak, o kişinin geçmişte yaptığı işlemlerin
+        kaydını korur.
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 SMS -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">10</div>
+      <div class="module-title">
+        <h3>SMS Yönetimi</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → SMS &nbsp;·&nbsp; <b>Sekmeler:</b> SMS Gönder, Şablonlar, Gruplar, Otomasyon, Geçmiş</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üyelerle en hızlı temas kanalı. Tek üyeye, seçili gruba ya da filtreye
+        uyan bütün üyelere SMS gönderilir. Gönderilen her mesajın kime, ne
+        zaman gittiği ve ulaşıp ulaşmadığı kayıt altındadır.
+      </p>
+      <table class="wrap-first">
+        <thead><tr><th style="width:28%">Sekme</th><th>Ne yapar</th></tr></thead>
+        <tbody>
+          <tr><td>SMS Gönder</td><td>Üye seçerek veya numara yazarak gönderim</td></tr>
+          <tr><td>Şablonlar</td><td>Sık kullanılan metinleri kaydedip tekrar kullanma</td></tr>
+          <tr><td>Gruplar</td><td>Üyeleri gruplara ayırıp gruba toplu gönderim</td></tr>
+          <tr><td>Otomasyon</td><td>Doğum günü, üyelik yıl dönümü, hoş geldin mesajı gibi otomatik gönderimler</td></tr>
+          <tr><td>Geçmiş</td><td>Gönderilen tüm mesajların durum ve detay kaydı</td></tr>
+        </tbody>
+      </table>
+      <ul class="feat">
+        <li>Kişiselleştirme: <b>{AD}</b>, <b>{SOYAD}</b>, <b>{AD_SOYAD}</b>, <b>{TELEFON}</b></li>
+        <li>Şehir, kurum, kadro, cinsiyet gibi ölçütlerle hedef kitle seçimi</li>
+        <li>Yapay zekâ ile mesaj metni önerisi (resmi, samimi, çağrı tonu)</li>
+        <li>İleri tarihli gönderim planlama</li>
+        <li>Toplu gönderim öncesi telefonunuza doğrulama kodu</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Hedefli toplu SMS gönderme</div>
+        <ol>
+          <li><b>SMS → SMS Gönder</b> sekmesini açın.</li>
+          <li>Filtreleri kullanarak hedef kitleyi daraltın (örn. yalnızca kendi ilinizdeki aktif üyeler).</li>
+          <li>Şablon seçin ya da metni yazın. Kişiselleştirme etiketlerini kullanırsanız herkese kendi adıyla gider.</li>
+          <li>Kaç kişiye gideceğini ve karakter/kredi sayısını kontrol edin.</li>
+          <li>Gönderimi başlatın; telefonunuza gelen doğrulama kodunu girin.</li>
+          <li>Sonucu <b>Geçmiş</b> sekmesinden takip edin.</li>
+        </ol>
+      </div>
+      <div class="note warn">
+        <span class="note-title">Toplu gönderim öncesi</span>
+        Mesajı göndermeden önce mutlaka <b>kendi numaranıza bir deneme</b>
+        gönderin. Yazım hatası, eksik bilgi ya da bozuk karakter binlerce kişiye
+        gittikten sonra geri alınamaz.
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 Hukuk -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">11</div>
+      <div class="module-title">
+        <h3>Hukuk Desteği ve Destek Talepleri</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Hukuk Destek &nbsp;·&nbsp; Destek Talepleri</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üyenin mobil uygulamadan açtığı talepler bu iki ekrana düşer.
+        <strong>Hukuk Desteği</strong> hukuki konular içindir; iş hukuku, idare
+        hukuku, sendika hukuku gibi kategorilere ayrılır.
+        <strong>Destek Talepleri</strong> ise genel, teknik ve mali konulardaki
+        soru ve şikâyetleri toplar.
+      </p>
+      <ul class="feat">
+        <li>Talep durumu: yeni / açık, incelemede, çözüldü, kapatıldı</li>
+        <li>Kategori ve tarihe göre filtreleme, arama</li>
+        <li>Talebe yanıt yazma; yanıt üyeye uygulamadan iletilir</li>
+        <li>Talebi açan üyenin kaydına doğrudan geçiş</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Talep nasıl işlenir</div>
+        <ol>
+          <li>Listede <b>yeni</b> durumundaki talepleri açın ve okuyun.</li>
+          <li>İlgilenmeye başladığınızda durumu <b>incelemede</b> yapın — üye böylece talebinin görüldüğünü bilir.</li>
+          <li>Gerekli bilgiyi topladıktan sonra yanıtı yazın.</li>
+          <li>İş bitince durumu <b>çözüldü</b> olarak işaretleyin.</li>
+        </ol>
+      </div>
+      <div class="note">
+        <span class="note-title">Temsilciler için</span>
+        Talebe kaç günde dönüldüğü üyenin sendikaya güvenini doğrudan etkiler.
+        Cevabı hazır olmasa bile talebi <b>incelemede</b>ye çekmek, üyeye
+        "sesin duyuldu" demektir.
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 İstatistikler -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">12</div>
+      <div class="module-title">
+        <h3>İstatistikler ve Raporlar</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → İstatistikler → Üye İstatistikleri / İş Kolu Karşılaştırma</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın gerçek fotoğrafını çeken modül. Üye sayısının nerede arttığı,
+        nerede eridiği, hangi kurumda güçlü hangi kurumda zayıf olduğunuz
+        rakamla görünür. Grafik, kart, tablo ve pasta görünümleri arasında
+        geçiş yapılabilir.
+      </p>
+
+      <h4>Üye istatistikleri</h4>
+      <ul class="feat">
+        <li>Toplam, aktif, bekleyen, pasif, askıda ve istifa sayıları</li>
+        <li>Cinsiyet, yaş grubu, medeni durum, eğitim düzeyi dağılımı</li>
+        <li>Şehir bazlı dağılım ve en çok üyeli ilk 10 il</li>
+        <li>İşyeri ve kadro unvanı bazlı analiz</li>
+        <li>Aylık üyelik trendi ve katılım tarihi analizi</li>
+        <li>İstifa nedenlerinin dökümü</li>
+        <li>Zaman filtresi: son hafta, son ay, son yıl, tüm zamanlar</li>
+        <li>CSV, Excel ve PDF olarak dışa aktarma</li>
+      </ul>
+
+      <h4>İş kolu karşılaştırma</h4>
+      <p>
+        Sendikanızı aynı iş kolundaki diğer sendikalarla yan yana koyar: üye
+        sayısı farkı, oran farkı ve sıralamadaki yeriniz. Genel kurul öncesi ve
+        yetki dönemlerinde nerede durduğunuzu görmek için kullanılır.
+      </p>
+
+      <h4>Site ve mobil istatistikleri</h4>
+      <p>
+        Web sitesine kaç ziyaretçi geldiği, hangi sayfaların okunduğu; mobil
+        uygulamayı kaç üyenin kurduğu ve aktif kullandığı buradan izlenir.
+      </p>
+
+      <div class="howto">
+        <div class="howto-label">Yönetim kuruluna rapor hazırlama</div>
+        <ol>
+          <li><b>İstatistikler</b> ekranını açın ve zaman filtresini rapor dönemine ayarlayın.</li>
+          <li>Göstermek istediğiniz kırılımı seçin (il, kurum, yaş, cinsiyet).</li>
+          <li>Görünümü grafik moduna alın.</li>
+          <li>Sağ üstten <b>PDF</b> veya <b>Excel</b> olarak dışa aktarın.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 Denetim -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">13</div>
+      <div class="module-title">
+        <h3>Denetim Kayıtları</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Denetim Kayıtları → Teknik Kayıtlar / Aktiflik</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sistemde yapılan her kritik işlemin kaydını tutar: kim, ne zaman, hangi
+        kaydı ekledi, değiştirdi ya da sildi. Bu kayıtlar sonradan
+        değiştirilemez. <strong>Aktiflik</strong> ekranı ise hangi kullanıcının
+        ne sıklıkla ve hangi ekranlarda çalıştığını gösterir.
+      </p>
+      <ul class="feat">
+        <li>Kullanıcı bazlı işlem geçmişi</li>
+        <li>Tarih, işlem türü ve etkilenen kayıt bilgisi</li>
+        <li>Yetkisiz erişim denemelerinin kaydı</li>
+        <li>Silme ve güncelleme işlemlerinin izlenebilirliği</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Ne işe yarar</span>
+        "Bu üyenin kaydını kim değiştirdi?", "Bu belge ne zaman silindi?" gibi
+        soruların cevabı burada bulunur. Denetim kurulu çalışmalarında ve
+        anlaşmazlıklarda başvurulacak ilk yerdir.
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 Tanımlamalar ve ayarlar -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">14</div>
+      <div class="module-title">
+        <h3>Tanımlamalar ve Site Ayarları</h3>
+        <div class="module-where"><b>Yol:</b> Sol menü → Tanımlamalar &nbsp;·&nbsp; Site ve Mobil Yönetimi → Site Ayarları</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sistemin arka planındaki listelerin ve genel ayarların yönetildiği yer.
+        Genellikle kurulum sırasında bir kez düzenlenir, sonra ara sıra
+        güncellenir.
+      </p>
+      <h4>Tanımlamalar</h4>
+      <ul class="feat">
+        <li>İşyerleri listesi</li>
+        <li>Kadro ve pozisyon unvanları</li>
+        <li>Kullanıcı rolleri ve yetki setleri</li>
+        <li>Varsayılan belge ayarları (antet, logo, alt bilgi)</li>
+        <li>Yetkili imzacılar</li>
+      </ul>
+      <h4>Site Ayarları</h4>
+      <ul class="feat">
+        <li>Sendika adı, logosu ve tema renkleri</li>
+        <li>Menü düzenleyici — sitedeki üst menünün içeriği</li>
+        <li>Hakkımızda, iletişim ve alt bilgi metinleri</li>
+        <li>Sosyal medya bağlantıları</li>
+        <li>Galeri ve mobil açılış ekranının açılıp kapatılması</li>
+        <li>Kullanılmayan modüllerin kapatılması</li>
+        <li>SMS servis ayarları</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Modülleri kapatabilirsiniz</span>
+        Sendikanızın kullanmadığı modüller (örneğin belge yönetimi, anketler ya
+        da biolink) Site Ayarları'ndan kapatılabilir. Kapatılan modül menüden
+        kalkar; panel sadeleşir ve kullanıcılar kafası karışmadan çalışır.
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 3 — WEB SİTESİ
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 3</div>
+    <h1>Web Sitesi</h1>
+    <p>
+      Sendikanın kamuoyuna, kamu çalışanlarına ve basına açılan yüzü. Sitedeki
+      hiçbir içerik için teknik bilgi ya da dışarıdan destek gerekmez; her şey
+      yönetim panelinden yayınlanır ve anında sitede görünür.
+    </p>
+  </div>
+
+  <!-- 15 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">15</div>
+      <div class="module-title">
+        <h3>Haberler, Duyurular ve Başlık Duyuruları</h3>
+        <div class="module-where"><b>Yol:</b> Site ve Mobil Yönetimi → Haberler / Duyurular / Başlık Duyuruları</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın sesini duyurduğu üç ayrı kanal. <strong>Haberler</strong>
+        kapak görselli, kategorili ve arşivlenen içeriklerdir.
+        <strong>Duyurular</strong> daha kısa ve resmi bildirimlerdir; genel,
+        bilgi, acil ve uyarı tipleri farklı renklerle gösterilir.
+        <strong>Başlık duyuruları</strong> ise sitenin en üstünde şerit hâlinde
+        görünen acil mesajlardır.
+      </p>
+      <ul class="feat">
+        <li>Kapak görseli, özet ve zengin metin editörü</li>
+        <li>Kategori ve etiketleme</li>
+        <li>Yayın tarihi belirleme</li>
+        <li>Yerel yayın: haberi yalnızca belirli il ya da şubeye gösterme</li>
+        <li>Duyuru tipleri: genel, bilgi, acil, uyarı</li>
+        <li>Yayınlanan içerik mobil uygulamada da anında görünür</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Haber nasıl yayınlanır</div>
+        <ol>
+          <li><b>Site ve Mobil Yönetimi → Haberler → Yeni Haber</b> deyin.</li>
+          <li>Başlık ve kısa özet yazın. Özet, listede ve mobil uygulamada görünen metindir.</li>
+          <li>Kapak görselini yükleyin. Yatay ve net bir fotoğraf seçin.</li>
+          <li>Metni yazın; kategori seçin.</li>
+          <li>Sadece belirli bir şubeyi ilgilendiriyorsa yerel yayın seçeneğini işaretleyin.</li>
+          <li>Yayınlayın; haber sitede ve mobil uygulamada anında görünür.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">16</div>
+      <div class="module-title">
+        <h3>İlanlar, Köşe Yazıları ve Galeri</h3>
+        <div class="module-where"><b>Yol:</b> Site ve Mobil Yönetimi → İlanlar / Köşe Yazıları &nbsp;·&nbsp; Site Ayarları → Galeri</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        <strong>İlanlar</strong>, genel kurul ve delege seçimi gibi resmi
+        ilanların yayımlandığı bölümdür; başlangıç ve bitiş tarihi verilerek
+        süresi dolunca otomatik olarak yayından kalkar.
+        <strong>Köşe yazıları</strong>, başkan ve yöneticilerin görüş
+        yazılarını yayımladığı alandır. <strong>Galeri</strong> ise etkinlik ve
+        eylem fotoğraflarının arşividir.
+      </p>
+      <ul class="feat">
+        <li>İlan tipleri: genel kurul, delege seçimi, diğer</li>
+        <li>Tarih aralığı verilerek otomatik yayından kalkma</li>
+        <li>Köşe yazılarında yazar bilgisi ve yayın tarihi</li>
+        <li>Galeri istenirse tamamen kapatılabilir</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">17</div>
+      <div class="module-title">
+        <h3>Avantajlar ve Anlaşmalı Kurumlar</h3>
+        <div class="module-where"><b>Yol:</b> Site ve Mobil Yönetimi → Avantajlar</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikanın anlaşma yaptığı işletmelerin üyelere sunduğu indirimlerin
+        kataloğu. Üyeye somut fayda gösteren en etkili modüllerden biridir;
+        hem sitede hem mobil uygulamada yayınlanır.
+      </p>
+      <ul class="feat">
+        <li>İndirim oranı, açıklama ve koşullar</li>
+        <li>Kategori, şehir ve ilçe bilgisi</li>
+        <li>Kurum logosu / görseli</li>
+        <li>Şehir ve kategoriye göre filtreleme</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Temsilciler için</span>
+        Kendi ilinizde anlaşma yaptığınız her işletmeyi buraya girin. Üye,
+        telefonundaki uygulamadan indirimi görüp kullandıkça sendikaya üye
+        olmanın karşılığını somut olarak hisseder.
+      </div>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">18</div>
+      <div class="module-title">
+        <h3>Online Üyelik Başvurusu ve Diğer Sayfalar</h3>
+        <div class="module-where"><b>Yol:</b> Web sitesinin kamuya açık sayfaları</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sitede sendikanın kurumsal bilgilerini taşıyan ve üye kazanımını
+        sağlayan sayfalar bulunur. Bunların içeriği de panelden yönetilir.
+      </p>
+      <table class="wrap-first">
+        <thead><tr><th style="width:34%">Sayfa</th><th>Ne yapar</th></tr></thead>
+        <tbody>
+          <tr><td>Üyelik Başvurusu</td><td>Online üyelik formu; gelen başvurular panele düşer</td></tr>
+          <tr><td>Şubelerimiz</td><td>Tüm şube ve temsilciliklerin harita ve liste görünümü</td></tr>
+          <tr><td>Yönetim Kadrosu</td><td>Başkan ve yönetim kurulu üyelerinin bilgi ve fotoğrafları</td></tr>
+          <tr><td>Hakkımızda</td><td>Sendikanın tanıtım metni</td></tr>
+          <tr><td>Anketler</td><td>Kamuya açık anket ve referandumlara katılım</td></tr>
+          <tr><td>Belge Doğrulama</td><td>Karekod veya takip numarasıyla belge aslını sorgulama</td></tr>
+          <tr><td>Belge Havuzu</td><td>Üyelerin erişimine açılan ortak belge ve form arşivi</td></tr>
+          <tr><td>EK-1 Üyelik Formu</td><td>İndirilip doldurulabilen resmi üyelik formu</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 4 — MOBİL UYGULAMA
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 4</div>
+    <h1>Mobil Uygulama</h1>
+    <p>
+      Üyenin cebindeki sendika. iOS ve Android'de çalışır. Üye, sendikayla
+      ilgili her işini buradan yapar; sendika da üyeye buradan ulaşır.
+      Temsilcilerin en önemli işlerinden biri üyelere bu uygulamayı kurdurmak
+      ve kullandırmaktır.
+    </p>
+  </div>
+
+  <!-- 19 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">19</div>
+      <div class="module-title">
+        <h3>Giriş ve Dijital Üye Kimliği</h3>
+        <div class="module-where"><b>Kullanan:</b> Üye</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üye, TC kimlik numarası ve şifresiyle giriş yapar. Şifre ilk kurulumda
+        SMS ile gönderilir. Uygulamada ayrıca kimlik kartını telefona okutarak
+        (NFC) doğrulama ve kamerayla belge okuma özellikleri bulunur.
+      </p>
+      <ul class="feat">
+        <li>TC kimlik + şifre ile giriş</li>
+        <li>SMS doğrulama kodu</li>
+        <li>NFC ile kimlik kartı okutarak doğrulama</li>
+        <li>Kamerayla belge / kimlik okuma</li>
+        <li>Karekodlu dijital üye kimlik kartı</li>
+        <li>Üye numarası, üyelik durumu ve şube bilgisi</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Dijital üye kartı</span>
+        Üyenin fiziksel kart taşımasına gerek kalmaz. Kartın üzerindeki karekod
+        okutulduğunda üyeliğin geçerli olduğu anında doğrulanır — anlaşmalı
+        işletmelerde indirim kullanırken de bu kart gösterilir.
+      </div>
+      <div class="howto">
+        <div class="howto-label">Üyeye uygulamayı kurdurma (temsilci adımları)</div>
+        <ol>
+          <li>Üyenin panelde kayıtlı olduğundan ve telefon numarasının doğru olduğundan emin olun.</li>
+          <li>Üyeye uygulamayı App Store / Google Play'den indirtin.</li>
+          <li>Üye TC kimlik numarasını girsin; şifresi SMS ile telefonuna gelir.</li>
+          <li>İlk girişte kendi şifresini belirlesin.</li>
+          <li>Bildirim iznini <b>izin ver</b> olarak seçtirin — yoksa duyurular telefonuna düşmez.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">20</div>
+      <div class="module-title">
+        <h3>Uygulamadaki Modüller</h3>
+        <div class="module-where"><b>Kullanan:</b> Üye</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <table class="wrap-first">
+        <thead><tr><th style="width:32%">Modül</th><th>Üye ne yapar</th></tr></thead>
+        <tbody>
+          <tr><td>Haberler</td><td>Sendika haberlerini okur; öne çıkanlar ana ekranda görünür</td></tr>
+          <tr><td>Duyurular</td><td>Resmi duyuruları takip eder</td></tr>
+          <tr><td>Avantajlar</td><td>Anlaşmalı kurum indirimlerini görür ve kullanır</td></tr>
+          <tr><td>Becayiş</td><td>Karşılıklı yer değiştirme talebi açar; sistem uygun eşleşmeleri bulur</td></tr>
+          <tr><td>Hukuk Desteği</td><td>Hukuki sorununu bildirir, sürecini takip eder</td></tr>
+          <tr><td>Destek Talebi</td><td>Genel, teknik veya mali konularda talep açar</td></tr>
+          <tr><td>Anketler</td><td>Sendikanın açtığı anket ve referandumlara katılır</td></tr>
+          <tr><td>Etkinlikler</td><td>Takvimdeki etkinlikleri görür</td></tr>
+          <tr><td>Belgeler</td><td>Ortak belge havuzuna erişir, kendi belgesini yükler</td></tr>
+          <tr><td>Aidat</td><td>Geçmiş aidat tahakkuk ve ödemelerini görür</td></tr>
+          <tr><td>Bildirimler</td><td>Gelen SMS ve bildirimlerin arşivini görüntüler</td></tr>
+          <tr><td>Arkadaşını Davet Et</td><td>Kendi davet bağlantısıyla çalışma arkadaşını üyeliğe çağırır</td></tr>
+          <tr><td>Profil ve Ayarlar</td><td>Şifre değiştirir, bilgilerini görür, izinlerini yönetir</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">21</div>
+      <div class="module-title">
+        <h3>Sendy — Yapay Zekâ Asistanı ve Hızlı İşlemler</h3>
+        <div class="module-where"><b>Kullanan:</b> Üye &nbsp;·&nbsp; Uygulama içi sohbet ekranı</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        <strong>Sendy</strong>, uygulamanın içindeki yapay zekâ destekli
+        yardımcıdır. Üye, "aidatımı nereden görürüm", "becayiş nasıl açılır"
+        gibi sorularını gündüz gece sorabilir; cevabı anında alır. Böylece
+        temsilciye ve merkeze gelen tekrarlayan soru yükü azalır.
+      </p>
+      <p>
+        <strong>Hızlı işlemler</strong> ekranı ise en çok kullanılan işlemleri
+        tek dokunuşa indirir: dijital kimlik kartını gösterme, talep açma,
+        anketlere geçme gibi.
+      </p>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">22</div>
+      <div class="module-title">
+        <h3>Mobil Yönetici Ekranı</h3>
+        <div class="module-where"><b>Kullanan:</b> Yönetici ve temsilciler</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Yöneticiler, bilgisayar başında olmadıkları zaman da işlerini
+        yürütebilsin diye uygulamanın içinde ayrı bir yönetim bölümü vardır.
+        Sahada, toplantıda ya da yolda hızlı işlem yapmaya uygundur.
+      </p>
+      <ul class="feat">
+        <li>Üye listesini görüntüleme ve üye detayına bakma</li>
+        <li>Anlık istatistikleri görme</li>
+        <li>Duyuru yayınlama</li>
+        <li>Avantaj / indirim ekleme</li>
+        <li>SMS gönderimi ve gönderim onayı verme</li>
+        <li>Davet kayıtlarını takip etme</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 5 — STRATEJİK ARAÇLAR
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 5</div>
+    <h1>Stratejik Araçlar</h1>
+    <p>
+      Bu bölümdeki modüller günlük işleri değil, sendikanın etkisini ve
+      görünürlüğünü artıran özel işleri yürütür. Hepsi <b>Araçlar</b> menüsü
+      altında toplanmıştır ve ihtiyaç duyulmayanlar kapatılabilir.
+    </p>
+  </div>
+
+  <!-- 23 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">23</div>
+      <div class="module-title">
+        <h3>Dijital Eylem</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Dijital Eylem</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sosyal medyada organize kampanya yürütmek için tasarlanmış modül. Bir
+        konu, hashtag ve üslup belirlersiniz; sistem yapay zekâ ile birbirinden
+        farklı yüzlerce paylaşım metni üretir ve bunları katılan üyelere canlı
+        olarak dağıtır. Üye metni kopyalayıp paylaşır; o metin havuzdan düşer,
+        böylece kimse aynı cümleyi paylaşmaz.
+      </p>
+      <ul class="feat">
+        <li>Adım adım kampanya kurulum sihirbazı</li>
+        <li>Konu, hashtag ve üslup dağılımı belirleme</li>
+        <li>Farklı metinlerin otomatik üretilmesi</li>
+        <li>Aynı metnin iki kişide çıkmasını engelleme</li>
+        <li>Canlı Türkiye haritasında katılımcı gösterimi</li>
+        <li>Gerçek paylaşım sayısı ve etkileşim istatistikleri</li>
+        <li>İleri tarihli, geri sayımlı eylem planlama</li>
+        <li>Eylem sırasında mobil uygulamanın eylem ekranına odaklanması</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Kampanya nasıl başlatılır</div>
+        <ol>
+          <li><b>Araçlar → Dijital Eylem</b> ekranından yeni kampanya açın.</li>
+          <li>Konuyu ve kısa açıklamasını yazın; sendikanın talebini net anlatın.</li>
+          <li>Kullanılacak hashtag'leri girin.</li>
+          <li>Üslup dağılımını ayarlayın (kurumsal / çağrı / sert dil oranı).</li>
+          <li>Başlangıç saatini belirleyin ve üyelere SMS ve bildirimle duyurun.</li>
+          <li>Eylem sırasında ekrandan katılımı ve paylaşım sayısını canlı izleyin.</li>
+        </ol>
+      </div>
+      <div class="note warn">
+        <span class="note-title">Sorumluluk</span>
+        Üretilen metinler yayımlanmadan önce yönetimin onayından geçer. Sistem
+        hakaret, nefret söylemi ve asılsız iddia içeren metin üretmemek üzere
+        sınırlandırılmıştır; yine de kampanya metinlerinin hukuki sorumluluğu
+        sendikaya aittir.
+      </div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">24</div>
+      <div class="module-title">
+        <h3>Afet Modu</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Afet Modu</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Deprem, sel ve benzeri afetlerde sendikanın üyelerine ulaşıp durum
+        tespiti yapmasını sağlayan kriz modülü. Afet modu açıldığında bütün
+        üyelerin telefonuna bildirim gider ve "güvendeyim" işaretlemeleri
+        istenir. Panelde kimin bildirim yaptığı, kimin destek ekibine katılmak
+        istediği, hangi şehir ve ilçede olduğu ve hangi yetkinliklere sahip
+        olduğu liste hâlinde görünür.
+      </p>
+      <ul class="feat">
+        <li>Tek tuşla afet modunu açma</li>
+        <li>Tüm üyelere anında bildirim</li>
+        <li>"Güvendeyim" bildirimlerinin toplanması</li>
+        <li>Destek ekibine katılmak isteyen gönüllülerin listesi</li>
+        <li>Şehir, ilçe ve yetkinliğe göre arama ve filtreleme</li>
+        <li>Son 24 saatteki bildirim sayısı</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Afet anında izlenecek yol</div>
+        <ol>
+          <li><b>Araçlar → Afet Modu</b> ekranını açın ve modu aktifleştirin.</li>
+          <li>Üyelere bildirim gönderin.</li>
+          <li>Gelen "güvendeyim" bildirimlerini takip edin; bildirim yapmayanları bölgeye göre filtreleyin.</li>
+          <li>Bildirim yapmayan üyelere telefonla ulaşmak üzere temsilcilere liste dağıtın.</li>
+          <li>Gönüllü listesini yetkinliklerine göre ayırıp saha ekipleri kurun.</li>
+          <li>Durum normale döndüğünde modu kapatın.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">25</div>
+      <div class="module-title">
+        <h3>Anketler ve Referandum</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Anketler</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üyenin görüşünü almanın en hızlı yolu. Çoktan seçmeli, açık uçlu ve
+        derecelendirme tipinde sorular sorulabilir. Anket hem mobil uygulamada
+        hem de web sitesinde yayınlanabilir; sonuçlar canlı grafiklerle izlenir.
+      </p>
+      <ul class="feat">
+        <li>Çoktan seçmeli, açık uçlu ve puanlama soruları</li>
+        <li>Yalnızca üyelere ya da herkese açık yayın</li>
+        <li>Tek oy kuralı veya serbest katılım</li>
+        <li>Canlı grafik sonuçlar</li>
+        <li>Sonuçların dışa aktarılması</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Kullanım fikri</span>
+        Toplu sözleşme dönemlerinde üyelerin önceliklerini ölçmek, genel kurul
+        öncesi nabız yoklamak ve alınan kararların üyede karşılığını görmek için
+        kullanın. Sonuçları üyelerle paylaşmak katılımı belirgin şekilde artırır.
+      </div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">26</div>
+      <div class="module-title">
+        <h3>Arkadaşını Davet Et</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Arkadaşını Davet Et &nbsp;·&nbsp; Mobil uygulamada üye ekranı</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Üye kazanımını üyenin kendisi üzerinden yürüten modül. Üye, uygulamadan
+        çalışma arkadaşının numarasını girer; ona kendi adına bir davet SMS'i
+        gider. Davetin kimden geldiği ve sonuçlanıp sonuçlanmadığı panelden
+        izlenir.
+      </p>
+      <ul class="feat">
+        <li>Üyeye özel davet bağlantısı</li>
+        <li>SMS ile davet gönderimi</li>
+        <li>Davet durumu takibi (gönderildi, açıldı, üye oldu)</li>
+        <li>En çok üye kazandıran üyelerin görülmesi</li>
+      </ul>
+      <div class="note">
+        <span class="note-title">Temsilciler için</span>
+        Bir üyenin çalışma arkadaşına yaptığı davet, sendikanın gönderdiği
+        mesajdan daha etkilidir. Üyelerinizi bu ekranı kullanmaya teşvik edin;
+        panelden kimin kaç kişiyi kazandırdığını görüp teşekkür edin.
+      </div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">27</div>
+      <div class="module-title">
+        <h3>Resmî Gazete Radarı</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Resmi Gazete Radarı</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Sendikayı ilgilendiren mevzuat değişikliklerini kaçırmamak için
+        kurulmuş takip sistemi. Anahtar kelimelerinizi girersiniz; sistem
+        Resmî Gazete'yi düzenli olarak tarar ve kelimelerinizin geçtiği
+        yayınları önünüze getirir.
+      </p>
+      <ul class="feat">
+        <li>Sınırsız anahtar kelime tanımlama</li>
+        <li>Otomatik tarama ve sonuç listesi</li>
+        <li>Yeni sonuçta bildirim</li>
+        <li>Sonuçtan Resmî Gazete'deki asıl metne geçiş</li>
+        <li>Geçmiş tarama kayıtları</li>
+      </ul>
+      <div class="howto">
+        <div class="howto-label">Nasıl kurulur</div>
+        <ol>
+          <li><b>Araçlar → Resmi Gazete Radarı</b> ekranını açın.</li>
+          <li>Sendikanızın iş kolunu ilgilendiren kelimeleri ekleyin (kurum adları, kadro unvanları, mevzuat başlıkları).</li>
+          <li>Bildirimi açık bırakın.</li>
+          <li>Gelen sonuçları inceleyin; üyeyi ilgilendiren bir düzenleme varsa duyuru ve SMS ile hemen paylaşın.</li>
+        </ol>
+      </div>
+      <div class="note">
+        <span class="note-title">Neden önemli</span>
+        Üyeyi ilgilendiren bir düzenlemeyi ilk duyuran sendika olmak, üyenin
+        gözünde sendikanın en güçlü ispatıdır.
+      </div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">28</div>
+      <div class="module-title">
+        <h3>Link İşlemleri</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Link İşlemleri &nbsp;·&nbsp; <b>Alt ekranlar:</b> URL Kısaltma, Karekod, WhatsApp Linki, Şifreli Link, İstatistik</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Günlük iletişimi kolaylaştıran küçük ama çok kullanılan araçlar takımı.
+        Hepsi sendikanın kendi adresi üzerinden çalışır; dışarıdan hizmet
+        satın almaya gerek kalmaz.
+      </p>
+      <table class="wrap-first">
+        <thead><tr><th style="width:32%">Araç</th><th>Ne işe yarar</th></tr></thead>
+        <tbody>
+          <tr><td>URL Kısaltma</td><td>Uzun bağlantıları kısaltır; SMS'te yer kazandırır, tıklanma sayısı ölçülür</td></tr>
+          <tr><td>Karekod Üretici</td><td>Herhangi bir bağlantı için afiş ve broşüre basılacak karekod üretir</td></tr>
+          <tr><td>WhatsApp Linki</td><td>Tıklayınca hazır mesajla WhatsApp sohbeti açan bağlantı oluşturur</td></tr>
+          <tr><td>Şifreli Link</td><td>Yalnızca şifreyi bilenlerin açabileceği bağlantı üretir</td></tr>
+          <tr><td>İstatistik</td><td>Üretilen bağlantıların kaç kez, nereden tıklandığını gösterir</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <span class="note-title">Pratik kullanım</span>
+        Bir duyuru SMS'i gönderirken uzun haber adresini kısaltın. Ardından
+        istatistik ekranından kaç üyenin haberi açtığını görün — mesajın gerçekten
+        okunup okunmadığını ölçmenin en kolay yolu budur.
+      </div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">29</div>
+      <div class="module-title">
+        <h3>Biolink — Tek Sayfada Tüm Bağlantılar</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Biolink</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        Instagram gibi tek bağlantıya izin veren platformlar için hazırlanmış
+        sayfa. Sendikanın web sitesi, üyelik formu, sosyal medya hesapları ve
+        iletişim bilgilerini tek bir mobil sayfada toplar. Her şube için ayrı
+        sayfa oluşturulabilir.
+      </p>
+      <ul class="feat">
+        <li>Sendikanın kendi adresi altında çalışır</li>
+        <li>Şube bazlı ayrı sayfalar</li>
+        <li>Sınırsız bağlantı ekleme ve sıralama</li>
+        <li>Dışarıya abonelik ücreti ödemeye gerek yok</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">30</div>
+      <div class="module-title">
+        <h3>Ortak Ajanda ve Çevrim İçi Toplantı</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Ortak Ajanda / Çevrim İçi Toplantı</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        <strong>Ortak Ajanda</strong>, yönetim ve teşkilatın paylaştığı
+        takvimdir; toplantılar, ziyaretler ve önemli tarihler herkesin
+        görebileceği şekilde işlenir. <strong>Çevrim içi toplantı</strong> ise
+        program kurmadan, tarayıcı üzerinden anında görüntülü toplantı odası
+        açar.
+      </p>
+      <div class="howto">
+        <div class="howto-label">Online toplantı yapma</div>
+        <ol>
+          <li><b>Araçlar → Çevrim İçi Toplantı</b> ekranından yeni oda açın.</li>
+          <li>Oluşan bağlantıyı kopyalayın.</li>
+          <li>Katılacaklara SMS veya mesajla gönderin.</li>
+          <li>Katılımcılar bağlantıya tıklayarak doğrudan odaya girer; ayrıca program kurmaları gerekmez.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 31 -->
+  <div class="module">
+    <div class="module-head">
+      <div class="module-no">31</div>
+      <div class="module-title">
+        <h3>Sabit Metin ve Mağaza</h3>
+        <div class="module-where"><b>Yol:</b> Araçlar → Sabit Metin &nbsp;·&nbsp; Sol menü → Mağaza</div>
+      </div>
+    </div>
+    <div class="module-body">
+      <p>
+        <strong>Sabit Metin</strong>, yönetim panelinin üst şeridinde tüm
+        kullanıcılara görünen duyuru alanıdır; "bu hafta üye güncellemesi
+        yapılacak" gibi teşkilat içi hatırlatmalar için kullanılır.
+      </p>
+      <p>
+        <strong>Mağaza</strong> ise sendikanın kurumsal ürünler, promosyon
+        setleri ve ayrıca satın alınabilen ek modülleri görebildiği katalogdur.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 6 — HIZLI BAŞLANGIÇ
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 6</div>
+    <h1>Temsilciler İçin Hızlı Başlangıç</h1>
+    <p>
+      Sistemi ilk kez kullanacaksanız aşağıdaki sırayı izleyin. İlk haftanızda
+      bu listeyi tamamlarsanız günlük işlerin tamamını rahatça yürütürsünüz.
+    </p>
+  </div>
+
+  <h2>İlk gün</h2>
+  <ul class="checklist">
+    <li>Panele giriş yapın ve size verilen geçici şifreyi değiştirin.</li>
+    <li>Sol menüyü baştan sona gezin; hangi başlığın altında ne olduğunu görün.</li>
+    <li>Ana ekrandaki rakamları inceleyin — kendi şubenizin durumunu öğrenin.</li>
+    <li>Üye listenizi açın, kendi üyelerinizi görün.</li>
+    <li>Telefonunuza mobil uygulamayı kurun ve üye gözüyle nasıl göründüğüne bakın.</li>
+  </ul>
+
+  <h2>İlk hafta</h2>
+  <ul class="checklist">
+    <li>Üye listenizde telefonu veya e-postası eksik olanları tespit edin.</li>
+    <li>Bu üyelere <b>Toplu Bilgi Güncelleme</b> daveti gönderin.</li>
+    <li>Şubenizin iletişim bilgilerinin doğru olduğunu kontrol edin.</li>
+    <li>İlinizde anlaşmalı olduğunuz işletmeleri <b>Avantajlar</b>a girin.</li>
+    <li>Üyelerinize mobil uygulamayı kurdurmaya başlayın.</li>
+    <li>Kendinize bir deneme SMS'i gönderip sistemin çalıştığını görün.</li>
+  </ul>
+
+  <h2>Düzenli olarak</h2>
+  <ul class="checklist">
+    <li>Yeni gelen online başvuruları kontrol edin ve bekletmeden onaylayın.</li>
+    <li>Hukuk ve destek taleplerini takip edip durumlarını güncelleyin.</li>
+    <li>Şubenizle ilgili haber ve duyuruları yayınlayın.</li>
+    <li>Yeni üye kayıtlarını aynı gün sisteme girin.</li>
+    <li>Ay sonunda istatistik ekranından şubenizin durumunu değerlendirin.</li>
+  </ul>
+
+  <h2>En sık yapılan beş işlem</h2>
+  <table class="wrap-first">
+    <thead><tr><th style="width:38%">Ne yapmak istiyorsunuz?</th><th>Nereye gideceksiniz?</th></tr></thead>
+    <tbody>
+      <tr><td>Yeni üye kaydetmek</td><td>Üyeler → Yeni Üye &nbsp;<span class="muted">(ya da sahada: dijital üyelik daveti gönderin)</span></td></tr>
+      <tr><td>Üyelere duyuru geçmek</td><td>SMS → SMS Gönder &nbsp;<span class="muted">(kalıcı olsun isterseniz: Duyurular)</span></td></tr>
+      <tr><td>Üye bilgisi düzeltmek</td><td>Üyeler → üyeyi arayın → detayını açın → düzenleyin</td></tr>
+      <tr><td>Resmi yazı hazırlamak</td><td>Belge Yönetimi → Belge Oluştur</td></tr>
+      <tr><td>Şube rakamlarını görmek</td><td>İstatistikler → Üye İstatistikleri</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ---------------------------------------------------------------
+     BÖLÜM 7 — SSS
+     --------------------------------------------------------------- -->
+<section class="chapter">
+  <div class="chapter-head">
+    <div class="chapter-eyebrow">Bölüm 7</div>
+    <h1>Sıkça Sorulan Sorular</h1>
+    <p>
+      Temsilcilerden ve üyelerden en çok gelen soruların kısa cevapları.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Üye uygulamaya giriş yapamıyor, ne yapmalıyım?</q>
+    <p>
+      Önce panelden üyenin <b>telefon numarasının doğru</b> olduğunu ve
+      üyeliğinin <b>aktif</b> durumda olduğunu kontrol edin. En sık karşılaşılan
+      sebep yanlış veya eski telefon numarasıdır. Numarayı düzelttikten sonra
+      üyenin yeniden şifre talep etmesini isteyin.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Başka şubenin üyelerini göremiyorum, sistemde hata mı var?</q>
+    <p>
+      Hayır. Bu kasıtlı bir sınırdır. Şube yöneticisi yalnızca kendi şubesinin,
+      bölge sorumlusu yalnızca kendi bölgesinin verilerini görür. Daha geniş
+      erişime ihtiyacınız varsa genel merkezden rolünüzün güncellenmesini
+      isteyin.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Yanlışlıkla toplu SMS gönderdim, geri alabilir miyim?</q>
+    <p>
+      Gönderilen SMS geri alınamaz. Bu yüzden toplu gönderim öncesi sistem
+      telefonunuza doğrulama kodu gönderir ve kaç kişiye gideceğini gösterir.
+      Her toplu gönderimden önce mutlaka kendi numaranıza deneme yapın.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Sildiğim bir kaydı geri getirebilir miyim?</q>
+    <p>
+      Silme işlemleri <b>Denetim Kayıtları</b>nda iz bırakır; kimin ne zaman
+      sildiği görülür. Kaydın geri getirilmesi için sistem yöneticinize
+      başvurun. Bu yüzden üye kayıtlarında silmek yerine <b>pasife alma</b>
+      tercih edilmelidir.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Üye telefonuna bildirim düşmüyor.</q>
+    <p>
+      Üyenin uygulamayı kurarken <b>bildirim iznini</b> vermemiş olması en olası
+      sebeptir. Telefon ayarlarından uygulamanın bildirim iznini açtırın.
+      Ayrıca uygulamadan çıkış yapılmış olabilir; tekrar giriş yaptırın.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Aynı kişi iki kez kaydedilmiş, ne yapmalıyım?</q>
+    <p>
+      Sistem aynı TC kimlik numarasıyla ikinci kayıt açılmasını engeller. Buna
+      rağmen mükerrer kayıt varsa (örneğin eski aktarımdan gelmişse) doğru
+      kaydı koruyup diğerini pasife alın ve genel merkeze bildirin.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Yayınladığım haber sitede görünmüyor.</q>
+    <p>
+      Haberin yayın tarihinin ileri bir tarihe ayarlanmış olabileceğini ve
+      <b>yerel yayın</b> seçeneğiyle yalnızca belirli bir şubeye
+      sınırlandırılmış olabileceğini kontrol edin.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Bu modüllerin hepsini kullanmak zorunda mıyız?</q>
+    <p>
+      Hayır. Kullanılmayan modüller <b>Site Ayarları</b>ndan kapatılabilir.
+      Kapatılan modül menüden kalkar ve kimsenin karşısına çıkmaz. İhtiyaç
+      doğduğunda tekrar açılır.
+    </p>
+  </div>
+
+  <div class="faq">
+    <q>Verilerimiz güvende mi?</q>
+    <p>
+      Veriler yetkisiz erişime kapalı olarak saklanır, düzenli yedeklenir ve
+      her kullanıcı yalnızca yetkisi kadarını görür. Kritik işlemler silinemez
+      biçimde kayıt altına alınır. Sistemin güvenliği kadar önemli olan, hesap
+      şifrelerinin paylaşılmamasıdır.
+    </p>
+  </div>
+
+  <!-- ARKA KAPAK -->
+  <div class="backcover">
+    <h2>Yardıma mı ihtiyacınız var?</h2>
+    <p class="lead" style="margin-bottom:0">
+      Bu kılavuzda cevabını bulamadığınız her konu için sendikanızın
+      bilgi işlem birimine ya da bağlı olduğunuz şube yönetimine başvurun.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <h4>Yönetim Paneli</h4>
+        <p data-panel>www.sendikaniz.org.tr/admin</p>
+      </div>
+      <div>
+        <h4>Web Sitesi</h4>
+        <p data-web>www.sendikaniz.org.tr</p>
+      </div>
+      <div>
+        <h4>Mobil Uygulama</h4>
+        <p>App Store &amp; Google Play</p>
+      </div>
+    </div>
+
+    <p class="small muted" style="margin-top:8mm; margin-bottom:0">
+      Bu doküman, dijital sendika yönetim sisteminin tanıtımı ve kullanımı
+      için hazırlanmıştır. <span data-tarih>Ağustos 2026</span>
+    </p>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ======================================================================
+     AYARLARI UYGULA
+     ====================================================================== -->
+<script>
+(function () {
+  var a = window.AYARLAR || {};
+
+  // Marka rengi
+  if (a.markaRengi) {
+    var r = document.documentElement.style;
+    r.setProperty('--accent', a.markaRengi);
+    r.setProperty('--accent-dark', koyult(a.markaRengi, 0.55));
+    r.setProperty('--accent-line', acikla(a.markaRengi, 0.62));
+    r.setProperty('--accent-soft', acikla(a.markaRengi, 0.93));
+  }
+
+  // Sendika adı
+  document.querySelectorAll('[data-sendika-adi]').forEach(function (el) {
+    el.textContent = a.sendikaAdi || 'SENDİKA ADI';
+  });
+
+  // Web adresleri
+  var site = (a.webSitesi || '').replace(/\/+$/, '');
+  document.querySelectorAll('[data-web]').forEach(function (el) {
+    if (site) el.textContent = site;
+  });
+  document.querySelectorAll('[data-panel]').forEach(function (el) {
+    if (a.panelAdresi) el.textContent = a.panelAdresi;
+  });
+
+  // Tarih
+  document.querySelectorAll('[data-tarih]').forEach(function (el) {
+    if (a.tarih) el.textContent = a.tarih;
+  });
+
+  // Logo — dosya varsa göster, yoksa yer tutucu kalsın
+  if (a.logoDosyasi) {
+    var img = document.getElementById('kapak-logo');
+    var yedek = document.getElementById('kapak-logo-yedek');
+    // Koyu/renkli logolar koyu kapakta kaybolmasın diye açık zemin rozeti
+    if (a.logoRozet) img.parentNode.classList.add('rozet');
+    img.onload = function () {
+      img.style.display = 'block';
+      yedek.style.display = 'none';
+    };
+    img.onerror = function () {
+      img.style.display = 'none';
+      yedek.style.display = 'block';
+    };
+    img.src = a.logoDosyasi;
+  }
+
+  function ayristir(hex) {
+    var h = String(hex).replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    return [
+      parseInt(h.substring(0, 2), 16),
+      parseInt(h.substring(2, 4), 16),
+      parseInt(h.substring(4, 6), 16)
+    ];
+  }
+  function birlestir(c) {
+    return '#' + c.map(function (v) {
+      return Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function koyult(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v * (1 - oran); }));
+  }
+  function acikla(hex, oran) {
+    return birlestir(ayristir(hex).map(function (v) { return v + (255 - v) * oran; }));
+  }
+})();
+</script>
+
+</body>
+</html>
