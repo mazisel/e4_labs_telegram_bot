@@ -1,5 +1,5 @@
 """
-Avantaj kampanyası şablonu (1080x1350 PNG).
+Avantaj kampanyası şablonu (1080x1920 story PNG; 1080x1350 kart ortalanıp üst/alt uzatılır).
 
 Koordinatlar "Klasik İndirim.psd" dosyasından alınmıştır. Instagram kartının sabit kısımları
 (gölge, çerçeve, ikonlar) assets/avantaj/sablon.png içine önceden işlenmiştir; burada sadece
@@ -36,6 +36,7 @@ POPPINS_ASC = 1.05
 POPPINS_LINE = 1.4
 
 CARD = {"x": 47, "y": 360, "w": 806, "h": 774}
+STORY_H = 1920
 
 
 # ---- Font yardımcıları -------------------------------------------------------
@@ -278,6 +279,20 @@ def _circle(source, size, scale=4):
     return img
 
 
+def _to_story(canvas):
+    """1080x1350 kartı 1080x1920 story tuvaline yerleştirir; üst/alt boşluk kenar satırları uzatılarak doldurulur."""
+    top = (STORY_H - canvas.height) // 2
+    bottom = STORY_H - canvas.height - top
+    story = Image.new("RGBA", (canvas.width, STORY_H))
+    story.paste(canvas.crop((0, 0, canvas.width, 1)).resize((canvas.width, top), Image.Resampling.NEAREST), (0, 0))
+    story.paste(canvas, (0, top))
+    story.paste(
+        canvas.crop((0, canvas.height - 1, canvas.width, canvas.height)).resize((canvas.width, bottom), Image.Resampling.NEAREST),
+        (0, top + canvas.height),
+    )
+    return story
+
+
 # ---- Ana fonksiyon -----------------------------------------------------------
 
 def compose_avantaj(data, debug=False):
@@ -311,6 +326,8 @@ def compose_avantaj(data, debug=False):
         for box in [(66, 145, 446, 235), (470, 100, 932, 292), (629, 305, 974, 350),
                     (45, 1200, 420, 1300), (441, 1292, 706, 1323)]:
             draw.rectangle(box, outline="red", width=2)
+
+    canvas = _to_story(canvas)
 
     out = io.BytesIO()
     canvas.save(out, format="PNG")
